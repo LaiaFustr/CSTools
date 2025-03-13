@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
+/* import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'; */
+
+/* import { NgbModal } from '@ng-bootstrap/ng-bootstrap'; */
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, NgbAlert],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -11,9 +15,4 @@ export class AppComponent {
   title = 'FinalCSToolsFront';
 
 
-  ngOnInit(): void {
-    $(document).ready(() => {
-      $('#myElement').text('Hello, jQuery with Angular!');
-    });
-  }
 }

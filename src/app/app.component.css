@@ -1,0 +1,389 @@
+:root {
+    --blueDarkDch: #0b3d91;
+    --blueLightDch: #0057b7;
+    --blueDch: #0033a0;
+    --blueDarker: #113675;
+    --orangeDch: #ffb61a;
+    --greyDch: #9C9C9C;
+    --grey2Dch: #5c5f63;
+    --blackDsc: #2b2926;
+    --lightGrey: #dee1e6;
+    --bgLightGrey: #f3f3f3;
+}
+
+.helvetica {
+    /* fuente dachser encontrada */
+    font-family: Helvetica;
+}
+
+.dachserFont {
+    font-weight: 700;
+    color: #255da8;
+    transform: scale(1, 1.2);
+}
+
+.dachserLogoSize {
+    font-size: 1.3em;
+}
+
+.dachserTitleSize {
+    font-size: 2em;
+}
+
+/* ***********DACHSER NAV************** */
+.main-nav {
+    display: flex;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    background-color: white;
+    justify-content: center;
+}
+
+.container__section {
+    display: flex;
+    max-width: 76em;
+    /* margin: top right-left bottom; */
+    margin: 0% auto 0%;
+    padding: 0% 2.7em 0%;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-nav__div {
+    display: flex;
+    max-width: 76em;
+    /* margin: top right-left bottom; */
+    margin: 0% auto 0%;
+    padding: 0% 2.7em 0%;
+    align-items: center;
+    justify-content: center;
+}
+
+@media(max-width:452px) {
+
+    /* .main-nav__div {
+        padding: 0% .5em 0%;
+    }
+ */
+    .container__section {
+        padding: 0% .5em 0%;
+    }
+
+    .main-nav__logo-div {
+        margin-left: 0;
+    }
+
+    .dachser-Co--logo {
+        width: 6em;
+        height: auto;
+    }
+}
+
+.main-nav__content-left {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-left: 0%;
+    margin-right: auto;
+
+
+}
+
+/* .dachser-Co--logo{
+    width: 7.9em;
+    height: auto;
+} */
+
+.main-nav__options {
+    width: 100%;
+    flex-wrap: nowrap;
+    height: fit-content;
+    display: flex;
+    padding: .8em 0px;
+    justify-content: start;
+    align-items: end;
+    flex-grow: 0;
+
+}
+
+
+.o-section__content {
+    padding: 0em 1.2em 0em;
+}
+
+.main-nav__link {
+    display: inline-block;
+    font-weight: 700;
+    /* text-transform: uppercase; */
+    text-wrap: nowrap;
+    text-decoration: none;
+}
+
+.link-black {
+    color: var(--blackDsc);
+}
+
+.link-blue {
+    color: var(--blueDarkDch);
+}
+
+.link-black::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--blackDsc);
+    transition: width .2s;
+}
+
+.link-blue::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--blueDarkDch);
+    transition: width .2s;
+}
+
+
+/* .main-nav__link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--blackDsc);
+    transition: width .2s;
+
+} */
+
+.main-nav__link:hover::after {
+    width: 100%;
+}
+
+
+.main-nav__icon {
+    margin: 0em .5em 0px;
+    padding: 0;
+    width: fit-content;
+    color: var(--grey2Dch);
+}
+
+.main-nav__logo-div {
+    display: flex;
+    align-items: center;
+    margin-left: 0.5em;
+    margin-bottom: 1.2em;
+}
+
+.main-nav__logo {
+    height: 100%;
+    padding-top: 1em;
+    align-items: end;
+    justify-content: end;
+    margin: 0;
+}
+
+.bg-dachser {
+    background-color: var(--orangeDch);
+}
+
+#nav-options__copy {
+    width: 100%;
+    display: block;
+    background-color: var(--bgLightGrey);
+}
+
+/* **********DACHSER BUTTONS*********** */
+.btn-dch {
+    max-width: 300px;
+    width: 100%;
+    height: 40px;
+    max-height: 40px;
+    border-radius: 0;
+    font-size: .85em;
+    font-weight: 600;
+    transition: all .2s linear;
+}
+
+.btn--dark {
+    border: 1px solid var(--blueDarkDch);
+    background-color: var(--blueDarkDch);
+    color: white;
+}
+
+.btn--dark:hover {
+    background-color: var(--blueDarker);
+}
+
+.btn--dark-inverse:hover {
+    border: 1px solid var(--blueDarkDch);
+    background-color: white;
+    color: var(--blueDarkDch);
+}
+
+.btn--light {
+    color: var(--blueDarkDch);
+    background-color: white;
+    border: 1px solid white;
+}
+
+.btn--light:hover {
+    color: white;
+    background-color: var(--blueDarkDch);
+    border: 1px solid white;
+}
+
+.btn--light-inverse {
+    border: 1px solid white;
+    background-color: white;
+    color: transparent;
+
+}
+
+.btn--outline--light-inverse {
+    color: white;
+    background-color: transparent;
+    border: 1px solid white;
+}
+
+.btn--light-inverse {
+    color: white;
+    background-color: var(--blueDarkDch);
+    border: 1px solid white;
+}
+
+.btn--light-inverse:hover {
+    color: var(--blueDarkDch);
+    background-color: white;
+}
+
+.btn--outline--light-inverse:hover {
+    color: var(--blueDarker);
+    background-color: white;
+}
+
+
+/* ***** DACHSER BACKGROUND ***** */
+.container-Dch {
+    margin: 0;
+}
+
+.container-Dch--content {
+    padding: 2em;
+}
+
+.keyvisual__img {
+    background-repeat: no-repeat;
+
+    object-fit: cover;
+    overflow: hidden;
+    min-height: 12em;
+    max-height: 12em;
+    height: 12em;
+    width: auto;
+}
+
+
+/* ***** DACHSER CARDS ***** */
+.card--dachser {
+    display: flex;
+    align-self: center;
+    border-radius: 0%;
+    max-height: 22em;
+    min-height: 22em;
+    min-width: 17em;
+    max-width: 17em;
+    padding: 0;
+    border: 0;
+}
+
+.card--dachser__text {
+    padding: 1em;
+    overflow-y: hidden;
+
+}
+
+.card--dachser_Hover {
+    position: relative;
+}
+
+.card--dachser__overflow-shadow {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    box-shadow: #ffffff 0px -70px 30px -35px inset;
+}
+
+.card--dachser__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    transition: all .2s linear;
+}
+
+.card--dachser:hover .card--dachser__overlay {
+    background-color: #143170ee;
+}
+
+.card--dachser:hover .horizontalLine::before {
+    background-color: var(--orangeDch);
+}
+
+.card--dachser:hover .btn--card {
+    color: var(--blueDarkDch);
+    background-color: white;
+    border: 1px solid white;
+}
+
+.card--dachser:hover .btn--card:hover {
+    color: white;
+    background-color: var(--blueDarkDch);
+    border: 1px solid white;
+}
+
+.btn--card:hover {
+    color: white;
+    background-color: var(--blueDarkDch);
+    border: 1px solid white;
+}
+
+.btn--card {
+    color: transparent;
+    background-color: transparent;
+    border: 1px transparent;
+    transition: all .2s linear;
+}
+
+.horizontalLine::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 10px;
+    margin-left: 1rem;
+    overflow: hidden;
+    transition: all .2s linear;
+}
+
+.btn--card__btn-container {
+    height: 93%;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: end;
+    margin: 0 1.3em 0;
+    padding: 0;
+    /* padding: ; */
+}
+
+/* FOOTER STYLES */
+
+.footerFont {
+    font-size: smaller;
+}
