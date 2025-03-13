@@ -9,4 +9,11 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'FinalCSToolsFront';
+
+
+  ngOnInit(): void {
+    $(document).ready(() => {
+      $('#myElement').text('Hello, jQuery with Angular!');
+    });
+  }
 }
