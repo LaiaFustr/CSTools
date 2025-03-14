@@ -5,6 +5,7 @@ import { SdcalculatorComponent } from './menu/sdcalculator/sdcalculator.componen
 import { ScheduleComponent } from './menu/schedule/schedule.component';
 import { KmdistancesComponent } from './menu/kmdistances/kmdistances.component';
 import { LoginComponent } from './login/login.component';
+import { PortalComponent } from './portal/portal.component';
 
 export const routes: Routes = [
     {
@@ -32,6 +33,11 @@ export const routes: Routes = [
     }, {
         path: 'login',
         component: LoginComponent,
+        pathMatch: 'full'
+    },
+    {
+        path: 'portal',
+        component: PortalComponent,
         pathMatch: 'full'
     },
     {
