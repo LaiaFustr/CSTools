@@ -10,9 +10,6 @@ export class SdcalculatorComponent {
   constructor() { }
 
 
-
-
-
   NgOnInit(): void {
 
     $(".resRowCalcu").hide()
@@ -39,8 +36,6 @@ export class SdcalculatorComponent {
           $(this).prop('disabled', false);
         })
       }
-
-
 
     } else {
       $(".secThRowCalc").each(function () {

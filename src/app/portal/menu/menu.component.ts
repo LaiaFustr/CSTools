@@ -3,9 +3,6 @@ import { RouterOutlet, RouterLink } from '@angular/router';
 import { faCalculator } from '@fortawesome/free-solid-svg-icons';
 
 
-
-
-
 @Component({
   selector: 'app-menu',
   imports: [RouterOutlet, RouterLink],
