@@ -4,6 +4,7 @@ import { MenuComponent } from './menu/menu.component';
 import { SdcalculatorComponent } from './menu/sdcalculator/sdcalculator.component';
 import { ScheduleComponent } from './menu/schedule/schedule.component';
 import { KmdistancesComponent } from './menu/kmdistances/kmdistances.component';
+import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
     {
@@ -28,10 +29,14 @@ export const routes: Routes = [
                 pathMatch: 'full'
             }
         ]
-    }, 
+    }, {
+        path: 'login',
+        component: LoginComponent,
+        pathMatch: 'full'
+    },
     {
         path: '',
-        redirectTo: 'cstools',
+        redirectTo: 'login',
         pathMatch: 'full'
     }
 ];
