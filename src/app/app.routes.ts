@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AppComponent } from "./app.component";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MenuComponent } from './portal/menu/menu.component';
 import { SdcalculatorComponent } from './portal/menu/sdcalculator/sdcalculator.component';
 import { ScheduleComponent } from './portal/menu/schedule/schedule.component';

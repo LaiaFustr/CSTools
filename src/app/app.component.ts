@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
-/* import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'; */
+
 
 /* import { NgbModal } from '@ng-bootstrap/ng-bootstrap'; */
 

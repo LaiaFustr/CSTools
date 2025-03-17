@@ -1,18 +1,25 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
-import { faCalculator } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faCalculator, faCalendarDay, faLocationCrosshairs, faTruckPlane, faPlus, faLessThan, faHome, faRightFromBracket, faBars } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
   selector: 'app-menu',
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet, RouterLink, FontAwesomeModule],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
 export class MenuComponent {
   faCalculator = faCalculator;
-
-
+  faCalendarDay = faCalendarDay;
+  faLocationCrosshairs = faLocationCrosshairs;
+  faTruckPlane = faTruckPlane;
+  faPlus = faPlus;
+  faLessThan = faLessThan;
+  faHome = faHome;
+  faRightFromBracket = faRightFromBracket;
+  faBars = faBars;
 
   constructor() { }
   ngOnInit(): void {
