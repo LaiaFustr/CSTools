@@ -6,6 +6,7 @@ import { ScheduleComponent } from './portal/menu/schedule/schedule.component';
 import { KmdistancesComponent } from './portal/menu/kmdistances/kmdistances.component';
 import { LoginComponent } from './login/login.component';
 import { PortalComponent } from './portal/portal.component';
+import { adminGuard } from './guards/admin.guard';
 
 export const routes: Routes = [
     {
@@ -16,18 +17,22 @@ export const routes: Routes = [
     {
         path: 'portal',
         component: PortalComponent,
+       canActivate: [adminGuard]
    },
     {
         path: 'portal/cstools',
         component: MenuComponent,
+        canActivate: [adminGuard],
         children: [
             {
                 path: 'sdcalculator',
                 component: SdcalculatorComponent,
+               
             },
             {
                 path: 'schedule',
                 component: ScheduleComponent,
+                
             },
             {
                 path: 'kmdistances',
