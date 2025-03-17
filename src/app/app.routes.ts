@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { AppComponent } from "./app.component";
-import { MenuComponent } from './menu/menu.component';
+import { MenuComponent } from './portal/menu/menu.component';
 import { DscalculatorComponent } from './portal/menu/dscalculator/dscalculator.component';
 import { ScheduleComponent } from './portal/menu/schedule/schedule.component';
 import { KmdistancesComponent } from './portal/menu/kmdistances/kmdistances.component';
