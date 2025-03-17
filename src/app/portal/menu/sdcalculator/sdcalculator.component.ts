@@ -1,14 +1,12 @@
-
 import { Component } from '@angular/core';
 
-
 @Component({
-  selector: 'app-dscalculator',
+  selector: 'app-sdcalculator',
   imports: [],
-  templateUrl: './dscalculator.component.html',
-  styleUrl: './dscalculator.component.css'
+  templateUrl: './sdcalculator.component.html',
+  styleUrl: './sdcalculator.component.css'
 })
-export class DscalculatorComponent {
+export class SdcalculatorComponent {
   constructor() { }
 
 

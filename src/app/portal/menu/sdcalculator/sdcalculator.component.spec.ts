@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DscalculatorComponent } from './dscalculator.component';
+import { SdcalculatorComponent } from './sdcalculator.component';
 
-describe('DscalculatorComponent', () => {
-  let component: DscalculatorComponent;
-  let fixture: ComponentFixture<DscalculatorComponent>;
+describe('SdcalculatorComponent', () => {
+  let component: SdcalculatorComponent;
+  let fixture: ComponentFixture<SdcalculatorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DscalculatorComponent]
+      imports: [SdcalculatorComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DscalculatorComponent);
+    fixture = TestBed.createComponent(SdcalculatorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
