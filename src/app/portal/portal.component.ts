@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterOutlet, RouterLink, RouterModule, RouterLinkWithHref, Router} from '@angular/router';
-import { MenuComponent } from '../portal/menu/menu.component';
-import { faCalculator } from '@fortawesome/free-solid-svg-icons';
+import { RouterLink, RouterModule, RouterLinkWithHref, Router} from '@angular/router';
 
 @Component({
   selector: 'app-portal',
-  imports: [RouterOutlet, RouterLink, RouterModule, RouterLinkWithHref,MenuComponent ],
+  imports: [ RouterLink, RouterModule, RouterLinkWithHref],
   templateUrl: './portal.component.html',
   styleUrl: './portal.component.css'
 })
