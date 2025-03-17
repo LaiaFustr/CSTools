@@ -16,36 +16,55 @@ export const routes: Routes = [
     {
         path: 'portal',
         component: PortalComponent,
-       /*  pathMatch: 'full', */
+        /*  pathMatch: 'full', */
+        /* children: [
+            {
+                path: 'cstools',
+                component: MenuComponent,
+                children: [
+                    {
+                        path: 'sdcalculator',
+                        component: DscalculatorComponent,
+                    },
+                    {
+                        path: 'schedule',
+                        component: ScheduleComponent,
+                    },
+                    {
+                        path: 'kmdistances',
+                        component: KmdistancesComponent,
+                    },
+                    {
+                        path: '',
+                        redirectTo: 'sdcalculator',
+                        pathMatch: 'full'
+                    }
+                ]
+            },
+        ], */
+    },
+    {
+        path: 'cstools',
+        component: MenuComponent,
         children: [
             {
-            path: 'cstools',
-            component: MenuComponent,
-            children: [
-                {
-                    path: 'sdcalculator',
-                    component: DscalculatorComponent,
-                },
-                {
-                    path: 'schedule',
-                    component: ScheduleComponent,
-                },
-                {
-                    path: 'kmdistances',
-                    component: KmdistancesComponent,
-                },
-                {
-                    path: '',
-                    redirectTo: 'sdcalculator',
-                    pathMatch: 'full'
-                }
-            ]
-        }, /* {
-            path: '',
-            redirectTo: 'cstools',
-            pathMatch: 'full'
-        } */
-    ],
+                path: 'sdcalculator',
+                component: DscalculatorComponent,
+            },
+            {
+                path: 'schedule',
+                component: ScheduleComponent,
+            },
+            {
+                path: 'kmdistances',
+                component: KmdistancesComponent,
+            },
+            {
+                path: '',
+                redirectTo: 'sdcalculator',
+                pathMatch: 'full'
+            }
+        ]
     },
     {
         path: '',
