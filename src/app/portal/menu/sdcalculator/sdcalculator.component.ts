@@ -37,15 +37,23 @@ export class SdcalculatorComponent {
         });
       }
       );
-
-      $('#carrierCalc').on('change', function () {
-
-      });
-      $('#portCalc').on('change', function () {
-        
-      });
+    //falta añadir aquí la función que tendrá que ver con los datos, 
+    //y esta función será llamada por otra función que será 
+    // llamada por la función de cambio de carrier 
+    
+    // Lo mismo con puertos
   }
 
+  /* 
+    $('#carrierCalc').on('change', function () {
+      let c = '';
+      if ($('#carrierCalc').val() != '' && $('#carrierCalc').val() != null) {
+      
+      }
+    });
+    $('#portCalc').on('change', function () {
+
+    }); */
   NgOnInit(): void {
 
     $(".resRowCalcu").hide()
