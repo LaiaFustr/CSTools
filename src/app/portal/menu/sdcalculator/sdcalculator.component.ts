@@ -1,4 +1,7 @@
+import { SdcalculatorService } from '../../../services/sdcalculator/sdcalculator.service';
 import { Component } from '@angular/core';
+
+
 
 @Component({
   selector: 'app-sdcalculator',
@@ -7,8 +10,41 @@ import { Component } from '@angular/core';
   styleUrl: './sdcalculator.component.css'
 })
 export class SdcalculatorComponent {
-  constructor() { }
 
+  carriers: any[] = [];
+  ports: any[] = [];
+  constructor(private dscalculator: SdcalculatorService) {
+    this.dscalculator.getIndexCarrier()
+      .subscribe(data => {
+        console.log("------CARRIERS-------")
+        this.carriers = data;
+        $('#carrierCalc').append('<option value="" class="text-muted"selected>Select carrier...</option>')
+        this.carriers.forEach(elem => {
+          console.log(elem['carrier'])
+          $('#carrierCalc').append('<option value="' + elem['carrier'] + '">' + elem['carrier'] + '</option>')
+        });
+      }
+      );
+
+    this.dscalculator.getIndexPort()
+      .subscribe(data => {
+        console.log("------PORTS--------")
+        this.ports = data;
+        $('#portCalc').append('<option value="" class="text-muted"selected>Select port...</option>')
+        this.ports.forEach(elem => {
+          console.log(elem['port'])
+          $('#portCalc').append('<option value="' + elem['port'] + '">' + elem['port'] + '</option>')
+        });
+      }
+      );
+
+      $('#carrierCalc').on('change', function () {
+
+      });
+      $('#portCalc').on('change', function () {
+        
+      });
+  }
 
   NgOnInit(): void {
 
@@ -16,7 +52,11 @@ export class SdcalculatorComponent {
     this.hideBorderClass()
     this.callCarriers()
     this.callPorts()
+    $('#carrierCalc').append('<option value="" hidden>Select carrier...</option>')
+
+    $('#portCalc').append('<option value="" hidden>Select Port...</option>')
   }
+
 
 
   fisrtRowChange() {
