@@ -15,10 +15,22 @@ export class SdcalculatorComponent {
   carrier: any;
   ports: any[] = [];
   port: any;
+  vessel_arrival: any;
+  gate_out_full: any;
+  gate_empty: any;
+
   constructor(private sdcalculator: SdcalculatorService) {
     this.indexCarriersPorts()
   }
 
+  NgOnInit(): void {
+
+    $(".resRowCalcu").hide()
+    this.hideBorderClass()
+    $('#carrierCalc').append('<option value="" hidden>Select carrier...</option>')
+
+    $('#portCalc').append('<option value="" hidden>Select Port...</option>')
+  }
 
   indexCarriersPorts() {
 
@@ -112,27 +124,60 @@ export class SdcalculatorComponent {
 
   }
 
-
-
-  NgOnInit(): void {
-
-    $(".resRowCalcu").hide()
-    this.hideBorderClass()
-    this.callCarriers()
-    this.callPorts()
-    $('#carrierCalc').append('<option value="" hidden>Select carrier...</option>')
-
-    $('#portCalc').append('<option value="" hidden>Select Port...</option>')
-  }
-
-
-
   fisrtRowChange() {
     this.compDates()
   }
 
   compDates() {
-    let bool = true;
+    this.vessel_arrival = $("#vessArrivCalc").val();
+    this.gate_out_full = $("#gateOutFullContCalc").val();
+    this.gate_empty = $("#gateEmptyCalc").val();
+
+    /*  console.log(this.vessel_arrival)
+     console.log(this.vessel_arrival)
+     console.log(this.gate_empty) */
+    if (this.vessel_arrival != "" && this.gate_out_full != "" && this.gate_empty != "") {
+     /*  let date1 = new Date(this.vessel_arrival);
+      let date2 = new Date(this.gate_out_full);
+      let date3 = new Date(this.gate_empty);
+ */
+      if (this.vessel_arrival > this.gate_out_full) {
+        $("#gateOutFullContCalc").val("");
+        let error = "Must be greater than Vessel Arrivalcb adfbdfb. sdfwef"
+        $("#gateOutFullContCalc").siblings('.invalid-feedback').text(error).show()
+      }
+      if (this.gate_out_full > this.gate_empty) {
+        $("#gateEmptyCalc").val("");
+
+        let error = "Must be greater than Gate Out Full."
+        $("#gateEmptyCalc").siblings('.invalid-feedback').text(error).show()
+       
+      }
+    }else{
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* let bool = true;
     if (
       $(".firstRowCalc").each(function () {
         if ($(this).val() == "")
@@ -145,71 +190,22 @@ export class SdcalculatorComponent {
         })
       }
 
-
-
     } else {
       $(".secThRowCalc").each(function () {
         $(this).prop('disabled', true);
       })
       $(".resRowCalcu").hide()
       this.hideBorderClass()
-    }
+    } */
 
   }
-  callPorts() {
-    let selPort = ''
-    $.ajax({
-      url: 'resources/get/getPort.php',
-      type: 'post',
-      data: {
-        carrier_calc: $("#carrierCalc").val(),
-        port_calc: $("#portCalc").val(),
-      },
-      dataType: 'json',
-      beforeSend: function () {
-        // selPort = $("#portCalc").val()
-      },
-      success: function (response) {
-        let len = response['COUNT'];
-        $("#portCalc").empty();
-        $("#portCalc").append(' <option value="" hidden>Select Port...</option>')
-        if (len > 0) {
 
-          for (let i = 0; i < len; i++) {
-            $("#portCalc").append("<option " + (response['PORTS'][i]['DSPORT'] == selPort ? "selected" : "") + ">" + response['PORTS'][i]['DSPORT'] + "</option>");
-          }
-        }
-      }
-    });
-  }
 
-  callCarriers() {
 
-    $.ajax({
-      url: 'resources/get/getCarrier.php',
-      type: 'post',
-      data: {
-        carrier_calc: $("#carrierCalc").val(),
-        port_calc: $("#portCalc").val(),
-      },
-      dataType: 'json',
-      beforeSend: function () {
-        //selCarrier = $("#carrierCalc").val()
-      },
-      success: function (response) {
-        let len = response['COUNT'];
-        $("#carrierCalc").empty();
-        $("#carrierCalc").append('<option value="" hidden>Select carrier...</option>')
-        if (len > 0) {
 
-          for (let i = 0; i < len; i++) {
-            //$("#carrierCalc").append("<option " + (response['CARRIERS'][i]['DSCARRIER'] == selCarrier ? "selected" : "") + ">" + response['CARRIERS'][i]['DSCARRIER'] + "</option>");
-          }
-        }
-      }
-    });
 
-  }
+
+
 
 
   dscCalc(e: any) {
@@ -252,6 +248,7 @@ export class SdcalculatorComponent {
       error += '<strong>Gate Out Full Container / Gate In Empty Container</strong> At least one of these fields has to be filled.<br>';
       valido = false;
     }
+
     console.log(valido)
     if (!valido) {
       errorMessage = '<div class="alert alert-danger message_div m-0 w-100 d-flex justify-content-center" role="alert"><p class="pt-2 text-center"> ' + error + '</p></div>';
@@ -265,28 +262,18 @@ export class SdcalculatorComponent {
 
 
 
-
-
   showRes() {
-    if ($(".secThRowCalc").prop('disabled', false)) {
-      let bool = true;
-      $(".secndRowCalc").each(function () {
-        if ($(this).val() === "") {
-          bool = false;
-        }
-      });
-      if (bool) {
-        $(".resRowCalcu").show();
-        this.showBorderClass()
-      } else {
-        //MOSTRAR MENSAJE: NO HAS COPMPLETADO LOS CAMPOS NECESARIOS PARA REALIZAR EL CÁLCULO 
 
-      }
+    let bool = true;
+    if (bool) {
+      $(".resRowCalcu").show();
+      this.showBorderClass()
+    } else {
+      //cada campo tendrá un texto de error
 
     }
-
-
   }
+
 
 
   hideBorderClass() {

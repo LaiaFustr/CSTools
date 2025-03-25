@@ -9,127 +9,139 @@
   <div class="container-fluid row py-3 px-3 px-md-5 px-sm-3">
     <div class="col col-12 mb-1" id="errorMessageC"></div>
     <div class="col allGroup cardDachser">
-      <div
-        id="calc"
-        method="post"
-        class="cntCalc py-3 topPartGroup row marginCalcCard"
-      >
-        <div class="col">
-          <div class="row align-items-end" (change)="fisrtRowChange()">
-            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
-              <label class="labelCalc" for="vessArrivCalc"
-                >Vessel Arrival</label
-              >
-              <input
-                type="date"
-                id="vessArrivCalc"
-                class="form-control firstRowCalc"
-                placeholder="Add vessel arrival"
-              />
-            </div>
-            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
-              <label class="labelCalc" for="gateOutFullContCalc"
-                >Gate Out Full Container</label
-              >
-              <input
-                type="date"
-                id="gateOutFullContCalc"
-                class="form-control firstRowCalc"
-                placeholder="Gate out full container"
-              />
-            </div>
-            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
-              <label class="labelCalc" for="gateEmptyCalc"
-                >Gate In Empty Container</label
-              >
-              <input
-                type="date"
-                name="calc_retorno"
-                id="gateEmptyCalc"
-                class="form-control firstRowCalc"
-                placeholder="Gate in empty container"
-              />
-            </div>
-          </div>
-
-          <div class="row my-2 align-items-end">
-            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
-              <label class="labelCalc" for="carrierCalc">Carrier</label>
-              <select
-                id="carrierCalc"
-                (change)="portsWhereCarrier($event)"
-                class="form-select secThRowCalc secndRowCalc"
-                disabled
-              ></select>
-            </div>
-            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
-              <label class="labelCalc" for="portCalc">Port</label>
-              <select
-                class="form-select secThRowCalc secndRowCalc"
-                (change)="carriersWherePort($event)"
-                id="portCalc"
-                disabled
-              ></select>
-            </div>
-            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
-              <label class="labelCalc" for="containCalc">Container</label>
-              <select
-                name="calc_cntr"
-                id="containCalc"
-                class="form-select secThRowCalc secndRowCalc"
-                disabled
-              >
-                <option value="" selected hidden>Select ctnr...</option>
-                <option value="20">20'</option>
-                <option value="40">40'</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="row my-2 align-items-end">
-            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
-              <label class="labelCalc" for="freeStorageCalc"
-                >Free Storage Days</label
-              >
-              <input
-                type="text"
-                id="freeStorageCalc"
-                class="form-control secThRowCalc"
-                placeholder="Add free storage days"
-                disabled
-              />
+      <form action="" class="">
+        <div
+          id="calc"
+          method="post"
+          class="cntCalc py-3 topPartGroup row marginCalcCard"
+        >
+          <div class="col">
+            <div class="row rowdscalc">
+              <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
+                <label class="labelCalc" for="vessArrivCalc"
+                  >Vessel Arrival</label
+                >
+                <input
+                  type="date"
+                  id="vessArrivCalc"
+                  class="form-control firstRowCalc"
+                  placeholder="Add vessel arrival"
+                  (change)="compDates()"
+                  required
+                />
+                <a href="#" mdbTooltip="Hi! I'm tooltip">tooltip</a>
+                <div class="invalid-tooltip">Please provide a valid date.</div>
+              </div>
+              <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
+                <label class="labelCalc" for="gateOutFullContCalc"
+                  >Gate Out Full Container</label
+                >
+                <input
+                  type="date"
+                  id="gateOutFullContCalc"
+                  class="form-control firstRowCalc"
+                  placeholder="Gate out full container"
+                  (change)="compDates()"
+                  required
+                />
+                <div class="invalid-tooltip">Please provide a valid date.</div>
+              </div>
+              <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
+                <label class="labelCalc" for="gateEmptyCalc"
+                  >Gate In Empty Container</label
+                >
+                <input
+                  type="date"
+                  name="calc_retorno"
+                  id="gateEmptyCalc"
+                  class="form-control firstRowCalc"
+                  placeholder="Gate in empty container"
+                  (change)="compDates()"
+                  required
+                />
+                <div class="invalid-tooltip">Please provide a valid date.</div>
+              </div>
             </div>
 
-            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
-              <label class="labelCalc" for="freeDemDaysCalc"
-                >Free Demurrage Days</label
-              >
-              <input
-                type="text"
-                name="calc_diasdem"
-                id="freeDemDaysCalc"
-                class="form-control secThRowCalc"
-                placeholder="Add free damurrage days"
-                disabled
-              />
+            <div class="row my-2 align-items-end rowdscalc">
+              <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
+                <label class="labelCalc" for="carrierCalc">Carrier</label>
+                <select
+                  id="carrierCalc"
+                  (change)="portsWhereCarrier($event)"
+                  class="form-select secThRowCalc secndRowCalc"
+                  required
+                  disabled
+                ></select>
+              </div>
+              <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
+                <label class="labelCalc" for="portCalc">Port</label>
+                <select
+                  class="form-select secThRowCalc secndRowCalc"
+                  (change)="carriersWherePort($event)"
+                  id="portCalc"
+                  disabled
+                ></select>
+              </div>
+              <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
+                <label class="labelCalc" for="containCalc">Container</label>
+                <select
+                  name="calc_cntr"
+                  id="containCalc"
+                  class="form-select secThRowCalc secndRowCalc"
+                  disabled
+                >
+                  <option value="" selected hidden>Select ctnr...</option>
+                  <option value="20">20'</option>
+                  <option value="40">40'</option>
+                </select>
+              </div>
             </div>
-            <div
-              class="col col-12 col-sm-12 col-lg-4 col-xl-4 btnCalc d-flex align-items-top"
-            >
-              <button
-                type="submit"
-                class="btn btn-primary btnDschCalc secThRowCalc w-100"
-                id="btnCalcPr"
-                disabled
-                (click)="showRes()"
+
+            <div class="row my-2 align-items-end rowdscalc">
+              <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
+                <label class="labelCalc" for="freeStorageCalc"
+                  >Free Storage Days</label
+                >
+                <input
+                  type="text"
+                  id="freeStorageCalc"
+                  class="form-control secThRowCalc"
+                  placeholder="Add free storage days"
+                  disabled
+                />
+              </div>
+
+              <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
+                <label class="labelCalc" for="freeDemDaysCalc"
+                  >Free Demurrage Days</label
+                >
+                <input
+                  type="text"
+                  name="calc_diasdem"
+                  id="freeDemDaysCalc"
+                  class="form-control secThRowCalc"
+                  placeholder="Add free damurrage days"
+                  disabled
+                />
+              </div>
+              <div
+                class="col col-12 col-sm-12 col-lg-4 col-xl-4 btnCalc d-flex align-items-top"
               >
-                <i class="fa-solid fa-calculator"></i> Calculate
-              </button>
+                <button
+                  type="submit"
+                  class="btn btn-primary btnDschCalc secThRowCalc w-100"
+                  id="btnCalcPr"
+                  disabled
+                  (click)="showRes()"
+                >
+                  <i class="fa-solid fa-calculator"></i> Calculate
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
+      </form>
       <div
         class="row resRowCalcu bottomPartGroup marginCalcCard p-0"
         id="resRowCalcu"
