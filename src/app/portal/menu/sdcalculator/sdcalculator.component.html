@@ -1,164 +1,257 @@
 <div class="container">
-    <div class="row">
-        <div class="col col-12">
-            <h1 class="text-center  sectionTitle helvetica mt-4 mb-4 titleCalc">Quality Storage & Demurrages Calculator</h1>
-        </div>
-
+  <div class="row">
+    <div class="col col-12">
+      <h1 class="text-center sectionTitle helvetica mt-4 mb-4 titleCalc">
+        Quality Storage & Demurrages Calculator
+      </h1>
     </div>
-    <div class="container-fluid row py-3 px-3 px-md-5 px-sm-3">
-        <div class="col col-12 mb-1" id="errorMessageC"></div>
-        <div class="col allGroup cardDachser">
-            <div id="calc" method="post" class="cntCalc py-3 topPartGroup row  marginCalcCard">
-                <div class="col">
-                    <div class="row align-items-end" (change)="fisrtRowChange()">
-                        <div class="col col-12 col-sm-12 col-lg-4 col-xl-4"><label class="labelCalc" for="vessArrivCalc">Vessel Arrival</label>
-                            <input type="date" id="vessArrivCalc" class="form-control firstRowCalc" placeholder="Add vessel arrival">
-                        </div>
-                        <div class="col col-12 col-sm-12 col-lg-4 col-xl-4"><label class="labelCalc" for="gateOutFullContCalc">Gate Out Full Container</label>
-                            <input type="date" id="gateOutFullContCalc" class="form-control firstRowCalc" placeholder="Gate out full container">
-                        </div>
-                        <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
-                            <label class="labelCalc" for="gateEmptyCalc">Gate In Empty Container</label>
-                            <input type="date" name="calc_retorno" id="gateEmptyCalc" class="form-control firstRowCalc" placeholder="Gate in empty container">
-                        </div>
-                    </div>
+  </div>
+  <div class="container-fluid row py-3 px-3 px-md-5 px-sm-3">
+    <div class="col col-12 mb-1" id="errorMessageC"></div>
+    <div class="col allGroup cardDachser">
+      <div
+        id="calc"
+        method="post"
+        class="cntCalc py-3 topPartGroup row marginCalcCard"
+      >
+        <div class="col">
+          <div class="row align-items-end" (change)="fisrtRowChange()">
+            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
+              <label class="labelCalc" for="vessArrivCalc"
+                >Vessel Arrival</label
+              >
+              <input
+                type="date"
+                id="vessArrivCalc"
+                class="form-control firstRowCalc"
+                placeholder="Add vessel arrival"
+              />
+            </div>
+            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
+              <label class="labelCalc" for="gateOutFullContCalc"
+                >Gate Out Full Container</label
+              >
+              <input
+                type="date"
+                id="gateOutFullContCalc"
+                class="form-control firstRowCalc"
+                placeholder="Gate out full container"
+              />
+            </div>
+            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
+              <label class="labelCalc" for="gateEmptyCalc"
+                >Gate In Empty Container</label
+              >
+              <input
+                type="date"
+                name="calc_retorno"
+                id="gateEmptyCalc"
+                class="form-control firstRowCalc"
+                placeholder="Gate in empty container"
+              />
+            </div>
+          </div>
 
+          <div class="row my-2 align-items-end">
+            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
+              <label class="labelCalc" for="carrierCalc">Carrier</label>
+              <select
+                id="carrierCalc"
+                (change)="portsWhereCarrier($event)"
+                class="form-select secThRowCalc secndRowCalc"
+                disabled
+              ></select>
+            </div>
+            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
+              <label class="labelCalc" for="portCalc">Port</label>
+              <select
+                class="form-select secThRowCalc secndRowCalc"
+                (change)="carriersWherePort($event)"
+                id="portCalc"
+                disabled
+              ></select>
+            </div>
+            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
+              <label class="labelCalc" for="containCalc">Container</label>
+              <select
+                name="calc_cntr"
+                id="containCalc"
+                class="form-select secThRowCalc secndRowCalc"
+                disabled
+              >
+                <option value="" selected hidden>Select ctnr...</option>
+                <option value="20">20'</option>
+                <option value="40">40'</option>
+              </select>
+            </div>
+          </div>
 
-                    <div class="row my-2  align-items-end">
-                        <div class="col col-12 col-sm-12 col-lg-4 col-xl-4"><label class="labelCalc" for="carrierCalc">Carrier</label>
-                            <select id="carrierCalc" disabled class="form-select secThRowCalc secndRowCalc">
-                            </select>
-                        </div>
-                        <div class="col col-12 col-sm-12 col-lg-4 col-xl-4"><label class="labelCalc" for="portCalc">Port</label>
-                            <select class="form-select secThRowCalc secndRowCalc" id="portCalc" disabled>
-                            </select>
-                        </div>
-                        <div class="col col-12 col-sm-12 col-lg-4 col-xl-4"><label class="labelCalc " for="containCalc">Container</label>
-                            <select name="calc_cntr" id="containCalc" class="form-select secThRowCalc secndRowCalc" disabled>
-                                <option value="" selected hidden>Select ctnr...</option>
-                                <option value="20">20'</option>
-                                <option value="40">40'</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="row my-2 align-items-end">
-                        <div class="col col-12 col-sm-12 col-lg-4 col-xl-4"><label class="labelCalc" for="freeStorageCalc">Free Storage Days</label>
-                            <input type="text" id="freeStorageCalc" class="form-control secThRowCalc" placeholder="Add free storage days" disabled>
-                        </div>
-
-                        <div class="col col-12 col-sm-12 col-lg-4 col-xl-4"><label class="labelCalc" for="freeDemDaysCalc">Free Demurrage Days</label>
-                            <input type="text" name="calc_diasdem" id="freeDemDaysCalc" class="form-control secThRowCalc" placeholder="Add free damurrage days" disabled>
-                        </div>
-                        <div class="col col-12 col-sm-12 col-lg-4 col-xl-4 btnCalc d-flex align-items-top">
-                            <button type="submit" class="btn btn-primary btnDschCalc secThRowCalc w-100" id="btnCalcPr" disabled (click)="showRes()"><i class="fa-solid fa-calculator"></i> Calculate</button>
-                        </div>
-                    </div>
-                </div>
+          <div class="row my-2 align-items-end">
+            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
+              <label class="labelCalc" for="freeStorageCalc"
+                >Free Storage Days</label
+              >
+              <input
+                type="text"
+                id="freeStorageCalc"
+                class="form-control secThRowCalc"
+                placeholder="Add free storage days"
+                disabled
+              />
             </div>
 
-            <div class="row resRowCalcu bottomPartGroup marginCalcCard p-0 " id="resRowCalcu" style="display: none;">
-                <div class="contResult paddingCalculator  col col-12 col-sm-12 col-lg-6 d-flex flex-column  py-2" id="portStorageBorder">
-                    <div class=" card cardDachserGrey ">
-                        <div class="contMargin d-flex flex-column h-100">
-                            <div class="row">
-                                <div class="col m-2">
-                                    <h3 class="titleResCalc">Port Storage</h3>
-                                </div>
-                            </div>
-                            <div class="row rowContentRes">
-                                <div class="col text-center">
+            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
+              <label class="labelCalc" for="freeDemDaysCalc"
+                >Free Demurrage Days</label
+              >
+              <input
+                type="text"
+                name="calc_diasdem"
+                id="freeDemDaysCalc"
+                class="form-control secThRowCalc"
+                placeholder="Add free damurrage days"
+                disabled
+              />
+            </div>
+            <div
+              class="col col-12 col-sm-12 col-lg-4 col-xl-4 btnCalc d-flex align-items-top"
+            >
+              <button
+                type="submit"
+                class="btn btn-primary btnDschCalc secThRowCalc w-100"
+                id="btnCalcPr"
+                disabled
+                (click)="showRes()"
+              >
+                <i class="fa-solid fa-calculator"></i> Calculate
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-                                    <p>Total Days:</p>
-                                    <p id="totalDaysPort"></p>
-
-                                </div>
-                                <div class="col text-center">
-                                    <p>Priced Days:</p>
-                                    <p id="pricedDaysPort"></p>
-                                </div>
-                                <div class="col text-center">
-                                    <p>Tariff:</p>
-                                    <p id="tariffPort"></p>
-                                </div>
-                                <div class="col text-center">
-                                    <p><strong>Total:</strong></p>
-                                    <strong>
-                                        <p id="totalPort"></p>
-                                    </strong>
-                                </div>
-                            </div>
-                            <div class="row d-flex justify-content-end">
-                                <div class="btnInfoCalc text-end col">
-                                    <strong>Port Storage Rate details</strong>
-                                    <button class="btn btnPlusCalc me-1" tg="iconPort" type="button" data-bs-toggle="collapse" data-bs-target="#detailsPortStorage" aria-expanded="false" aria-controls="detailsPortStorage"><i class="fa-solid fa-plus" id="iconPort"></i></button>
-                                    <!-- 
+      <div
+        class="row resRowCalcu bottomPartGroup marginCalcCard p-0"
+        id="resRowCalcu"
+        style="display: none"
+      >
+        <div
+          class="contResult paddingCalculator col col-12 col-sm-12 col-lg-6 d-flex flex-column py-2"
+          id="portStorageBorder"
+        >
+          <div class="card cardDachserGrey">
+            <div class="contMargin d-flex flex-column h-100">
+              <div class="row">
+                <div class="col m-2">
+                  <h3 class="titleResCalc">Port Storage</h3>
+                </div>
+              </div>
+              <div class="row rowContentRes">
+                <div class="col text-center">
+                  <p>Total Days:</p>
+                  <p id="totalDaysPort"></p>
+                </div>
+                <div class="col text-center">
+                  <p>Priced Days:</p>
+                  <p id="pricedDaysPort"></p>
+                </div>
+                <div class="col text-center">
+                  <p>Tariff:</p>
+                  <p id="tariffPort"></p>
+                </div>
+                <div class="col text-center">
+                  <p><strong>Total:</strong></p>
+                  <strong>
+                    <p id="totalPort"></p>
+                  </strong>
+                </div>
+              </div>
+              <div class="row d-flex justify-content-end">
+                <div class="btnInfoCalc text-end col">
+                  <strong>Port Storage Rate details</strong>
+                  <button
+                    class="btn btnPlusCalc me-1"
+                    tg="iconPort"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#detailsPortStorage"
+                    aria-expanded="false"
+                    aria-controls="detailsPortStorage"
+                  >
+                    <i class="fa-solid fa-plus" id="iconPort"></i>
+                  </button>
+                  <!-- 
                                 <button class="btn btnPlusCalc" type="button" data-bs-toggle="collapse" tg="iconPort" data-bs-target="#detailsPortStorage" aria-expanded="false" aria-controls="detailsPortStorage"><i class="fa-solid fa-plus" id="iconPort"></i></button> -->
-                                </div>
-                            </div>
-                            <div class="row justify-content-end mb-2">
-                                <div class="col-auto mt-1 tableCalc">
-                                    <div class="collapse" id="detailsPortStorage">
-                                        <div class="card card-body me-1" id="tablePort">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <div class="contResult col col-12 col-sm-12 col-lg-6 d-flex flex-column  py-2">
-                    <div class="card cardDachserGrey">
-                        <div class="contMargin d-flex flex-column h-100 ">
-                            <div class="row">
-                                <div class="col m-2">
-                                    <h3 class="titleResCalc">Demurrage</h3>
-                                </div>
-                            </div>
-
-                            <div class="row rowContentRes">
-                                <div class="col text-center">
-                                    <p>Total Days:</p>
-                                    <p id="totalDaysDem"></p>
-
-                                </div>
-                                <div class="col text-center">
-                                    <p>Priced Days:</p>
-                                    <p id="pricedDaysDem"></p>
-                                </div>
-                                <div class="col text-center">
-                                    <p>Tariff:</p>
-                                    <p id="tariffDem"></p>
-                                </div>
-                                <div class="col text-center">
-                                    <p><strong>Total:</strong></p>
-                                    <strong>
-                                        <p id="totalDem"></p>
-                                    </strong>
-
-                                </div>
-                            </div>
-                            <div class="row justify-content-end">
-                                <div class="btnInfoCalc text-end col">
-                                    <strong>Demurrage Rate details </strong>
-                                    <button class="btn btnPlusCalc me-1" tg="iconDem" type="button" data-bs-toggle="collapse" data-bs-target="#detailsDemurRate" aria-expanded="false" aria-controls="detailsDemurRate"><i class="fa-solid fa-plus" id="iconDem"></i></button>
-                                </div>
-
-                            </div>
-                            <div class="row justify-content-end mb-2">
-                                <div class="col-auto mt-1 tableCalc">
-                                    <div class="collapse" id="detailsDemurRate">
-                                        <div class="card card-body me-1" id="tableDem">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+              </div>
+              <div class="row justify-content-end mb-2">
+                <div class="col-auto mt-1 tableCalc">
+                  <div class="collapse" id="detailsPortStorage">
+                    <div class="card card-body me-1" id="tablePort"></div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+        <div
+          class="contResult col col-12 col-sm-12 col-lg-6 d-flex flex-column py-2"
+        >
+          <div class="card cardDachserGrey">
+            <div class="contMargin d-flex flex-column h-100">
+              <div class="row">
+                <div class="col m-2">
+                  <h3 class="titleResCalc">Demurrage</h3>
+                </div>
+              </div>
 
+              <div class="row rowContentRes">
+                <div class="col text-center">
+                  <p>Total Days:</p>
+                  <p id="totalDaysDem"></p>
+                </div>
+                <div class="col text-center">
+                  <p>Priced Days:</p>
+                  <p id="pricedDaysDem"></p>
+                </div>
+                <div class="col text-center">
+                  <p>Tariff:</p>
+                  <p id="tariffDem"></p>
+                </div>
+                <div class="col text-center">
+                  <p><strong>Total:</strong></p>
+                  <strong>
+                    <p id="totalDem"></p>
+                  </strong>
+                </div>
+              </div>
+              <div class="row justify-content-end">
+                <div class="btnInfoCalc text-end col">
+                  <strong>Demurrage Rate details </strong>
+                  <button
+                    class="btn btnPlusCalc me-1"
+                    tg="iconDem"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#detailsDemurRate"
+                    aria-expanded="false"
+                    aria-controls="detailsDemurRate"
+                  >
+                    <i class="fa-solid fa-plus" id="iconDem"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="row justify-content-end mb-2">
+                <div class="col-auto mt-1 tableCalc">
+                  <div class="collapse" id="detailsDemurRate">
+                    <div class="card card-body me-1" id="tableDem"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
-

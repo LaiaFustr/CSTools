@@ -12,48 +12,118 @@ import { Component } from '@angular/core';
 export class SdcalculatorComponent {
 
   carriers: any[] = [];
+  carrier: any;
   ports: any[] = [];
-  constructor(private dscalculator: SdcalculatorService) {
-    this.dscalculator.getIndexCarrier()
-      .subscribe(data => {
-        console.log("------CARRIERS-------")
-        this.carriers = data;
-        $('#carrierCalc').append('<option value="" class="text-muted"selected>Select carrier...</option>')
-        this.carriers.forEach(elem => {
-          console.log(elem['carrier'])
-          $('#carrierCalc').append('<option value="' + elem['carrier'] + '">' + elem['carrier'] + '</option>')
-        });
-      }
-      );
-
-    this.dscalculator.getIndexPort()
-      .subscribe(data => {
-        console.log("------PORTS--------")
-        this.ports = data;
-        $('#portCalc').append('<option value="" class="text-muted"selected>Select port...</option>')
-        this.ports.forEach(elem => {
-          console.log(elem['port'])
-          $('#portCalc').append('<option value="' + elem['port'] + '">' + elem['port'] + '</option>')
-        });
-      }
-      );
+  port: any;
+  constructor(private sdcalculator: SdcalculatorService) {
+    this.indexCarriersPorts()
     //falta añadir aquí la función que tendrá que ver con los datos, 
     //y esta función será llamada por otra función que será 
     // llamada por la función de cambio de carrier 
-    
+
     // Lo mismo con puertos
   }
 
-  /* 
-    $('#carrierCalc').on('change', function () {
-      let c = '';
-      if ($('#carrierCalc').val() != '' && $('#carrierCalc').val() != null) {
-      
-      }
-    });
-    $('#portCalc').on('change', function () {
 
-    }); */
+  indexCarriersPorts() {
+
+    console.log("INDEX CARRIERS" + this.carrier + " -  PORTS" + this.port)
+
+    if (this.carrier == "" || this.carrier == null) {
+      this.sdcalculator.getIndexPort()
+        .subscribe(data => {
+          console.log("------PORTS--------")
+          this.ports = data;
+          $('#portCalc').empty();
+          $('#portCalc').append('<option value="" class="text-muted"selected>Select port...</option>')
+          this.ports.forEach(elem => {
+            if (elem['port'] == this.port) {
+              $('#portCalc').append('<option value="' + elem['port'] + '" selected>' + elem['port'] + '</option>')
+            } else {
+              $('#portCalc').append('<option value="' + elem['port'] + '">' + elem['port'] + '</option>')
+            }
+          });
+        });
+    }
+
+    if (this.port == "" || this.port == null) {
+      this.sdcalculator.getIndexCarrier()
+        .subscribe(data => {
+          console.log("------CARRIERS-------")
+          this.carriers = data;
+          $('#carrierCalc').empty();
+          $('#carrierCalc').append('<option value="" class="text-muted"selected>Select carrier...</option>')
+          this.carriers.forEach(elem => {
+            if (elem['carrier'] == this.carrier) {
+              $('#carrierCalc').append('<option value="' + elem['carrier'] + '" selected>' + elem['carrier'] + '</option>')
+            } else {
+              $('#carrierCalc').append('<option value="' + elem['carrier'] + '">' + elem['carrier'] + '</option>')
+            }
+          });
+        });
+    }
+
+
+  }
+
+  carriersWherePort(event: any) {
+    this.port = (event.target as HTMLSelectElement).value;
+    this.carrier = $("#carrierCalc").val();
+
+    if (this.port != "" && this.port != null) {
+      this.sdcalculator.getCarriersWherePort(this.port)
+        .subscribe(data => {
+          this.carriers = data;
+          $('#carrierCalc').empty();
+          $('#carrierCalc').append('<option value="" class="text-muted"selected>Select carrier...</option>')
+          if (data.length > 0) {
+            this.carriers.forEach(elem => {
+              if (elem['carrier'] == this.carrier) {
+                $('#carrierCalc').append('<option value="' + elem['carrier'] + '" selected>' + elem['carrier'] + '</option>')
+              } else {
+                $('#carrierCalc').append('<option value="' + elem['carrier'] + '">' + elem['carrier'] + '</option>')
+              }
+
+            });
+          }
+
+        });
+    } else {
+      this.indexCarriersPorts()
+    }
+    /*  } */
+  }
+
+  portsWhereCarrier(event: any) {
+    this.carrier = (event.target as HTMLSelectElement).value;
+    this.port = $("#portCalc").val();
+
+    /* if (this.port == "" || this.port == null) { */
+    if (this.carrier != "" && this.carrier != null) {
+      this.sdcalculator.getPortsWhereCarrier(this.carrier)
+        .subscribe(data => {
+          this.ports = data;
+          $('#portCalc').empty();
+          $('#portCalc').append('<option value="" class="text-muted"selected>Select port...</option>')
+          if (data.length > 0) {
+            this.ports.forEach(elem => {
+              if (elem['port'] == this.port) {
+                $('#portCalc').append('<option value="' + elem['port'] + '" selected>' + elem['port'] + '</option>')
+              } else {
+                $('#portCalc').append('<option value="' + elem['port'] + '">' + elem['port'] + '</option>')
+              }
+            });
+          }
+        });
+      /*  } */
+    } else {
+      this.indexCarriersPorts()
+    }
+
+  }
+
+
+
   NgOnInit(): void {
 
     $(".resRowCalcu").hide()
