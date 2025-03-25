@@ -17,11 +17,6 @@ export class SdcalculatorComponent {
   port: any;
   constructor(private sdcalculator: SdcalculatorService) {
     this.indexCarriersPorts()
-    //falta añadir aquí la función que tendrá que ver con los datos, 
-    //y esta función será llamada por otra función que será 
-    // llamada por la función de cambio de carrier 
-
-    // Lo mismo con puertos
   }
 
 
@@ -62,8 +57,6 @@ export class SdcalculatorComponent {
           });
         });
     }
-
-
   }
 
   carriersWherePort(event: any) {
@@ -91,14 +84,12 @@ export class SdcalculatorComponent {
     } else {
       this.indexCarriersPorts()
     }
-    /*  } */
   }
 
   portsWhereCarrier(event: any) {
     this.carrier = (event.target as HTMLSelectElement).value;
     this.port = $("#portCalc").val();
 
-    /* if (this.port == "" || this.port == null) { */
     if (this.carrier != "" && this.carrier != null) {
       this.sdcalculator.getPortsWhereCarrier(this.carrier)
         .subscribe(data => {
@@ -115,7 +106,6 @@ export class SdcalculatorComponent {
             });
           }
         });
-      /*  } */
     } else {
       this.indexCarriersPorts()
     }
