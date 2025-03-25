@@ -124,75 +124,54 @@ export class SdcalculatorComponent {
 
   }
 
-  fisrtRowChange() {
-    this.compDates()
-  }
-
   compDates() {
     this.vessel_arrival = $("#vessArrivCalc").val();
     this.gate_out_full = $("#gateOutFullContCalc").val();
     this.gate_empty = $("#gateEmptyCalc").val();
+    let boolerror = false;
 
+    if (this.vessel_arrival != ""/*  && this.gate_out_full != "" && this.gate_empty != "" */) {
 
-    if (this.vessel_arrival != "" && this.gate_out_full != "" && this.gate_empty != "") {
-
-      if (this.vessel_arrival > this.gate_out_full) {
+      if (this.gate_out_full != "" && this.gate_out_full != null && this.vessel_arrival > this.gate_out_full) {
+        boolerror = true;
         $("#gateOutFullContCalc").val("");
+        this.gate_out_full = "";
+
         let error = "Must be greater than Vessel Arrival."
-        $("#gateOutFullContCalc").siblings('.invalid-feedback').text(error).show()
+        $("#gateOutFullContCalc").addClass('is-invalid')
+        $("#gateOutFullContCalc").siblings('.invalid-tooltip').text(error)
+      } else {
+        boolerror = false;
+        $("#gateOutFullContCalc").removeClass('is-invalid')
       }
-      if (this.gate_out_full > this.gate_empty) {
+      if (this.gate_empty != "" && this.gate_empty != null && this.gate_out_full != "" && this.gate_out_full != null && this.gate_out_full > this.gate_empty) {
+        boolerror = true;
         $("#gateEmptyCalc").val("");
+        this.gate_empty = "";
 
         let error = "Must be greater than Gate Out Full."
-        $("#gateEmptyCalc").siblings('.invalid-feedback').text(error).show()
-       
+        $("#gateEmptyCalc").addClass('is-invalid')
+        $("#gateEmptyCalc").siblings('.invalid-tooltip').html(error)
+
+      } else {
+        boolerror = false;
+        $("#gateEmptyCalc").removeClass('is-invalid')
       }
-    }else{
+
+
+      //console.log(this.vessel_arrival)
+      //console.log(this.gate_out_full)
+      //console.log(this.gate_empty)
+      if (this.vessel_arrival != "" && this.gate_out_full != "" && this.gate_empty != "" && !boolerror) {
+        $('.rowdscalc').find('[disabled]').removeAttr('disabled')
+
+      } else {
+        $('.rowdscalc').find('*').prop('disabled', true);
+        $(".resRowCalcu").hide()
+      }
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /* let bool = true;
-    if (
-      $(".firstRowCalc").each(function () {
-        if ($(this).val() == "")
-          bool = false;
-      })) {
-
-      if (bool) {
-        $(".secThRowCalc").each(function () {
-          $(this).prop('disabled', false);
-        })
-      }
-
-    } else {
-      $(".secThRowCalc").each(function () {
-        $(this).prop('disabled', true);
-      })
-      $(".resRowCalcu").hide()
-      this.hideBorderClass()
-    } */
-
+    /*  this.hideBorderClass() */
   }
 
 
@@ -215,7 +194,8 @@ export class SdcalculatorComponent {
   }
 
   messageError() {
-    $("#errorMessageC").empty();
+    
+    /* $("#errorMessageC").empty();
 
     let valido = true;
     let error = '';
@@ -252,7 +232,7 @@ export class SdcalculatorComponent {
       $('.message_div').delay(5000).slideUp(function () {
         $("#errorMessageC").empty();
       })
-    }
+    } */
   }
 
 

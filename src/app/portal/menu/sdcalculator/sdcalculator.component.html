@@ -15,8 +15,8 @@
         class="cntCalc py-3 topPartGroup row marginCalcCard"
       >
         <div class="col">
-          <div class="row rowdscalc">
-            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
+          <div class="row">
+            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative">
               <label class="labelCalc" for="vessArrivCalc"
                 >Vessel Arrival</label
               >
@@ -28,11 +28,11 @@
                 (change)="compDates()"
                 required
               />
-              <div class="invalid-feedback">
+              <div class="invalid-tooltip">
                 Please provide a valid date.
               </div>
             </div>
-            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4 ">
+            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative">
               <label class="labelCalc" for="gateOutFullContCalc"
                 >Gate Out Full Container</label
               >
@@ -44,24 +44,24 @@
                 (change)="compDates()"
                 required
               />
-              <div class="invalid-feedback">
+              <div class="invalid-tooltip">
                 Please provide a valid date.
               </div>
             </div>
-            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
+            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative">
               <label class="labelCalc" for="gateEmptyCalc"
                 >Gate In Empty Container</label
               >
               <input
                 type="date"
-                name="calc_retorno"
                 id="gateEmptyCalc"
                 class="form-control firstRowCalc"
                 placeholder="Gate in empty container"
                 (change)="compDates()"
                 required
+                
               />
-              <div class="invalid-feedback">
+              <div class="invalid-tooltip">
                 Please provide a valid date.
               </div>
             </div>
@@ -77,6 +77,9 @@
                 required
                 disabled
               ></select>
+              <div class="invalid-tooltip">
+                Please select an option.
+              </div>
             </div>
             <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
               <label class="labelCalc" for="portCalc">Port</label>
@@ -86,6 +89,9 @@
                 id="portCalc"
                 disabled
               ></select>
+              <div class="invalid-tooltip">
+                Please select an option.
+              </div>
             </div>
             <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
               <label class="labelCalc" for="containCalc">Container</label>
@@ -99,6 +105,9 @@
                 <option value="20">20'</option>
                 <option value="40">40'</option>
               </select>
+              <div class="invalid-tooltip">
+                Please select an option.
+              </div>
             </div>
           </div>
 
