@@ -18,7 +18,10 @@ export class SdcalculatorComponent {
   vessel_arrival: any;
   gate_out_full: any;
   gate_empty: any;
-
+  container: any;
+  free_storage: any;
+  free_demurrage: any;
+  
   constructor(private sdcalculator: SdcalculatorService) {
     this.indexCarriersPorts()
   }
@@ -185,8 +188,8 @@ export class SdcalculatorComponent {
   dscCalc(e: any) {
     if (e.handled !== true) {
       this.showRes()
-      this.calcRes()
-      this.messageError()
+    /*   this.calcRes() */
+      /* this.messageError() */
 
       e.handled = true;
     }
@@ -238,7 +241,26 @@ export class SdcalculatorComponent {
 
 
   showRes() {
+    
+    this.vessel_arrival = $("#vessArrivCalc").val();
+    this.gate_out_full = $("#gateOutFullContCalc").val();
+    this.gate_empty = $("#gateEmptyCalc").val();
+    this.container = $("#containCalc").val();
+    this.free_storage = $("#freeStorageCalc").val();
+    this.free_demurrage = $("#freeDemDaysCalc").val();
+    this.port = $("#portCalc").val();
+    this.carrier = $("#carrierCalc").val();
 
+    
+    if(this.vessel_arrival != "" && this.gate_out_full != "" && this.gate_empty != "" && this.container != "" /* && this.free_storage != "" && this.free_demurrage != "" */ && this.port != "" && this.carrier != ""){
+      this.calcRes()
+      $(".resRowCalcu").show();
+    }else{
+     /*  $("#gateEmptyCalc").addClass('is-invalid') */
+      $(".resRowCalcu").hide();
+    }
+    
+    /* 
     let bool = true;
     if (bool) {
       $(".resRowCalcu").show();
@@ -246,7 +268,7 @@ export class SdcalculatorComponent {
     } else {
       //cada campo tendrá un texto de error
 
-    }
+    } */
   }
 
 
