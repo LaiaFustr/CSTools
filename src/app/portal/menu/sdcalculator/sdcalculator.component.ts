@@ -194,8 +194,8 @@ export class SdcalculatorComponent {
   }
 
   messageError() {
-    
-    /* $("#errorMessageC").empty();
+
+    /*$("#errorMessageC").empty();
 
     let valido = true;
     let error = '';
