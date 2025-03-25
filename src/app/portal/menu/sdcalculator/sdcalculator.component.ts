@@ -133,17 +133,12 @@ export class SdcalculatorComponent {
     this.gate_out_full = $("#gateOutFullContCalc").val();
     this.gate_empty = $("#gateEmptyCalc").val();
 
-    /*  console.log(this.vessel_arrival)
-     console.log(this.vessel_arrival)
-     console.log(this.gate_empty) */
+
     if (this.vessel_arrival != "" && this.gate_out_full != "" && this.gate_empty != "") {
-     /*  let date1 = new Date(this.vessel_arrival);
-      let date2 = new Date(this.gate_out_full);
-      let date3 = new Date(this.gate_empty);
- */
+
       if (this.vessel_arrival > this.gate_out_full) {
         $("#gateOutFullContCalc").val("");
-        let error = "Must be greater than Vessel Arrivalcb adfbdfb. sdfwef"
+        let error = "Must be greater than Vessel Arrival."
         $("#gateOutFullContCalc").siblings('.invalid-feedback').text(error).show()
       }
       if (this.gate_out_full > this.gate_empty) {
