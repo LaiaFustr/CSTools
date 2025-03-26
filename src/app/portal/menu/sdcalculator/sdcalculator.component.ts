@@ -23,6 +23,24 @@ export class SdcalculatorComponent {
   free_demurrage: any;
   btnshow: boolean = false;
 
+
+
+  total_sto_days: any;
+  total_sto_pr_days: any;
+  sto_tariff: any[] = [];
+  sto_total: any;
+  sto_details: any[] = [];
+
+
+  total_dem_days: any;
+  total_dem_pr_days: any;
+  dem_tariff: any[] = [];
+  dem_total: any;
+  dem_details: any[] = [];
+
+
+
+
   constructor(private sdcalculator: SdcalculatorService) {
     this.indexCarriersPorts()
   }
@@ -191,8 +209,6 @@ export class SdcalculatorComponent {
   dscCalc(e: any) {
     if (e.handled !== true) {
       this.showRes(e)
-      /*   this.calcRes() */
-
       e.handled = true;
     }
 
@@ -286,7 +302,22 @@ export class SdcalculatorComponent {
 
   calcRes() {
 
-    //va a llamar 
+    //va a llamar a la funcion de la api que calculará el resultado
+    this.sdcalculator.getCalculation(this.vessel_arrival, this.gate_out_full, this.gate_empty, this.carrier, this.port, this.container, this.free_storage, this.free_demurrage).subscribe(result => {
+      /* this.total_sto_days
+      this.total_sto_pr_days
+      this.sto_tariff
+      this.sto_total
+      this.sto_details
+
+
+    this.total_dem_days
+    this.total_dem_pr_days
+    this.dem_tariff
+    this.dem_total
+    this.dem_details */
+    });
+
   }
 
   /* if (this.validateCalcData() == true) {
