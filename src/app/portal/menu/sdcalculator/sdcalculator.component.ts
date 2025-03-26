@@ -21,7 +21,8 @@ export class SdcalculatorComponent {
   container: any;
   free_storage: any;
   free_demurrage: any;
-  
+  btnshow: boolean = false;
+
   constructor(private sdcalculator: SdcalculatorService) {
     this.indexCarriersPorts()
   }
@@ -99,6 +100,7 @@ export class SdcalculatorComponent {
     } else {
       this.indexCarriersPorts()
     }
+    this.validateSD(event)
   }
 
   portsWhereCarrier(event: any) {
@@ -124,7 +126,7 @@ export class SdcalculatorComponent {
     } else {
       this.indexCarriersPorts()
     }
-
+    this.validateSD(event)
   }
 
   compDates() {
@@ -147,6 +149,7 @@ export class SdcalculatorComponent {
         boolerror = false;
         $("#gateOutFullContCalc").removeClass('is-invalid')
       }
+
       if (this.gate_empty != "" && this.gate_empty != null && this.gate_out_full != "" && this.gate_out_full != null && this.gate_out_full > this.gate_empty) {
         boolerror = true;
         $("#gateEmptyCalc").val("");
@@ -187,91 +190,70 @@ export class SdcalculatorComponent {
 
   dscCalc(e: any) {
     if (e.handled !== true) {
-      this.showRes()
-    /*   this.calcRes() */
-      /* this.messageError() */
+      this.showRes(e)
+      /*   this.calcRes() */
 
       e.handled = true;
     }
 
   }
 
-  messageError() {
 
-    /*$("#errorMessageC").empty();
+  showRes(event: any) {
 
-    let valido = true;
-    let error = '';
-    let success = false;
-    let errorMessage = '';
+    this.vessel_arrival = $("#vessArrivCalc");
+    this.gate_out_full = $("#gateOutFullContCalc");
+    this.gate_empty = $("#gateEmptyCalc");
+    this.container = $("#containCalc");
+    this.port = $("#portCalc");
+    this.carrier = $("#carrierCalc");
+    this.free_storage = $("#freeStorageCalc");
+    this.free_demurrage = $("#freeDemDaysCalc");
 
-    if ($("#vessArrivCalc").val() == "") {
-      //$(error) += '<strong>Vessel Arrival</strong> is mandatory.<br>';
-      valido = false;
-
-    }
-    if ($("#carrierCalc").val() == "") {
-      error += '<strong>Carrier</strong> is mandatory.<br>';
-      valido = false;
-    }
-    if ($("#portCalc").val() == "") {
-      error += '<strong>Port</strong> is mandatory.<br>';
-      valido = false;
-    }
-    if ($("#containCalc").val() == "") {
-      error += '<strong>Container</strong> is mandatory.<br>';
-      valido = false;
-    }
-    if ($("#gateOutFullContCalc").val() == "" || $("#gateEmptyCalc").val() == "") {
-      error += '<strong>Gate Out Full Container / Gate In Empty Container</strong> At least one of these fields has to be filled.<br>';
-      valido = false;
-    }
-
-    console.log(valido)
-    if (!valido) {
-      errorMessage = '<div class="alert alert-danger message_div m-0 w-100 d-flex justify-content-center" role="alert"><p class="pt-2 text-center"> ' + error + '</p></div>';
-
-      $("#errorMessageC").append(errorMessage).slideDown(500);
-      $('.message_div').delay(5000).slideUp(function () {
-        $("#errorMessageC").empty();
-      })
-    } */
-  }
+    let all = [{ index: 'vessel_arrival', value: this.vessel_arrival },
+    { index: 'gate_out_full', value: this.gate_out_full },
+    { index: 'gate_empty', value: this.gate_empty },
+    { index: 'container', value: this.container },
+    { index: 'carrier', value: this.carrier },
+    { index: 'port', value: this.port },
+    ]
 
 
-
-  showRes() {
-    
-    this.vessel_arrival = $("#vessArrivCalc").val();
-    this.gate_out_full = $("#gateOutFullContCalc").val();
-    this.gate_empty = $("#gateEmptyCalc").val();
-    this.container = $("#containCalc").val();
-    this.free_storage = $("#freeStorageCalc").val();
-    this.free_demurrage = $("#freeDemDaysCalc").val();
-    this.port = $("#portCalc").val();
-    this.carrier = $("#carrierCalc").val();
-
-    
-    if(this.vessel_arrival != "" && this.gate_out_full != "" && this.gate_empty != "" && this.container != "" /* && this.free_storage != "" && this.free_demurrage != "" */ && this.port != "" && this.carrier != ""){
+    all.forEach((thiselement: any) => {
+      if (thiselement.value.val() == "") {
+        console.log(thiselement.value)
+        $(thiselement.value).addClass('is-invalid')
+        $(thiselement.value).siblings('.invalid-tooltip').show()
+        $(".resRowCalcu").hide();
+      } else {
+        $(thiselement.value).removeClass('is-invalid');
+      }
+    });
+    this.btnshow = true;
+    if (this.vessel_arrival.val() != "" && this.gate_out_full.val() != "" && this.gate_empty.val() != "" && this.container.val() != "" && this.port.val() != "" && this.carrier.val() != "") {
       this.calcRes()
       $(".resRowCalcu").show();
-    }else{
-     /*  $("#gateEmptyCalc").addClass('is-invalid') */
-      $(".resRowCalcu").hide();
     }
-    
-    /* 
-    let bool = true;
-    if (bool) {
-      $(".resRowCalcu").show();
-      this.showBorderClass()
-    } else {
-      //cada campo tendrá un texto de error
-
-    } */
+    this.validateSD(event)
   }
 
-
+  validateSD(event: any) {
+    if (this.btnshow) {
+      let sdelement = event.target as HTMLInputElement;
+      //console.log(event.target)
+      //console.log(sdelement)
+      if (sdelement.id != "btnCalcPr") {
+        if (sdelement.value == "") {
+          //console.log(sdelement.value)
+          $(sdelement).addClass('is-invalid')
+          $(sdelement).siblings('.invalid-tooltip').show()
+          $(".resRowCalcu").hide();
+        } else {
+          $(sdelement).removeClass('is-invalid')
+        }
+      }
+    }
+  }
 
   hideBorderClass() {
     $('.topPartGroup').css("border-radius", "");
@@ -303,79 +285,83 @@ export class SdcalculatorComponent {
 
 
   calcRes() {
-    if (this.validateCalcData() == true) {
-      $.ajax({
-        url: 'resources/get/getCalc.php',
-        type: 'post',
-        data: {
-          vessel_arrival: $("#vessArrivCalc").val(),
-          carrier_calc: $("#carrierCalc").val(),
-          free_storage: $("#freeStorageCalc").val(),
-          gate_out_full: $("#gateOutFullContCalc").val(),
-          port_calc: $("#portCalc").val(),
-          free_demurrage: $("#freeDemDaysCalc").val(),
-          gate_empty: $("#gateEmptyCalc").val(),
-          container_tax: $("#containCalc").val(),
 
-        },
-        dataType: 'json',
-        beforeSend: function () {
-          (
-            $("#totalDaysPort").empty(),
-            $("#pricedDaysPort").empty(),
-            $("#tariffPort").empty(),
-            $("#totalPort").empty(),
-            $("#totalDaysDem").empty(),
-            $("#pricedDaysDem").empty(),
-            $("#tariffDem").empty(),
-            $("#totalDem").empty(),
+    //va a llamar 
+  }
 
+  /* if (this.validateCalcData() == true) {
+    $.ajax({
+      url: 'resources/get/getCalc.php',
+      type: 'post',
+      data: {
+        vessel_arrival: $("#vessArrivCalc").val(),
+        carrier_calc: $("#carrierCalc").val(),
+        free_storage: $("#freeStorageCalc").val(),
+        gate_out_full: $("#gateOutFullContCalc").val(),
+        port_calc: $("#portCalc").val(),
+        free_demurrage: $("#freeDemDaysCalc").val(),
+        gate_empty: $("#gateEmptyCalc").val(),
+        container_tax: $("#containCalc").val(),
 
-            $("#tablePort").empty(),
-            $("#tableDem").empty()
-
-          )
-        },
-        success: function (response) {
-          console.log(response)
-          $('#totalDaysPort').html(response['PORT']['TOTALDAYS']);
-          $('#pricedDaysPort').append(response['PORT']['PRICEDAYS']);
-          $('#tariffPort').append(response['PORT']['TARIFF']);
-          $('#totalPort').append(response['PORT']['TOTAL']);
-          $('#tablePort').append(response['PORT']['DETAILS']);
-
-          $('#errorMessageC').append(response['ERROR']);
+      },
+      dataType: 'json',
+      beforeSend: function () {
+        (
+          $("#totalDaysPort").empty(),
+          $("#pricedDaysPort").empty(),
+          $("#tariffPort").empty(),
+          $("#totalPort").empty(),
+          $("#totalDaysDem").empty(),
+          $("#pricedDaysDem").empty(),
+          $("#tariffDem").empty(),
+          $("#totalDem").empty(),
 
 
+          $("#tablePort").empty(),
+          $("#tableDem").empty()
 
-          $('#totalDaysDem').append(response['DEM']['TOTALDAYS']);
-          $('#pricedDaysDem').append(response['DEM']['PRICEDAYS']);
-          $('#tariffDem').append(response['DEM']['TARIFF']);
-          $('#totalDem').append(response['DEM']['TOTAL']);
-          $('#tableDem').append(response['DEM']['DETAILS']);
+        )
+      },
+      success: function (response) {
+        console.log(response)
+        $('#totalDaysPort').html(response['PORT']['TOTALDAYS']);
+        $('#pricedDaysPort').append(response['PORT']['PRICEDAYS']);
+        $('#tariffPort').append(response['PORT']['TARIFF']);
+        $('#totalPort').append(response['PORT']['TOTAL']);
+        $('#tablePort').append(response['PORT']['DETAILS']);
+
+        $('#errorMessageC').append(response['ERROR']);
 
 
-          console.log(response['PORT']['TOTALDAYS'])
-          console.log(response['PORT']['PRICEDAYS'])
-          console.log(response['PORT']['TARIFF'])
-          console.log(response['PORT']['TOTAL'])
-          console.log(response['PORT']['DETAILS'])
-          console.log(response['DEM']['TOTALDAYS'])
-          console.log(response['DEM']['PRICEDAYS'])
-          console.log(response['DEM']['TARIFF'])
-          console.log(response['DEM']['TOTAL'])
-          console.log(response['DEM']['DETAILS'])
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-          console.log("Error:", textStatus, errorThrown);
-        }
 
-      });
-    } else {
+        $('#totalDaysDem').append(response['DEM']['TOTALDAYS']);
+        $('#pricedDaysDem').append(response['DEM']['PRICEDAYS']);
+        $('#tariffDem').append(response['DEM']['TARIFF']);
+        $('#totalDem').append(response['DEM']['TOTAL']);
+        $('#tableDem').append(response['DEM']['DETAILS']);
 
-    }
+
+        console.log(response['PORT']['TOTALDAYS'])
+        console.log(response['PORT']['PRICEDAYS'])
+        console.log(response['PORT']['TARIFF'])
+        console.log(response['PORT']['TOTAL'])
+        console.log(response['PORT']['DETAILS'])
+        console.log(response['DEM']['TOTALDAYS'])
+        console.log(response['DEM']['PRICEDAYS'])
+        console.log(response['DEM']['TARIFF'])
+        console.log(response['DEM']['TOTAL'])
+        console.log(response['DEM']['DETAILS'])
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log("Error:", textStatus, errorThrown);
+      }
+
+    });
+  } else {
 
   }
+*/
+
 
 
 

@@ -68,7 +68,7 @@
           </div>
 
           <div class="row my-2 align-items-end rowdscalc">
-            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
+            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative">
               <label class="labelCalc" for="carrierCalc">Carrier</label>
               <select
                 id="carrierCalc"
@@ -81,7 +81,7 @@
                 Please select an option.
               </div>
             </div>
-            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
+            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative">
               <label class="labelCalc" for="portCalc">Port</label>
               <select
                 class="form-select secThRowCalc secndRowCalc"
@@ -93,11 +93,12 @@
                 Please select an option.
               </div>
             </div>
-            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
+            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative">
               <label class="labelCalc" for="containCalc">Container</label>
               <select
                 name="calc_cntr"
                 id="containCalc"
+                (change)= "validateSD($event)"
                 class="form-select secThRowCalc secndRowCalc"
                 disabled
               >
@@ -146,7 +147,7 @@
                 class="btn btn-primary btnDschCalc secThRowCalc w-100"
                 id="btnCalcPr"
                 disabled
-                (click)="showRes()"
+                (click)="showRes($event)"
               >
                 <i class="fa-solid fa-calculator"></i> Calculate
               </button>
