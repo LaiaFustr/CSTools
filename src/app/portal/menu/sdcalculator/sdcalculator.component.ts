@@ -303,19 +303,22 @@ export class SdcalculatorComponent {
   calcRes() {
 
     //va a llamar a la funcion de la api que calculará el resultado
-    this.sdcalculator.getCalculation(this.vessel_arrival, this.gate_out_full, this.gate_empty, this.carrier, this.port, this.container, this.free_storage, this.free_demurrage).subscribe(result => {
-      /* this.total_sto_days
+    this.sdcalculator.getCalculation(this.vessel_arrival.val(), this.gate_out_full.val(), this.gate_empty.val(), this.carrier.val(), this.port.val(), this.container.val(), this.free_storage.val(), this.free_demurrage.val()).subscribe(result => {
+
+    console.log(result)
+      /* $('#totalDaysPort').text(result) */
+
+      /* this.total_sto_days = result.
       this.total_sto_pr_days
       this.sto_tariff
       this.sto_total
       this.sto_details
 
-
-    this.total_dem_days
-    this.total_dem_pr_days
-    this.dem_tariff
-    this.dem_total
-    this.dem_details */
+      this.total_dem_days
+      this.total_dem_pr_days
+      this.dem_tariff
+      this.dem_total
+      this.dem_details */
     });
 
   }
