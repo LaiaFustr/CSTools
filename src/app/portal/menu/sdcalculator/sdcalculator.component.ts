@@ -153,7 +153,7 @@ export class SdcalculatorComponent {
     this.gate_empty = $("#gateEmptyCalc").val();
     let boolerror = false;
 
-    if (this.vessel_arrival != ""/*  && this.gate_out_full != "" && this.gate_empty != "" */) {
+    if (this.vessel_arrival != "") {
 
       if (this.gate_out_full != "" && this.gate_out_full != null && this.vessel_arrival > this.gate_out_full) {
         boolerror = true;
@@ -308,9 +308,9 @@ export class SdcalculatorComponent {
     console.log(result)
       /* $('#totalDaysPort').text(result) */
 
-      /* this.total_sto_days = result.
-      this.total_sto_pr_days
-      this.sto_tariff
+      this.total_sto_days = result['stodays']
+      this.total_sto_pr_days= result['priced_sto']
+      /* this.sto_tariff
       this.sto_total
       this.sto_details
 
@@ -323,79 +323,7 @@ export class SdcalculatorComponent {
 
   }
 
-  /* if (this.validateCalcData() == true) {
-    $.ajax({
-      url: 'resources/get/getCalc.php',
-      type: 'post',
-      data: {
-        vessel_arrival: $("#vessArrivCalc").val(),
-        carrier_calc: $("#carrierCalc").val(),
-        free_storage: $("#freeStorageCalc").val(),
-        gate_out_full: $("#gateOutFullContCalc").val(),
-        port_calc: $("#portCalc").val(),
-        free_demurrage: $("#freeDemDaysCalc").val(),
-        gate_empty: $("#gateEmptyCalc").val(),
-        container_tax: $("#containCalc").val(),
-
-      },
-      dataType: 'json',
-      beforeSend: function () {
-        (
-          $("#totalDaysPort").empty(),
-          $("#pricedDaysPort").empty(),
-          $("#tariffPort").empty(),
-          $("#totalPort").empty(),
-          $("#totalDaysDem").empty(),
-          $("#pricedDaysDem").empty(),
-          $("#tariffDem").empty(),
-          $("#totalDem").empty(),
-
-
-          $("#tablePort").empty(),
-          $("#tableDem").empty()
-
-        )
-      },
-      success: function (response) {
-        console.log(response)
-        $('#totalDaysPort').html(response['PORT']['TOTALDAYS']);
-        $('#pricedDaysPort').append(response['PORT']['PRICEDAYS']);
-        $('#tariffPort').append(response['PORT']['TARIFF']);
-        $('#totalPort').append(response['PORT']['TOTAL']);
-        $('#tablePort').append(response['PORT']['DETAILS']);
-
-        $('#errorMessageC').append(response['ERROR']);
-
-
-
-        $('#totalDaysDem').append(response['DEM']['TOTALDAYS']);
-        $('#pricedDaysDem').append(response['DEM']['PRICEDAYS']);
-        $('#tariffDem').append(response['DEM']['TARIFF']);
-        $('#totalDem').append(response['DEM']['TOTAL']);
-        $('#tableDem').append(response['DEM']['DETAILS']);
-
-
-        console.log(response['PORT']['TOTALDAYS'])
-        console.log(response['PORT']['PRICEDAYS'])
-        console.log(response['PORT']['TARIFF'])
-        console.log(response['PORT']['TOTAL'])
-        console.log(response['PORT']['DETAILS'])
-        console.log(response['DEM']['TOTALDAYS'])
-        console.log(response['DEM']['PRICEDAYS'])
-        console.log(response['DEM']['TARIFF'])
-        console.log(response['DEM']['TOTAL'])
-        console.log(response['DEM']['DETAILS'])
-      },
-      error: function (jqXHR, textStatus, errorThrown) {
-        console.log("Error:", textStatus, errorThrown);
-      }
-
-    });
-  } else {
-
-  }
-*/
-
+  
 
 
 
