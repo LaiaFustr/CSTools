@@ -190,7 +190,7 @@
                 <div class="col text-center">
                   <p><strong>Total:</strong></p>
                   <strong>
-                    <div id="totalPort"></div>
+                    <div id="totalPort">{{sto_total}}</div>
                   </strong>
                 </div>
               </div>
@@ -254,16 +254,19 @@
                 </div>
                 <div class="col text-center">
                   <p>Priced Days:</p>
-                  <p id="pricedDaysDem">{{ total_dem_pr_days}}</p>
+                  <p id="pricedDaysDem">{{ total_dem_pr_days }}</p>
                 </div>
                 <div class="col text-center">
                   <p>Tariff:</p>
-                  <p id="tariffDem"></p>
+                  <div id="tariffDem" *ngFor="let tar of dem_tariff">
+                    <span>{{ tar }}</span
+                    ><br/>
+                  </div>
                 </div>
                 <div class="col text-center">
                   <p><strong>Total:</strong></p>
                   <strong>
-                    <p id="totalDem"></p>
+                    <p id="totalDem">{{dem_total}}</p>
                   </strong>
                 </div>
               </div>

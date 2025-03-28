@@ -312,19 +312,17 @@ export class SdcalculatorComponent {
       this.total_sto_days = result['stodays'];
       this.total_sto_pr_days= result['priced_sto'];
       this.sto_tariff = result['sto_tariff'];
-
+      this.sto_total= 'This will be a value';
       this.sto_details = result['tariff_sto_detail'];
-      this.dem_details = result['tariff_dem_detail'];
+   
 
+   
       this.total_dem_days = result['demdays'];
       this.total_dem_pr_days = result['priced_dem'];
-      /*this.sto_total
+      this.dem_tariff = result['dem_tariff'];
+      this.dem_details = result['tariff_dem_detail'];
+      this.dem_total = 'This will be a value';
       
-
-      
-      this.dem_tariff
-      this.dem_total
-       */
     });
 
   }
