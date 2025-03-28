@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { SdcalculatorService } from '../../../services/sdcalculator/sdcalculator.service';
 import { Component } from '@angular/core';
 
@@ -5,7 +6,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-sdcalculator',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './sdcalculator.component.html',
   styleUrl: './sdcalculator.component.css'
 })
@@ -280,7 +281,7 @@ export class SdcalculatorComponent {
     $('.topPartGroup').css("border-radius", "15px 15px 0px 0px");
   }
 
-  validateCalcData() {
+  /* validateCalcData() {
     let valid = true;
 
     $(".secndRowCalc").each(function () {
@@ -297,7 +298,7 @@ export class SdcalculatorComponent {
     })
 
     return valid;
-  }
+  } */
 
 
   calcRes() {
@@ -308,17 +309,22 @@ export class SdcalculatorComponent {
     console.log(result)
       /* $('#totalDaysPort').text(result) */
 
-      this.total_sto_days = result['stodays']
-      this.total_sto_pr_days= result['priced_sto']
-      /* this.sto_tariff
-      this.sto_total
-      this.sto_details
+      this.total_sto_days = result['stodays'];
+      this.total_sto_pr_days= result['priced_sto'];
+      this.sto_tariff = result['sto_tariff'];
 
-      this.total_dem_days
-      this.total_dem_pr_days
+      this.sto_details = result['tariff_sto_detail'];
+      this.dem_details = result['tariff_dem_detail'];
+
+      this.total_dem_days = result['demdays'];
+      this.total_dem_pr_days = result['priced_dem'];
+      /*this.sto_total
+      
+
+      
       this.dem_tariff
       this.dem_total
-      this.dem_details */
+       */
     });
 
   }

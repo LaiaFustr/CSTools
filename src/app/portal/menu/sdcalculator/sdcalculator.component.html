@@ -16,7 +16,9 @@
       >
         <div class="col">
           <div class="row">
-            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative">
+            <div
+              class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative"
+            >
               <label class="labelCalc" for="vessArrivCalc"
                 >Vessel Arrival</label
               >
@@ -28,11 +30,11 @@
                 (change)="compDates()"
                 required
               />
-              <div class="invalid-tooltip">
-                Please provide a valid date.
-              </div>
+              <div class="invalid-tooltip">Please provide a valid date.</div>
             </div>
-            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative">
+            <div
+              class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative"
+            >
               <label class="labelCalc" for="gateOutFullContCalc"
                 >Gate Out Full Container</label
               >
@@ -44,11 +46,11 @@
                 (change)="compDates()"
                 required
               />
-              <div class="invalid-tooltip">
-                Please provide a valid date.
-              </div>
+              <div class="invalid-tooltip">Please provide a valid date.</div>
             </div>
-            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative">
+            <div
+              class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative"
+            >
               <label class="labelCalc" for="gateEmptyCalc"
                 >Gate In Empty Container</label
               >
@@ -59,16 +61,15 @@
                 placeholder="Gate in empty container"
                 (change)="compDates()"
                 required
-                
               />
-              <div class="invalid-tooltip">
-                Please provide a valid date.
-              </div>
+              <div class="invalid-tooltip">Please provide a valid date.</div>
             </div>
           </div>
 
           <div class="row my-2 align-items-end rowdscalc">
-            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative">
+            <div
+              class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative"
+            >
               <label class="labelCalc" for="carrierCalc">Carrier</label>
               <select
                 id="carrierCalc"
@@ -77,11 +78,11 @@
                 required
                 disabled
               ></select>
-              <div class="invalid-tooltip">
-                Please select an option.
-              </div>
+              <div class="invalid-tooltip">Please select an option.</div>
             </div>
-            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative">
+            <div
+              class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative"
+            >
               <label class="labelCalc" for="portCalc">Port</label>
               <select
                 class="form-select secThRowCalc secndRowCalc"
@@ -89,16 +90,16 @@
                 id="portCalc"
                 disabled
               ></select>
-              <div class="invalid-tooltip">
-                Please select an option.
-              </div>
+              <div class="invalid-tooltip">Please select an option.</div>
             </div>
-            <div class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative">
+            <div
+              class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative"
+            >
               <label class="labelCalc" for="containCalc">Container</label>
               <select
                 name="calc_cntr"
                 id="containCalc"
-                (change)= "validateSD($event)"
+                (change)="validateSD($event)"
                 class="form-select secThRowCalc secndRowCalc"
                 disabled
               >
@@ -106,15 +107,13 @@
                 <option value="20">20'</option>
                 <option value="40">40'</option>
               </select>
-              <div class="invalid-tooltip">
-                Please select an option.
-              </div>
+              <div class="invalid-tooltip">Please select an option.</div>
             </div>
           </div>
 
           <div class="row my-2 align-items-end rowdscalc">
             <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
-              <label class="labelCalc" for="freeStorageCalc"
+              <label class="labelCalc" pattern="[0-9]" for="freeStorageCalc"
                 >Free Storage Days</label
               >
               <input
@@ -128,7 +127,8 @@
 
             <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
               <label class="labelCalc" for="freeDemDaysCalc"
-                >Free Demurrage Days</label>
+                >Free Demurrage Days</label
+              >
               <input
                 type="text"
                 name="calc_diasdem"
@@ -174,20 +174,23 @@
               <div class="row rowContentRes">
                 <div class="col text-center">
                   <p>Total Days:</p>
-                  <p id="totalDaysPort">{{total_sto_days}}</p>
+                  <p id="totalDaysPort">{{ total_sto_days }}</p>
                 </div>
                 <div class="col text-center">
                   <p>Priced Days:</p>
-                  <p id="pricedDaysPort">{{total_sto_pr_days}}</p>
+                  <p id="pricedDaysPort">{{ total_sto_pr_days }}</p>
                 </div>
                 <div class="col text-center">
                   <p>Tariff:</p>
-                  <p id="tariffPort"><!-- {{sto_tariff}} --></p>
+                  <div id="tariffPort" *ngFor="let tar of sto_tariff">
+                    <span>{{ tar }}</span
+                    ><br />
+                  </div>
                 </div>
                 <div class="col text-center">
                   <p><strong>Total:</strong></p>
                   <strong>
-                    <p id="totalPort"><!-- {{sto.total}} --></p>
+                    <div id="totalPort"></div>
                   </strong>
                 </div>
               </div>
@@ -212,7 +215,21 @@
               <div class="row justify-content-end mb-2">
                 <div class="col-auto mt-1 tableCalc">
                   <div class="collapse" id="detailsPortStorage">
-                    <div class="card card-body me-1" id="tablePort"></div>
+                    <div class="card card-body me-1" id="tablePort">
+                      <table class="table table-sm table-striped">
+                        <tbody>
+                          <tr
+                            *ngFor="let storow of sto_details"
+                            [ngStyle]="{
+                              'font-weight': storow.included ? 'bold' : 'normal'
+                            }"
+                          >
+                            <td>{{ storow.detail_sto_day_range }}</td>
+                            <td>{{ storow.detail_sto_price }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -233,11 +250,11 @@
               <div class="row rowContentRes">
                 <div class="col text-center">
                   <p>Total Days:</p>
-                  <p id="totalDaysDem"></p>
+                  <p id="totalDaysDem">{{ total_dem_days }}</p>
                 </div>
                 <div class="col text-center">
                   <p>Priced Days:</p>
-                  <p id="pricedDaysDem"></p>
+                  <p id="pricedDaysDem">{{ total_dem_pr_days}}</p>
                 </div>
                 <div class="col text-center">
                   <p>Tariff:</p>
@@ -269,7 +286,21 @@
               <div class="row justify-content-end mb-2">
                 <div class="col-auto mt-1 tableCalc">
                   <div class="collapse" id="detailsDemurRate">
-                    <div class="card card-body me-1" id="tableDem"></div>
+                    <div class="card card-body me-1" id="tableDem">
+                      <table class="table table-sm table-striped">
+                        <tbody>
+                          <tr
+                            *ngFor="let demrow of dem_details"
+                            [ngStyle]="{
+                              'font-weight': demrow.included ? 'bold' : 'normal'
+                            }"
+                          >
+                            <td>{{ demrow.detail_dem_day_range }}</td>
+                            <td>{{ demrow.detail_dem_price }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
