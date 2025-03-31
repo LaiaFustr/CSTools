@@ -1,7 +1,35 @@
-<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
-  <div class="card p-5">
-    <h3>This will be the login page</h3>
-
-    <button class="btn btn-primary" routerLink="/portal">Access Page</button>
+<div
+  class="container-flex d-flex justify-content-center align-items-center login-bg"
+>
+  <div class="card p-5 login-content">
+    <img
+      class="login-logo"
+      src="/assets/img/dachser-nobg.svg"
+      width="300vw"
+      alt=""
+    />
+    <hr />
+    <h2 class="helvetica login-title mb-4 pb-3">QUALITY PORTAL</h2>
+    <form class="login-form" action="" >
+      <div class="form-floating mb-3">
+        <input
+          type="email"
+          class="form-control"
+          id="floatingEmail"
+          placeholder="Email"
+        />
+        <label for="floatingEmail">Email</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input
+          type="password"
+          class="form-control"
+          id="floatingPassword"
+          placeholder="Password"
+        />
+        <label for="floatingPassword">Password</label>
+      </div>
+      <button class="btnOrange btn-login w-100" routerLink="/portal">Access Page</button>
+    </form>
   </div>
 </div>

@@ -315,8 +315,6 @@ export class SdcalculatorComponent {
       this.sto_total= 'This will be a value';
       this.sto_details = result['tariff_sto_detail'];
    
-
-   
       this.total_dem_days = result['demdays'];
       this.total_dem_pr_days = result['priced_dem'];
       this.dem_tariff = result['dem_tariff'];
