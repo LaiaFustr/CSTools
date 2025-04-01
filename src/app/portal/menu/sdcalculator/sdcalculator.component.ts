@@ -304,7 +304,7 @@ export class SdcalculatorComponent {
 
   }
 
-  extraInfo(e: any) {
+ /*  extraInfo(e: any) {
     let tg = $(this).attr('tg')
     var $this = $(this);
 
@@ -336,7 +336,7 @@ export class SdcalculatorComponent {
         })
 
     }
-  }
+  } */
 
 
 }
