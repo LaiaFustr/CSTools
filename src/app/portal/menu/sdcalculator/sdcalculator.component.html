@@ -113,7 +113,7 @@
 
           <div class="row my-2 align-items-end rowdscalc">
             <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
-              <label class="labelCalc" pattern="[0-9]" for="freeStorageCalc"
+              <label class="labelCalc" pattern="[0-9]{3}" for="freeStorageCalc"
                 >Free Storage Days</label
               >
               <input
@@ -190,7 +190,7 @@
                 <div class="col text-center">
                   <p><strong>Total:</strong></p>
                   <strong>
-                    <div id="totalPort">{{sto_total}}</div>
+                    <div id="totalPort">{{sto_total.SPE}}<br>{{sto_total.USD}}</div>
                   </strong>
                 </div>
               </div>
@@ -259,14 +259,14 @@
                 <div class="col text-center">
                   <p>Tariff:</p>
                   <div id="tariffDem" *ngFor="let tar of dem_tariff">
-                    <span>{{ tar }}</span
+                    <span>{{tar}}</span
                     ><br/>
                   </div>
                 </div>
                 <div class="col text-center">
                   <p><strong>Total:</strong></p>
                   <strong>
-                    <p id="totalDem">{{dem_total}}</p>
+                    <p id="totalDem">{{dem_total.SPE}}<br>{{dem_total.USD}}</p>
                   </strong>
                 </div>
               </div>

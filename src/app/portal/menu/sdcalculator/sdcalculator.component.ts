@@ -25,18 +25,17 @@ export class SdcalculatorComponent {
   btnshow: boolean = false;
 
 
-
   total_sto_days: any;
   total_sto_pr_days: any;
   sto_tariff: any[] = [];
-  sto_total: any;
+  sto_total: { SPE: string, USD: string } = { SPE: '', USD: '' }/* any[] = [] */;
   sto_details: any[] = [];
 
 
   total_dem_days: any;
   total_dem_pr_days: any;
   dem_tariff: any[] = [];
-  dem_total: any;
+  dem_total: { SPE: string, USD: string } = { SPE: '', USD: '' };
   dem_details: any[] = [];
 
 
@@ -49,7 +48,7 @@ export class SdcalculatorComponent {
   NgOnInit(): void {
 
     $(".resRowCalcu").hide()
-    this.hideBorderClass()
+   /*  this.hideBorderClass() */
     $('#carrierCalc').append('<option value="" hidden>Select carrier...</option>')
 
     $('#portCalc').append('<option value="" hidden>Select Port...</option>')
@@ -281,53 +280,29 @@ export class SdcalculatorComponent {
     $('.topPartGroup').css("border-radius", "15px 15px 0px 0px");
   }
 
-  /* validateCalcData() {
-    let valid = true;
-
-    $(".secndRowCalc").each(function () {
-      if ($(this).val() == "") {
-        valid = false;
-      }
-    })
-
-    $(".firstRowCalc").each(function () {
-      valid = true
-      if ($(this).val() == "") {
-        valid = false;
-      }
-    })
-
-    return valid;
-  } */
-
 
   calcRes() {
 
     //va a llamar a la funcion de la api que calculará el resultado
     this.sdcalculator.getCalculation(this.vessel_arrival.val(), this.gate_out_full.val(), this.gate_empty.val(), this.carrier.val(), this.port.val(), this.container.val(), this.free_storage.val(), this.free_demurrage.val()).subscribe(result => {
 
-    console.log(result)
+      console.log(result)
       /* $('#totalDaysPort').text(result) */
-
+      console.log(result['total_sto'])
       this.total_sto_days = result['stodays'];
-      this.total_sto_pr_days= result['priced_sto'];
+      this.total_sto_pr_days = result['priced_sto'];
       this.sto_tariff = result['sto_tariff'];
-      this.sto_total= 'This will be a value';
+      this.sto_total = result['total_sto'];
       this.sto_details = result['tariff_sto_detail'];
-   
       this.total_dem_days = result['demdays'];
       this.total_dem_pr_days = result['priced_dem'];
       this.dem_tariff = result['dem_tariff'];
       this.dem_details = result['tariff_dem_detail'];
-      this.dem_total = 'This will be a value';
-      
+      this.dem_total = result['total_dem'];
+
     });
 
   }
-
-  
-
-
 
   extraInfo(e: any) {
     let tg = $(this).attr('tg')

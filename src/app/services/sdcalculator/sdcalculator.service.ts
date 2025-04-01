@@ -11,7 +11,6 @@ export class SdcalculatorService {
   private indexPort = 'http://localhost:8000/api/v1/indexPort';
   private portswherecarrier = 'http://localhost:8000/api/v1/portswherecarrier/{carrier}';
   private carrierswhereport = 'http://localhost:8000/api/v1/carrierswhereport/{port}';
-
   private calculation = 'http://localhost:8000/api/v1/calculo';
 
   constructor(private http: HttpClient) { }
