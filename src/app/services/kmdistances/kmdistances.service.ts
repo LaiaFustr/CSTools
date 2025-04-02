@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,15 @@ export class KmdistancesService {
 
 
   getCountry(): Observable<any[]> {
+    /* const countrifake =  */;
 
+   /*  return [
+      { papaicod: 'US', papainom: 'United States' },
+      {  papaicod: 'CN', papainom: 'China' },
+      {  papaicod: 'DE', papainom: 'Germany' },
+      {  papaicod: 'FR', papainom: 'France' },
+      {  papaicod: 'BR', papainom: 'Brazil' }
+    ]; */
     return this.http.get<any[]>(this.countries);
   }
 
