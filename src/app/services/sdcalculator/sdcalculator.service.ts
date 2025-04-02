@@ -28,8 +28,8 @@ export class SdcalculatorService {
     return this.http.get<any[]>(this.carrierswhereport.replace('{port}', port));
   }
 
-  getCalculation(vessel_arrival: Date, gate_out_full: Date, gate_in_empty: Date, carrier: string, port: string, container: Number,  free_storage: Number, free_demurrage: Number): Observable<any> {
-    const params = {  vessel_arrival, gate_out_full, gate_in_empty, carrier, port,container, free_storage, free_demurrage };
+  getCalculation(vessel_arrival: Date, gate_out_full: Date, gate_in_empty: Date, carrier: string, port: string, container: Number, free_storage: Number, free_demurrage: Number): Observable<any> {
+    const params = { vessel_arrival, gate_out_full, gate_in_empty, carrier, port, container, free_storage, free_demurrage };
     return this.http.post<any>(this.calculation, params);
   }
 }
