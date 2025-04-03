@@ -24,13 +24,13 @@ export class KmdistancesComponent {
       .subscribe(countries => {
         console.log(countries)
         countries.forEach(country => {
-          $('#oriCountryOpc').append('<option value="'+country['papaicod']+' - '+country['papainom']+'"> '+country['papainom']+'</option>')
-          $('#desCountryOpc').append('<option value="'+country['papaicod']+' - '+country['papainom']+'">'+country['papainom']+'</option>')
+          $('#oriCountryOpc').append('<option value="' + country['papaicod'] + ' - ' + country['papainom'] + '"> ' + country['papainom'] + '</option>')
+          $('#desCountryOpc').append('<option value="' + country['papaicod'] + ' - ' + country['papainom'] + '">' + country['papainom'] + '</option>')
         });
       })
-
   }
-  showhidepcport() {
-//mostrar puerto
+  showhideSection() {
+    //mostrar - ocultar seccion
+
   }
 }

@@ -1,183 +1,377 @@
 <div class="container-fluid d-flex flex-column justify-content-center">
-    <div class="row d-flex align-self-center justify-content-center">
-        <div class="ms-0">
-            <h1 class="text-center mt-4 mb-4 sectionTitle helvetica">Kilometric Distances</h1>
-        </div>
+  <div class="row d-flex align-self-center justify-content-center">
+    <div class="ms-0">
+      <h1 class="text-center mt-4 mb-4 sectionTitle helvetica">
+        Kilometric Distances
+      </h1>
     </div>
-    <div class="container my-3">
-        <div class="card cardDachser d-flex mx-5 p-5">
-            <div class="row m-2 d-flex justify-content-center align-items-start">
-                <div class="col col-12 col-sm-12 col-lg-6 mb-3 ">
-                    <div class="card cardDachserGrey">
-                        <div>
-                            <div class=" mx-2 mb-3">
-                                <h3 class="oriDesKmD">ORIGIN</h3>
-                            </div>
-                            <div class="row-auto d-flex wrap justify-content-evenly mb-2" id="origindiv">
-                                <div class="form-check col-auto">
-                                    <input class="form-check-input radioKmD" type="radio"  id="originPC" value="postalCode" checked>
-                                    <label class="form-check-label" for="originPC">
-                                        Postal Code
-                                    </label>
-                                </div>
-                                <div class="form-check col-auto">
-                                    <input class="form-check-input radioKmD" type="radio" id="originPort" value="port">
-                                    <label class="form-check-label" for="oriPort">
-                                        Port
-                                    </label>
-                                </div>
+  </div>
+  <div class="container my-3">
+    <div class="card cardDachser d-flex mx-5 p-5">
+      <div class="row m-2 d-flex justify-content-center align-items-start">
+        <div class="col col-12 col-sm-12 col-lg-6 mb-3">
+          <div class="card cardDachserGrey">
+            <div>
+              <div class="mx-2 mb-3">
+                <h3 class="oriDesKmD">ORIGIN</h3>
+              </div>
+              <div
+                class="row-auto d-flex wrap justify-content-evenly mb-2"
+                id="origindiv"
+              >
+                <div class="form-check col-auto">
+                  <input
+                    class="form-check-input radioKmD"
+                    type="radio"
+                    (change)="showhideSection()"
+                    id="originPC"
+                    value="postalCode"
+                    checked
+                  />
+                  <label class="form-check-label" for="originPC">
+                    Postal Code
+                  </label>
+                </div>
+                <div class="form-check col-auto">
+                  <input
+                    class="form-check-input radioKmD"
+                    type="radio"
+                    (change)="showhideSection()"
+                    id="originPort"
+                    value="port"
+                  />
+                  <label class="form-check-label" for="oriPort"> Port </label>
+                </div>
+              </div>
+            </div>
+            <div class="row mx-1 mb-1">
+              <div class="order-sm-0" id="oriBusquedaCP">
+                <div class="form-floating my-2 position-relative">
+                  <input
+                    class="form-control"
+                    id="oriCountry"
+                    list="oriCountryOpc"
+                    placeholder="Country"
+                    autocomplete="off"
+                  />
+                  <datalist id="oriCountryOpc"></datalist>
+                  <label for="oriCountry">Country</label>
+                  <div id="validarOriCountry" class="invalid-feedback">
+                    <p class="ml-5 mb-2">Required Field</p>
+                  </div>
+                  <!-- Botón borrado del input -->
+                  <button
+                    type="button"
+                    id="clearInputOriCountry"
+                    class="btn-close position-absolute"
+                    aria-label="Close"
+                    style="
+                      right: 10px;
+                      top: 50%;
+                      transform: translateY(-50%);
+                      display: none;
+                    "
+                  ></button>
+                </div>
 
-                            </div>
-                        </div>
-                        <div class="row mx-1 mb-1">
-                            <div class=" order-sm-0" id="oriBusquedaCP">
-                                
-                                <div class="form-floating my-2 position-relative">
-                                    <input class="form-control" id="oriCountry" list="oriCountryOpc" placeholder="Country" autocomplete="off">
-                                    <datalist id="oriCountryOpc"></datalist>
-                                    <label for="oriCountry">Country</label>
-                                    <div id="validarOriCountry" class="invalid-feedback">
-                                        <p class="ml-5 mb-2">Required Field</p>
-                                    </div>
-                                    <!-- Botón borrado del input -->
-                                    <button type="button" id="clearInputOriCountry" class="btn-close position-absolute" aria-label="Close" style="right: 10px; top: 50%; transform: translateY(-50%); display: none;"></button>
-                                </div>
+                <div class="form-floating my-2 position-relative" id="divOriPc">
+                  <div class="form-floating">
+                    <input
+                      class="form-control searchCityPC"
+                      id="oriPc"
+                      country="oriCountry"
+                      list="oriPcOptions"
+                      placeholder="City or Postal Code"
+                      autocomplete="off"
+                      disabled
+                    />
+                    <datalist id="oriPcOptions"> </datalist>
+                    <label for="oriPc">City or Postal Code</label>
+                  </div>
+                  <div id="validarOriPc" class="invalid-feedback">
+                    <p class="ml-5">Required Field</p>
+                  </div>
+                  <!-- Botón borrado del input -->
+                  <button
+                    type="button"
+                    id="clearInputOriPc"
+                    class="btn-close position-absolute"
+                    aria-label="Close"
+                    style="
+                      right: 10px;
+                      top: 50%;
+                      transform: translateY(-50%);
+                      display: none;
+                    "
+                  ></button>
+                </div>
+              </div>
 
-                                <div class="form-floating my-2 position-relative" id="divOriPc">
-                                    <div class="form-floating">
-                                        <input class="form-control searchCityPC" id="oriPc" country="oriCountry" list="oriPcOptions" placeholder="City or Postal Code" autocomplete="off" disabled>
-                                        <datalist id="oriPcOptions">
-                                        </datalist>
-                                        <label for="oriPc">City or Postal Code</label>
-                                    </div>
-                                    <div id="validarOriPc" class="invalid-feedback">
-                                        <p class="ml-5 ">Required Field</p>
-                                    </div>
-                                    <!-- Botón borrado del input -->
-                                    <button type="button" id="clearInputOriPc" class="btn-close position-absolute" aria-label="Close" style="right: 10px; top: 50%; transform: translateY(-50%); display: none;"></button>
-                                </div>
-
-                            </div>
-
-                            <div class=" order-sm-0" style="display:none" id="oriBusquedaPort">
-                                <div class="form-floating my-2">
-                                    <input class="form-control" id="oriPuerto" list="oriPortOpc" placeholder="Port">
-                                    <datalist id="oriPortOpc">
-                                        <?php
+              <div
+                class="order-sm-0"
+                style="display: none"
+                id="oriBusquedaPort"
+              >
+                <div class="form-floating my-2">
+                  <input
+                    class="form-control"
+                    id="oriPuerto"
+                    list="oriPortOpc"
+                    placeholder="Port"
+                  />
+                  <datalist id="oriPortOpc">
+                    <!-- <?php
                                         include 'resources/get/getOriPort.php';
-                                        ?>
-                                    </datalist>
-                                    <label for="oriPuerto">Port</label>
-                                    <div id="validarOriPuerto" class="invalid-feedback">
-                                        <p class="ml-5 mb-0">Required Field</p>
-                                    </div>
-                                    <!-- Botón borrado del input -->
-                                    <button type="button" id="clearInputOriPuerto" class="btn-close position-absolute" aria-label="Close" style="right: 10px; top: 50%; transform: translateY(-50%); display: none;"></button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
+                                        ?> -->
+                  </datalist>
+                  <label for="oriPuerto">Port</label>
+                  <div id="validarOriPuerto" class="invalid-feedback">
+                    <p class="ml-5 mb-0">Required Field</p>
+                  </div>
+                  <!-- Botón borrado del input -->
+                  <button
+                    type="button"
+                    id="clearInputOriPuerto"
+                    class="btn-close position-absolute"
+                    aria-label="Close"
+                    style="
+                      right: 10px;
+                      top: 50%;
+                      transform: translateY(-50%);
+                      display: none;
+                    "
+                  ></button>
                 </div>
-
-                <div class="col  col-12 col-sm-12 col-lg-6 mb-2">
-                    <div class="card cardDachserGrey">
-                        <div>
-                            <div class="mx-2 mb-3">
-                                <h3 class="oriDesKmD">DESTINATION</h3>
-                            </div>
-                            <div class="row-auto d-flex wrap justify-content-evenly mb-2" id="destdiv">
-                                <div class="form-check col-auto">
-                                    <input class="form-check-input radioKmD" type="radio" (change)="showhidepcport()" id="destinationPC" value="postalCode" checked>
-                                    <label class="form-check-label " for="destinationPC">
-                                        Postal Code
-                                    </label>
-                                </div>
-                                <div class="form-check col-auto">
-                                    <input class="form-check-input radioKmD" type="radio" (change)="showhidepcport()" id="destinationPort" value="port">
-                                    <label class="form-check-label " for="destinationPort">
-                                        Port
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mx-1 mb-1">
-                            <div class="desBusquedaCP">
-                                <div class="form-floating my-2 position-relative">
-                                    <input class="form-control" id="desCountry" list="desCountryOpc" placeholder="Country">
-                                    <datalist id="desCountryOpc">
-                                        <?php include 'resources/get/getCountry.php'; ?>
-                                    </datalist>
-                                    <label for="desCountry">Country</label>
-                                    <div id="validarDesCountry" class="invalid-feedback">
-                                        <p class="ml-5 mb-2">Required Field</p>
-                                    </div>
-                                    <!-- Botón borrado del input -->
-                                    <button type="button" id="clearInputDesCountry" class="btn-close position-absolute" aria-label="Close" style="right: 10px; top: 50%; transform: translateY(-50%); display: none;"></button>
-                                </div>
-
-                                <div class="form-floating my-2 position-relative" id="divDesPc">
-                                    <div class="form-floating">
-                                        <input class="form-control searchCityPC" id="desPc" country="desCountry" list="desPcOptions" placeholder="City or Postal Code" autocomplete="off" disabled>
-                                        <datalist id="desPcOptions">
-                                        </datalist>
-                                        <label for="CustomertDL">City or Postal Code</label>
-                                        <div id="validarDesPc" class="invalid-feedback">
-                                            <p class="ml-5">Required Field</p>
-                                        </div>
-                                        <!-- Botón borrado del input -->
-                                        <button type="button" id="clearInputDesPc" class="btn-close position-absolute" aria-label="Close" style="right: 10px; top: 50%; transform: translateY(-50%); display: none;"></button>
-                                    </div>
-
-
-                                </div>
-                            </div>
-                            <div class="desBusquedaPort order-sm-0" style="display:none"><!--   -->
-
-                                <div class="form-floating my-2">
-                                    <input class="form-control" id="desPuerto" list="desPortOpc" placeholder="Port">
-                                    <datalist id="desPortOpc">
-                                       <!--  <?php include 'resources/get/getDesPort.php'; ?> -->
-                                    </datalist>
-                                    <label for="desPuerto">Port</label>
-                                    <div id="validarDesPuerto" class="invalid-feedback">
-                                        <p class="ml-5 mb-0">Required Field</p>
-                                    </div>
-                                    <!-- Botón borrado del input -->
-                                    <button type="button" id="clearInputDesPuerto" class="btn-close position-absolute" aria-label="Close" style="right: 10px; top: 50%; transform: translateY(-50%); display: none;"></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
-
-
-            <div class="row m-2 px-3">
-                <div class="card px-0 py-2 my-2 col col-12 col-xl-8 d-flex justify-content-center align-items-start cardResKm border-warning text-primary" id="panelResultadoKm">
-                    <div class="panelResultadoKm ms-5 ps-5">
-                        <h3>Distance: <span class="calkm"></span></h3>
-                    </div>
-                </div>
-
-                <div class="col-12 col-xl-4 d-flex justify-content-lg-end justify-content-sm-between my-2">
-                    <div class="row d-flex justify-content-center align-items-center w-100">
-                        <div class="col p-0">
-                            <button type="button" class=" w-100 btnBlue btnCalcClear p-1" style="border-radius: 7px;" id="btnClear" data-bs-toggle="tooltip" data-bs-placement="top" title="Clear data"><i class="fa-solid fa-trash-can"></i><br> Clear</button>
-                        </div>
-                        <div class="col ">
-                            <button type="button" class="w-100 btnBlue btnCalcClear p-1" style="border-radius: 7px;" id="btnCalculate" data-bs-toggle="tooltip" data-bs-placement="top" title="Calculate km distance"><i class="fa-solid fa-road iconAnim"></i><br> Calculate</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-        <div class="chargingSpinner" style="display: none;">
-            <div class=" d-flex flex-column align-items-center justify-content-center">
-                <div class="loadSpinner"></div>
+
+        <div class="col col-12 col-sm-12 col-lg-6 mb-2">
+          <div class="card cardDachserGrey">
+            <div>
+              <div class="mx-2 mb-3">
+                <h3 class="oriDesKmD">DESTINATION</h3>
+              </div>
+              <div
+                class="row-auto d-flex wrap justify-content-evenly mb-2"
+                id="destdiv"
+              >
+                <div class="form-check col-auto">
+                  <input
+                    class="form-check-input radioKmD"
+                    type="radio"
+                    (change)="showhideSection()"
+                    id="destinationPC"
+                    value="postalCode"
+                    checked
+                  />
+                  <label class="form-check-label" for="destinationPC">
+                    Postal Code
+                  </label>
+                </div>
+                <div class="form-check col-auto">
+                  <input
+                    class="form-check-input radioKmD"
+                    type="radio"
+                    (change)="showhideSection()"
+                    id="destinationPort"
+                    value="port"
+                  />
+                  <label class="form-check-label" for="destinationPort">
+                    Port
+                  </label>
+                </div>
+              </div>
             </div>
+
+            <div class="row mx-1 mb-1">
+              <div class="desBusquedaCP">
+                <div class="form-floating my-2 position-relative">
+                  <input
+                    class="form-control"
+                    id="desCountry"
+                    list="desCountryOpc"
+                    placeholder="Country"
+                  />
+                  <datalist id="desCountryOpc">
+                    <!-- <?php include 'resources/get/getCountry.php'; ?> -->
+                  </datalist>
+                  <label for="desCountry">Country</label>
+                  <div id="validarDesCountry" class="invalid-feedback">
+                    <p class="ml-5 mb-2">Required Field</p>
+                  </div>
+                  <!-- Botón borrado del input -->
+                  <button
+                    type="button"
+                    id="clearInputDesCountry"
+                    class="btn-close position-absolute"
+                    aria-label="Close"
+                    style="
+                      right: 10px;
+                      top: 50%;
+                      transform: translateY(-50%);
+                      display: none;
+                    "
+                  ></button>
+                </div>
+
+                <div class="form-floating my-2 position-relative" id="divDesPc">
+                  <div class="form-floating">
+                    <input
+                      class="form-control searchCityPC"
+                      id="desPc"
+                      country="desCountry"
+                      list="desPcOptions"
+                      placeholder="City or Postal Code"
+                      autocomplete="off"
+                      disabled
+                    />
+                    <datalist id="desPcOptions"> </datalist>
+                    <label for="CustomertDL">City or Postal Code</label>
+                    <div id="validarDesPc" class="invalid-feedback">
+                      <p class="ml-5">Required Field</p>
+                    </div>
+                    <!-- Botón borrado del input -->
+                    <button
+                      type="button"
+                      id="clearInputDesPc"
+                      class="btn-close position-absolute"
+                      aria-label="Close"
+                      style="
+                        right: 10px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        display: none;
+                      "
+                    ></button>
+                  </div>
+                </div>
+              </div>
+              <div class="desBusquedaPort order-sm-0" style="display: none">
+                <!--   -->
+
+                <div class="form-floating my-2">
+                  <input
+                    class="form-control"
+                    id="desPuerto"
+                    list="desPortOpc"
+                    placeholder="Port"
+                  />
+                  <datalist id="desPortOpc">
+                    <!--  <?php include 'resources/get/getDesPort.php'; ?> -->
+                  </datalist>
+                  <label for="desPuerto">Port</label>
+                  <div id="validarDesPuerto" class="invalid-feedback">
+                    <p class="ml-5 mb-0">Required Field</p>
+                  </div>
+                  <!-- Botón borrado del input -->
+                  <button
+                    type="button"
+                    id="clearInputDesPuerto"
+                    class="btn-close position-absolute"
+                    aria-label="Close"
+                    style="
+                      right: 10px;
+                      top: 50%;
+                      transform: translateY(-50%);
+                      display: none;
+                    "
+                  ></button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <div class="row px-2 mb-4">
+        <div
+          class="col col-12 col-xl-12 px-4 d-flex justify-content-lg-end justify-content-sm-between"
+        >
+        <button
+                type="button"
+                class="me-3 btnOrange btnCalcClear p-1"
+                style="border-radius: 7px; width: 15%; height: 50px;"
+                id="btnClear"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Clear data"
+              >
+                <i
+                  class="fa-solid fa-eraser"
+                ></i
+                >
+                Clear
+              </button>
+              <button
+                type="button"
+                class="w-100 btnBlue btnCalcClear p-1"
+                style="border-radius: 7px; width: 15%; height: 50px;"
+                id="btnCalculate"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Calculate km distance"
+              >
+              <i class="fa-solid fa-calculator"></i> Calculate
+              </button>
+          <!-- <div
+            class="row d-flex justify-content-center align-items-center w-100"
+          >
+            <div class="col p-0">
+              <button
+                type="button"
+                class="w-100 btnBlue btnCalcClear p-1"
+                style="border-radius: 7px"
+                id="btnClear"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Clear data"
+              >
+                <i
+                  class="fa-solid fa-eraser"
+                ></i
+                ><br />
+                Clear
+              </button>
+            </div>
+            <div class="col">
+              <button
+                type="button"
+                class="w-100 btnBlue btnCalcClear p-1"
+                style="border-radius: 7px"
+                id="btnCalculate"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Calculate km distance"
+              >
+                <i class="fa-solid fa-road iconAnim"></i><br />
+                Calculate
+              </button>
+            </div>
+          </div> -->
+        </div>
+      </div>
+      <div class="row px-2">
+        <div class="col col-12 col-xl-12 px-4">
+          <div
+            class="card d-flex justify-content-center align-items-start cardResKm cardDachserGrey" style="height: 80px;"
+            id="panelResultadoKm"
+          >
+            <div class="panelResultadoKm ms-5 ps-5">
+              <h3 class=" colorBlue">
+                Distance:
+                <span class="calkm"></span>
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <div class="chargingSpinner" style="display: none">
+      <div class="d-flex flex-column align-items-center justify-content-center">
+        <div class="loadSpinner"></div>
+      </div>
+    </div>
+  </div>
 </div>
-
