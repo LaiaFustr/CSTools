@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCalculator, faCalendarDay, faLocationCrosshairs, faTruckPlane, faPlus, faLessThan, faHome, faRightFromBracket, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faCalculator, faCalendarDay, faLocationCrosshairs, faTruckPlane, faPlus, faLessThan, faHome, faRightFromBracket, faBars, faDisplay } from '@fortawesome/free-solid-svg-icons';
+import { left } from '@popperjs/core';
 
 
 @Component({
@@ -23,11 +24,15 @@ export class MenuComponent {
 
   constructor() { }
   ngOnInit(): void {
-
+    this.hoverSideToggle();
     //const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 
 
 
+  }
+
+  ngAfterViewInit(): void {
+    this.appendSideMenu();
   }
 
   clicking() {
@@ -51,6 +56,7 @@ export class MenuComponent {
       $('.sideBarText').css('width', '0%');
       //$('.divSideElem').addClass('d-flex justify-content-center w-100');
       $('.sideBarText').fadeOut(300);
+      $('#allSideToggle').css('margin-left', '80px')
 
       /*  tooltip(); */
 
@@ -70,12 +76,12 @@ export class MenuComponent {
       //$('.divSideElem').removeClass('d-flex justify-content-center w-100');
       $('.sideBarText').fadeIn(300);
       $('.sideBarText').css('width', '77%');
-
+      $('#allSideToggle').css('margin-left', '230px')
       /*   tooltip(); */
     }
 
 
-    $('#sideBarToggle, #allSideToggle').on('click', function () {
+    /* $('#sideBarToggle, #allSideToggle').on('click', function () {
       if (SIDEBAR_EL.hasClass('small')) {
         SIDEBAR_EL.removeClass('small')
         //console.log('tenia clase small y entra aqui');
@@ -84,8 +90,70 @@ export class MenuComponent {
         //console.log('no tenia clase small y entra aqui');
       }
 
+    }); */
+
+  }
+
+  hoverSideToggle() {
+    $('#allSideToggle, #sideBarToggle').on('mouseover', function () {
+      $('#sideBarToggle').css('background-color', 'rgb(235, 235, 235)');
+    })
+    $('#allSideToggle, #sideBarToggle').on('mouseout', function () {
+      $('#sideBarToggle').css('background-color', 'var(--bgLightGrey)');
+    })
+  }
+
+
+  appendSideMenu() {
+
+    let listSidebar = $('#sideNavMenu').html();
+    let noClass = $(listSidebar);
+
+    noClass.find('*').removeClass();
+    noClass.find('*').removeAttr('style');
+    noClass.find('a').css({
+      'color': 'black',
+      'text-decoration': 'none',
+      'display': 'inline-block',
+      'padding-left': '10px'
+    });
+    noClass.find('svg').closest('span').css({
+      ' width': '19px',
+      ' font-size': ' 1.2rem',
+      'padding': '13px',
+      'margin-right': ' 15px',
+      ' height': '35px',
+      ' line-height': '35px',
+      'display': 'inline-block',
+      'align-items': 'center',
+      'justify-content': 'center',
+    })
+    noClass.find('svg').closest('span').closest('div').css({
+      'width': '90vw',
+      'border-radius': '7px',
+    })
+
+    noClass.find('svg').css({
+      'color': 'black',
+      'width': '20px',
+      'height': '20px'
     });
 
+    noClass.find('li').css({
+      'display': 'block'
+    });
+
+    noClass.find('svg').closest('span').siblings('span').css({
+      'overflow': 'hidden',
+      'text-overflow': 'ellipsis',
+      'white-space': 'nowrap',
+      'text-wrap': 'nowrap',
+      'display': ' inline-flex',
+      'transition': 'width 0.3s ease',
+    });
+
+    $('#copSideBar').empty();
+    $('#copSideBar').append(noClass);
   }
 }
 
