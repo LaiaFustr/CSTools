@@ -2182,7 +2182,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* display: inline-block; */
 }
 
 .sideBarIcon i {

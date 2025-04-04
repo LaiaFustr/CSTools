@@ -129,9 +129,10 @@ export class MenuComponent {
       'justify-content': 'center',
     })
     noClass.find('svg').closest('span').closest('div').css({
-      'width': '90vw',
-      'border-radius': '7px',
+      'width': '82vw',
+/*       'border-radius': '7px', */
     })
+
 
     noClass.find('svg').css({
       'color': 'black',
