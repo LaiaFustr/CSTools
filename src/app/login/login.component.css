@@ -1,11 +1,13 @@
 .login-bg {
- height: 100vh;
-  background-image: url(./../../../public/assets/img/login-background.png) !important;
-    background-repeat: none;
-    background-size:cover;
+    height: 100vh;
+    background: linear-gradient(150deg, rgb(0, 51, 160, 0.4) 0%, rgba(255, 196, 68, 0.3) 35%, rgba(218,218,218,0.8) 100%), url(./../../../public/assets/img/login-background.png);
+    background-repeat: repeat none;
+    background-size: cover;
+    
     background-position: 0% 100%;
 
 }
+
 .login-title {
     text-align: center;
     font-weight: 700;
@@ -19,16 +21,17 @@ hr {
     width: 100%;
 
 }
+
 .login-form {
-   width: 100%;
+    width: 100%;
 }
+
 .login-content {
     display: flex;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.80);
+    background-color: rgba(241, 241, 241, 0.9);
     border: none;
     width: 500px;
-    
 }
 
 .btn-login {
@@ -38,4 +41,3 @@ hr {
     padding: .9em 1em;
 
 }
-

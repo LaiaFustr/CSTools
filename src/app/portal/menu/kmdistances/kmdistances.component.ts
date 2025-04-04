@@ -33,4 +33,9 @@ export class KmdistancesComponent {
     //mostrar - ocultar seccion
 
   }
+
+  activatePort(){
+    //buscar el elemento padre de los dos y luego buscar por la clase o id del elemento input de puerto para activarlo y desactivarlo en función del valor de country
+    //
+  }
 }
