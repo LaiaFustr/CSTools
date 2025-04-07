@@ -31,7 +31,7 @@
                         <div class="row mx-1 mb-1">
                             <div class="order-sm-0" id="oriBusquedaPC">
                                 <div class="form-floating my-2 position-relative">
-                                    <input class="form-control" id="oriCountry" list="oriCountryOpc" placeholder="Country" autocomplete="off" (input)="showClearCross($event);" (change)="togglePc($event); getPcByCountry($event)" (paste)="showClearCross($event)" />
+                                    <input class="form-control" id="oriCountry" list="oriCountryOpc" placeholder="Country" autocomplete="off" (ngModelChange)="getPcByCountry($event)" (input)="showClearCross($event);" (change)="togglePc($event); getPcByCountry($event)" (paste)="showClearCross($event)" />
                                     <!--(keyup)="showClearCross($event)" (keydown)="showClearCross($event)" (propertychange)="showClearCross($event)"
                                         (click)="showClearCross($event)"   -->
                                     <datalist id="oriCountryOpc"></datalist>
@@ -112,7 +112,7 @@
                         <div class="row mx-1 mb-1">
                             <div id="destBusquedaPC">
                                 <div class="form-floating my-2 position-relative">
-                                    <input class="form-control" id="desCountry" list="desCountryOpc" placeholder="Country" (input)="showClearCross($event); togglePc($event)" (change)="togglePc($event); getPcByCountry($event)" (paste)="showClearCross($event)" />
+                                    <input class="form-control" id="desCountry" list="desCountryOpc" placeholder="Country"  (ngModelChange)="getPcByCountry($event)" (input)="showClearCross($event); togglePc($event)" (change)="togglePc($event); getPcByCountry($event)" (paste)="showClearCross($event)" />
                                     <datalist id="desCountryOpc">
                   
                   </datalist>

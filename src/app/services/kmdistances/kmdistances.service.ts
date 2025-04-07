@@ -8,30 +8,27 @@ import { Observable, of } from 'rxjs';
 export class KmdistancesService {
 
 
-  private localportspc = '';
+  private localports = 'http://localhost:8000/api/v1/ports';
   private countries = 'http://localhost:8000/api/v1/countries';
+private localPC = '';
 
 
   constructor(private http: HttpClient) { }
 
 
-
   getCountry(): Observable<any[]> {
-    /* const countrifake =  */;
-
-   /*  return [
-      { papaicod: 'US', papainom: 'United States' },
-      {  papaicod: 'CN', papainom: 'China' },
-      {  papaicod: 'DE', papainom: 'Germany' },
-      {  papaicod: 'FR', papainom: 'France' },
-      {  papaicod: 'BR', papainom: 'Brazil' }
-    ]; */
+   
     return this.http.get<any[]>(this.countries);
   }
 
-  getLocalPortsPC(country: string): Observable<any[]> {
+  getLocalPC(country: string): Observable<any[]> {
     const params = new HttpParams().set('country', country);
-    return this.http.get<any[]>(this.localportspc, { params });
+    return this.http.get<any[]>(this.localports, { params });
+  }
+
+  getLocalPorts(): Observable<any[]> {
+
+    return this.http.get<any[]>(this.localports);
   }
 
   getDistance(){
