@@ -7,7 +7,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-menu',
-  imports: [RouterOutlet, RouterLink, FontAwesomeModule /* , MatTooltipModule */],
+  imports: [RouterOutlet, RouterLink, FontAwesomeModule , MatTooltipModule],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
@@ -67,8 +67,14 @@ export class MenuComponent {
       //$('.divSideElem').addClass('d-flex justify-content-center w-100');
       $('.sideBarText').fadeOut(300);
       $('#allSideToggle').css('margin-left', '80px')
+      $('.sideBarElem').each(function(){
+        let text = $(this).find('.sideBarText').text().trim();
+        
+        $(this).attr('matTooltip',text)
+      });
+      
 
-      /*  tooltip(); */
+     
 
 
     } else if ($('.side_nav').css('margin-left') == '0px' && $('.side_nav').css('min-width') == '100px') {
@@ -93,7 +99,12 @@ export class MenuComponent {
       $('.sideBarText').fadeIn(300);
       $('.sideBarText').css('width', '77%');
       $('#allSideToggle').css('margin-left', '230px')
-      /*   tooltip(); */
+
+     /*  $('.sideBarElem').each(function(){ */
+        /* let text = $(this).find('.sideBarText').text().trim(); */
+        $('.sideBarElem').attr('matTooltip','' )
+     /*  }); */
+      
     }
 
 

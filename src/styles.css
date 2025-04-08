@@ -2313,3 +2313,9 @@ hr.h-color {
 }
 /* html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+
+.cus-tooltip {
+    background-color: #2b2926b4;
+    color: white;
+    border-radius: 7px;
+}

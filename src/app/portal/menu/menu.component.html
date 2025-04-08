@@ -18,9 +18,22 @@
       <div class="" id="menuSidebar">
         <nav class="sideNavMenu dropMainElem" id="sideNavMenu">
           <!-- new -->
-           
+
           <ul class="list-unstyled" id="listSideBar">
-            <li class="sideBarElem">
+            <!-- <button
+              mat-raised-button
+              matTooltip="Info about the action"
+              aria-label="Button that displays a tooltip when focused or hovered over"
+            >
+              Action
+            </button> -->
+            <li
+              class="sideBarElem"
+              mat-raised-button
+              matTooltipClass="tooltip cus-tooltip"
+              matTooltip=""
+              matTooltipPosition="right"
+            >
               <a class="text-decoration-none d-block" routerLink="sdcalculator">
                 <div class="divSideElem">
                   <span class="sideBarIcon">
@@ -31,7 +44,13 @@
               </a>
             </li>
 
-            <li class="sideBarElem">
+            <li
+              class="sideBarElem"
+              mat-raised-button
+              matTooltipClass="tooltip cus-tooltip"
+              matTooltip=""
+              matTooltipPosition="right"
+            >
               <a class="text-decoration-none d-block" routerLink="kmdistances">
                 <div class="divSideElem">
                   <span class="sideBarIcon">
@@ -41,7 +60,13 @@
                 </div>
               </a>
             </li>
-            <li class="sideBarElem">
+            <li
+              class="sideBarElem"
+              mat-raised-button
+              matTooltipClass="tooltip cus-tooltip"
+              matTooltip=""
+              matTooltipPosition="right"
+            >
               <a class="text-decoration-none d-block" routerLink="schedule">
                 <div class="divSideElem">
                   <span class="sideBarIcon">
@@ -51,7 +76,13 @@
                 </div>
               </a>
             </li>
-            <li class="sideBarElem blankHref">
+            <li
+              class="sideBarElem blankHref"
+              mat-raised-button
+              matTooltipClass="tooltip cus-tooltip"
+              matTooltip=""
+              matTooltipPosition="right"
+            >
               <a
                 class="text-decoration-none d-block"
                 id="gseWeb"
@@ -77,7 +108,8 @@
     <nav class="navbar navbar-expand-lg header-nav sticky-top">
       <!-- fixed-top -->
       <button id="sideBarToggle" class="nav-link togIcon" (click)="clicking()">
-        <fa-icon [icon]="faLessThan" id="togIcon"  class=""></fa-icon><!--  -->
+        <fa-icon [icon]="faLessThan" id="togIcon" class=""></fa-icon
+        ><!--  -->
       </button>
       <div class="container-fluid">
         <div class="d-flex">
