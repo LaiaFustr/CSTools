@@ -50,8 +50,16 @@ export class MenuComponent {
       $('.side_nav').css('min-width', '100px');
       $('#sideLogo').attr('width', '60%');
       $('#content').css('max-width', 'calc(100% - 100px)');
-      $('#togIcon').removeClass('fa-less-than');
-      $('#togIcon').addClass('fa-greater-than');
+      /* $('#togIcon') */$('.togIcon').css('animation', 'toleft .5s ease')
+      
+      $('.togIcon').on('animationend', function(){
+        $('.togIcon').css('transform', 'rotate(180deg)')
+        $('.togIcon').css('animation', 'none');
+      })
+
+      $('.togIcon')
+      /* .removeClass('fa-less-than');
+      $('#togIcon').addClass('fa-greater-than'); */
       $('.sideBarIcon').addClass('fa-lg');
       $('.sideBarText').css('display', 'none');
       $('.sideBarText').css('width', '0%');
@@ -69,9 +77,16 @@ export class MenuComponent {
 
       $('#sideLogo').attr('width', '150px');
       $('#sideBarToggle').css('display', 'none');
+
       $('#content').css('max-width', 'calc(100% - 250px)');
-      $('#togIcon').removeClass('fa-greater-than');
-      $('#togIcon').addClass('fa-less-than');
+      $('.togIcon').css('animation', 'toright .5s ease')
+      
+      $('.togIcon').on('animationend', function(){
+        $('.togIcon').css('transform', 'rotate(0deg)')
+        /* $('.togIcon').css('animation', 'none'); */
+      })
+      $('#togIcon')/* .removeClass('fa-greater-than'); */
+      $('#togIcon')/* .addClass('fa-less-than'); */
       $('.sideBarIcon').removeClass('fa-lg');
       $('#sideBarToggle').css('display', 'block');
       //$('.divSideElem').removeClass('d-flex justify-content-center w-100');
