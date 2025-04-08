@@ -115,14 +115,14 @@ export class KmdistancesComponent {
     }
     console.log(country.value+' * '+this.oriCountry)
     $('#' + ini + 'PcOptions').empty();
+    console.log(code)
     
     this.kmdistance.getLocalPC(code)
     .subscribe (pcs=>{
       pcs.forEach(pc=>{
+        console.log(code)
         console.log(pc)
-        console.log('Torna cosetes: '+pc['plptoloc'])
-        $('#' + ini + 'PcOptions').append('<option data-prv="OURENSE" data-pob="A VALENZA" ata-codpostal="32002" value="32002 - A VALENZA"  value="'+pc['plcodpos']+' - '+pc['plcodpos']+'"><strong>32002</strong>, A VALENZA, OURENSE </option>');
-        
+        $('#' + ini + 'PcOptions').append('<option data-prv="'+pc['cpprvnom']+'" data-pob="'+pc['cptownmori']+'" data-postcode="'+pc['minpc']+'" value="'+pc['minpc']+' - '+pc['cptownm']+'"><strong>'+pc['minpc']+'</strong>, '+pc['cptownmori']+', '+pc['cpprvnom']+' </option>');
       })
     })
 

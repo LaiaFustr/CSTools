@@ -10,7 +10,7 @@ export class KmdistancesService {
 
   private localports = 'http://localhost:8000/api/v1/ports';
   private countries = 'http://localhost:8000/api/v1/countries';
-private localPC = '';
+private localPC = 'http://localhost:8000/api/v1/pcbycountry';
 
 
   constructor(private http: HttpClient) { }
@@ -23,7 +23,7 @@ private localPC = '';
 
   getLocalPC(country: string): Observable<any[]> {
     const params = new HttpParams().set('country', country);
-    return this.http.get<any[]>(this.localports, { params });
+    return this.http.get<any[]>(this.localPC, { params });
   }
 
   getLocalPorts(): Observable<any[]> {
