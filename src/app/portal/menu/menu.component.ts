@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCalculator, faCalendarDay, faLocationCrosshairs, faTruckPlane, faPlus, faLessThan, faHome, faRightFromBracket, faBars, faDisplay } from '@fortawesome/free-solid-svg-icons';
+import { faCalculator, faCalendarDay, faLocationCrosshairs, faTruckPlane, faPlus, faLessThan, faHome, faRightFromBracket, faBars, faDisplay , faLocationDot} from '@fortawesome/free-solid-svg-icons';
 import { left } from '@popperjs/core';
 
 
@@ -21,6 +21,7 @@ export class MenuComponent {
   faHome = faHome;
   faRightFromBracket = faRightFromBracket;
   faBars = faBars;
+  faLocationDot = faLocationDot;
 
   constructor() { }
   ngOnInit(): void {

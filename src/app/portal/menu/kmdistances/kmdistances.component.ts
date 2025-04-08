@@ -122,7 +122,7 @@ export class KmdistancesComponent {
       pcs.forEach(pc=>{
         console.log(code)
         console.log(pc)
-        $('#' + ini + 'PcOptions').append('<option data-prv="'+pc['cpprvnom']+'" data-pob="'+pc['cptownmori']+'" data-postcode="'+pc['minpc']+'" value="'+pc['minpc']+' - '+pc['cptownm']+'"><strong>'+pc['minpc']+'</strong>, '+pc['cptownmori']+', '+pc['cpprvnom']+' </option>');
+        $('#' + ini + 'PcOptions').append('<option data-prv="'+pc['nameprov']+'" data-pob="'+pc['nametownori']+'" data-postcode="'+pc['minpc']+'" value="'+pc['minpc']+' - '+pc['nametown']+'"><strong>'+pc['minpc']+'</strong>, '+pc['nametownori']+', '+pc['nameprov']+' </option>');
       })
     })
 
