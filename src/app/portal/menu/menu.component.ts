@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCalculator, faCalendarDay, faLocationCrosshairs, faTruckPlane, faPlus, faLessThan, faHome, faRightFromBracket, faBars, faDisplay , faLocationDot} from '@fortawesome/free-solid-svg-icons';
-import {TooltipPosition} from '@angular/material';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @Component({
   selector: 'app-menu',
-  imports: [RouterOutlet, RouterLink, FontAwesomeModule ],
+  imports: [RouterOutlet, RouterLink, FontAwesomeModule /* , MatTooltipModule */],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
