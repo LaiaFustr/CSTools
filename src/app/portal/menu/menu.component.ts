@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCalculator, faCalendarDay, faLocationCrosshairs, faTruckPlane, faPlus, faLessThan, faHome, faRightFromBracket, faBars, faDisplay , faLocationDot} from '@fortawesome/free-solid-svg-icons';
-import { left } from '@popperjs/core';
+import {TooltipPosition} from '@angular/material';
 
 
 @Component({
   selector: 'app-menu',
-  imports: [RouterOutlet, RouterLink, FontAwesomeModule],
+  imports: [RouterOutlet, RouterLink, FontAwesomeModule ],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
@@ -50,11 +50,12 @@ export class MenuComponent {
       $('.side_nav').css('min-width', '100px');
       $('#sideLogo').attr('width', '60%');
       $('#content').css('max-width', 'calc(100% - 100px)');
-      /* $('#togIcon') */$('.togIcon').css('animation', 'toleft .5s ease')
+      /* $('#togIcon') */$('.togIcon').css('animation', 'toleft .3s linear')
       
       $('.togIcon').on('animationend', function(){
         $('.togIcon').css('transform', 'rotate(180deg)')
-        $('.togIcon').css('animation', 'none');
+        $('.togIcon').css('box-shadow', '-4px -4px 4px var(--lightGrey)')
+
       })
 
       $('.togIcon')
@@ -79,14 +80,13 @@ export class MenuComponent {
       $('#sideBarToggle').css('display', 'none');
 
       $('#content').css('max-width', 'calc(100% - 250px)');
-      $('.togIcon').css('animation', 'toright .5s ease')
+      $('.togIcon').css('animation', 'toright .3s linear')
       
       $('.togIcon').on('animationend', function(){
         $('.togIcon').css('transform', 'rotate(0deg)')
-        /* $('.togIcon').css('animation', 'none'); */
+        $('.togIcon').css('box-shadow', '4px 4px 4px var(--lightGrey)')
       })
-      $('#togIcon')/* .removeClass('fa-greater-than'); */
-      $('#togIcon')/* .addClass('fa-less-than'); */
+      
       $('.sideBarIcon').removeClass('fa-lg');
       $('#sideBarToggle').css('display', 'block');
       //$('.divSideElem').removeClass('d-flex justify-content-center w-100');
@@ -144,9 +144,9 @@ export class MenuComponent {
       'align-items': 'center',
       'justify-content': 'center',
     })
-    noClass.find('svg').closest('span').closest('div').css({
+    noClass.find('svg').closest('span').closest('a').css({
       'width': '82vw',
-/*       'border-radius': '7px', */
+      'border-radius': '7px',
     })
 
 

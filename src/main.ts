@@ -3,6 +3,8 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
+/* import { TooltipModule } from '@syncfusion/ej2-angular-popups'; */
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 import $ from 'jquery';
 
