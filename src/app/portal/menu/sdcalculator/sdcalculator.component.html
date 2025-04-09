@@ -190,7 +190,9 @@
                 <div class="col text-center">
                   <p><strong>Total:</strong></p>
                   <strong>
-                    <div id="totalPort">{{sto_total.SPE}}<br>{{sto_total.USD}}</div>
+                    <div id="totalPort">
+                      {{ sto_total.SPE }}<br />{{ sto_total.USD }}
+                    </div>
                   </strong>
                 </div>
               </div>
@@ -259,14 +261,16 @@
                 <div class="col text-center">
                   <p>Tariff:</p>
                   <div id="tariffDem" *ngFor="let tar of dem_tariff">
-                    <span>{{tar}}</span
-                    ><br/>
+                    <span>{{ tar }}</span
+                    ><br />
                   </div>
                 </div>
                 <div class="col text-center">
                   <p><strong>Total:</strong></p>
                   <strong>
-                    <p id="totalDem">{{dem_total.SPE}}<br>{{dem_total.USD}}</p>
+                    <p id="totalDem">
+                      {{ dem_total.SPE }}<br />{{ dem_total.USD }}
+                    </p>
                   </strong>
                 </div>
               </div>
@@ -313,4 +317,91 @@
       </div>
     </div>
   </div>
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+  <div class="accordion" id="accordionExample" style="width: 250px; position: absolute;top: 100px; right: 0px; border-radius:0px; background: transparent;">
+    
+    <div class="card" style=" border-radius: inherit 0px 0px inherit; margin-bottom: 10px; border: none;"><!-- accordion-item -->
+      <span class="card-header p-0" id="headingOne">
+        <button class="d-flex pl-4 align-items-center justify-content-between btn  w-100" style="background-color:orange; padding: 15px 7px; border-radius: 7px 0px 0px 7px; border: 1px solid orange !important;" data-bs-toggle="collapse"  data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+          RATE DETAILS PORT STORAGE
+        </button><!-- accordion-button -->
+      </span>
+      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div class="accordion-body m-0 p-0">
+          
+          <div class="" id="tablePort">
+            <table class="table table-sm table-striped">
+              <tbody>
+                <tr
+                  *ngFor="let storow of sto_details"
+                  [ngStyle]="{
+                    'font-weight': storow.included ? 'bold' : 'normal'
+                  }"
+                >
+                  <td>{{ storow.detail_sto_day_range }}</td>
+                  <td>{{ storow.detail_sto_price }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="accordion-item">
+      <span class="accordion-header" id="headingTwo">
+        <button  class="d-flex pl-4 align-items-center justify-content-between btn  w-100" style="background-color:orange; padding: 15px 7px; border-radius: 7px; border: 1px solid orange !important;" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          RATE DETAILS DEMURRAGE
+        </button>
+      </span>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+        <div class="accordion-body m-0 p-0">
+          <div class="" id="tableDem">
+            <table class="table table-sm table-striped">
+              <tbody>
+                <tr
+                  *ngFor="let demrow of dem_details"
+                  [ngStyle]="{
+                    'font-weight': demrow.included ? 'bold' : 'normal'
+                  }"
+                >
+                  <td>{{ demrow.detail_dem_day_range }}</td>
+                  <td>{{ demrow.detail_dem_price }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
