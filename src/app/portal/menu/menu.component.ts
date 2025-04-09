@@ -22,14 +22,11 @@ export class MenuComponent {
   faRightFromBracket = faRightFromBracket;
   faBars = faBars;
   faLocationDot = faLocationDot;
-
+  tooltipDisabled = true;
+  
   constructor() { }
   ngOnInit(): void {
     this.hoverSideToggle();
-    //const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
-
-
-
   }
 
   ngAfterViewInit(): void {
@@ -58,23 +55,13 @@ export class MenuComponent {
 
       })
 
-      $('.togIcon')
-      /* .removeClass('fa-less-than');
-      $('#togIcon').addClass('fa-greater-than'); */
       $('.sideBarIcon').addClass('fa-lg');
       $('.sideBarText').css('display', 'none');
       $('.sideBarText').css('width', '0%');
-      //$('.divSideElem').addClass('d-flex justify-content-center w-100');
       $('.sideBarText').fadeOut(300);
       $('#allSideToggle').css('margin-left', '80px')
-      $('.sideBarElem').each(function(){
-        let text = $(this).find('.sideBarText').text().trim();
-        
-        $(this).attr('matTooltip',text)
-      });
-      
-
-     
+    
+     this.tooltipDisabled = false;
 
 
     } else if ($('.side_nav').css('margin-left') == '0px' && $('.side_nav').css('min-width') == '100px') {
@@ -95,29 +82,13 @@ export class MenuComponent {
       
       $('.sideBarIcon').removeClass('fa-lg');
       $('#sideBarToggle').css('display', 'block');
-      //$('.divSideElem').removeClass('d-flex justify-content-center w-100');
       $('.sideBarText').fadeIn(300);
       $('.sideBarText').css('width', '77%');
       $('#allSideToggle').css('margin-left', '230px')
 
-     /*  $('.sideBarElem').each(function(){ */
-        /* let text = $(this).find('.sideBarText').text().trim(); */
-        $('.sideBarElem').attr('matTooltip','' )
-     /*  }); */
+      this.tooltipDisabled = true;
       
     }
-
-
-    /* $('#sideBarToggle, #allSideToggle').on('click', function () {
-      if (SIDEBAR_EL.hasClass('small')) {
-        SIDEBAR_EL.removeClass('small')
-        //console.log('tenia clase small y entra aqui');
-      } else {
-        SIDEBAR_EL.addClass('small')
-        //console.log('no tenia clase small y entra aqui');
-      }
-
-    }); */
 
   }
 

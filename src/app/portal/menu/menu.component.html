@@ -29,10 +29,11 @@
             </button> -->
             <li
               class="sideBarElem"
-              mat-raised-button
-              matTooltipClass="tooltip cus-tooltip"
-              matTooltip=""
+              
+              matTooltipClass="cus-tooltip"
+              matTooltip="SD Calculator"
               matTooltipPosition="right"
+              [matTooltipDisabled] = "tooltipDisabled"
             >
               <a class="text-decoration-none d-block" routerLink="sdcalculator">
                 <div class="divSideElem">
@@ -46,10 +47,11 @@
 
             <li
               class="sideBarElem"
-              mat-raised-button
+              
               matTooltipClass="tooltip cus-tooltip"
-              matTooltip=""
+              matTooltip="Kilometric Distances"
               matTooltipPosition="right"
+              [matTooltipDisabled] = "tooltipDisabled"
             >
               <a class="text-decoration-none d-block" routerLink="kmdistances">
                 <div class="divSideElem">
@@ -62,10 +64,11 @@
             </li>
             <li
               class="sideBarElem"
-              mat-raised-button
+              
               matTooltipClass="tooltip cus-tooltip"
-              matTooltip=""
+              matTooltip="Schedule"
               matTooltipPosition="right"
+              [matTooltipDisabled] = "tooltipDisabled"
             >
               <a class="text-decoration-none d-block" routerLink="schedule">
                 <div class="divSideElem">
@@ -78,10 +81,11 @@
             </li>
             <li
               class="sideBarElem blankHref"
-              mat-raised-button
+              
               matTooltipClass="tooltip cus-tooltip"
-              matTooltip=""
+              matTooltip="Dachser Spain"
               matTooltipPosition="right"
+              [matTooltipDisabled] = "tooltipDisabled"
             >
               <a
                 class="text-decoration-none d-block"
