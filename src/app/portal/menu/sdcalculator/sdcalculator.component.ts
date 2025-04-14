@@ -284,6 +284,8 @@ export class SdcalculatorComponent {
 
   calcRes() {
     $('.loadSpinner').show()
+    $("#resRowCalcu").hide();
+        $("#accordionSD").hide();
     //va a llamar a la funcion de la api que calculará el resultado
     this.sdcalculator.getCalculation(this.vessel_arrival.val(), this.gate_out_full.val(), this.gate_empty.val(), this.carrier.val(), this.port.val(), this.container.val(), this.free_storage.val(), this.free_demurrage.val())
 
