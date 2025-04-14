@@ -1,0 +1,74 @@
+#accordionSD button {
+    background-color: orange;
+    padding: 15px 7px;
+    border-radius: 7px 0px 0px 7px;
+    border: 1px solid orange !important;
+}
+
+#accordionSD .card, #accordionSD .accordion-item  {
+    border-radius: inherit 0px 0px inherit;
+    margin-bottom: 5px;
+    border: none;
+   
+    background-color: rgba(255, 255, 255, 0.4);
+}
+#accordionSD .card, #accordionSD .accordion-item .collapse  {
+    max-width: 305px;
+}
+#accordionSD {
+    width: 150px;
+    position: absolute;
+    top: 100px;
+    right: 0px;
+    border-radius: 0px;
+    background: transparent;
+    transition: all .5s ease;
+    overflow: hidden;
+    animation: up 5s 1 ease;
+}
+
+
+@keyframes up {
+    from {
+        top: calc(100vh - 200px);
+    }
+    to {
+        top: 100px;
+    }
+}
+
+#accordionSD .accordion-header {
+    border-radius: 7px 0px 0px 7px;
+}
+
+#accordionSD .btn {
+    display: flex;
+    flex-direction: column;
+    font-size: .7em;
+    transition: all .5s ease;
+}
+
+#accordionSD:has(.btn:not(.collapsed)) {
+    width: 300px;
+}
+
+
+#accordionSD:has(.btn:not(.collapsed)) .btn:not(.collapsed) {
+    background-color: var(--blueLightDch);
+    border-color:  var(--blueLightDch) !important;
+    color: white;
+}
+
+
+
+#accordionSD .btnText {
+    transition: width 0.5 ease;
+    width: 80px;
+    text-align: left;
+
+}
+
+#accordionSD .accordion-body {
+    min-width: 250px;
+}
+

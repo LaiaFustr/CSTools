@@ -196,7 +196,7 @@
                   </strong>
                 </div>
               </div>
-              <div class="row d-flex justify-content-end">
+              <!-- <div class="row d-flex justify-content-end">
                 <div class="btnInfoCalc text-end col">
                   <strong>Port Storage Rate details</strong>
                   <button
@@ -209,12 +209,12 @@
                     aria-controls="detailsPortStorage"
                   >
                     <i class="fa-solid fa-plus" id="iconPort"></i>
-                  </button>
+                  </button> -->
                   <!-- 
                                 <button class="btn btnPlusCalc" type="button" data-bs-toggle="collapse" tg="iconPort" data-bs-target="#detailsPortStorage" aria-expanded="false" aria-controls="detailsPortStorage"><i class="fa-solid fa-plus" id="iconPort"></i></button> -->
-                </div>
-              </div>
-              <div class="row justify-content-end mb-2">
+                <!-- </div>
+              </div> -->
+              <!-- <div class="row justify-content-end mb-2">
                 <div class="col-auto mt-1 tableCalc">
                   <div class="collapse" id="detailsPortStorage">
                     <div class="card card-body me-1" id="tablePort">
@@ -234,7 +234,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -274,7 +274,7 @@
                   </strong>
                 </div>
               </div>
-              <div class="row justify-content-end">
+              <!-- <div class="row justify-content-end">
                 <div class="btnInfoCalc text-end col">
                   <strong>Demurrage Rate details </strong>
                   <button
@@ -289,14 +289,15 @@
                     <i class="fa-solid fa-plus" id="iconDem"></i>
                   </button>
                 </div>
-              </div>
-              <div class="row justify-content-end mb-2">
+              </div> -->
+              <!-- <div class="row justify-content-end mb-2">
                 <div class="col-auto mt-1 tableCalc">
                   <div class="collapse" id="detailsDemurRate">
                     <div class="card card-body me-1" id="tableDem">
                       <table class="table table-sm table-striped">
                         <tbody>
                           <tr
+                            style="text-wrap: stable"
                             *ngFor="let demrow of dem_details"
                             [ngStyle]="{
                               'font-weight': demrow.included ? 'bold' : 'normal'
@@ -310,37 +311,44 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="d-flex flex-column align-items-center justify-content-center">
+      <div class="loadSpinner" style="display: none"></div>
+    </div>
+    
   </div>
 
-  
-  
+  <div class="accordion" id="accordionSD" style="display: none">
+    <!--   -->
+    <div class="card">
+      <!-- accordion-item -->
+      <span class="accordion-header p-0" id="headingOne">
+        <button
+          class="d-flex flex-row justify-content-between align-items-center px-3 btn collapsed w-100"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseOne"
+          aria-expanded="false"
+          aria-controls="collapseOne"
+          (click)="clickToggle($event)"
+          id="btnStoDet"
+        >
+          <i class="fa-solid fa-plus icon fa-2x"></i>
 
-
-
-
-
-
-
-
-
-
-  <div class="accordion" id="accordionExample" style="width: 250px; position: absolute;top: 100px; right: 0px; border-radius:0px; background: transparent;">
-    
-    <div class="card" style=" border-radius: inherit 0px 0px inherit; margin-bottom: 10px; border: none;"><!-- accordion-item -->
-      <span class="card-header p-0" id="headingOne">
-        <button class="d-flex pl-4 align-items-center justify-content-between btn  w-100" style="background-color:orange; padding: 15px 7px; border-radius: 7px 0px 0px 7px; border: 1px solid orange !important;" data-bs-toggle="collapse"  data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-          RATE DETAILS PORT STORAGE
-        </button><!-- accordion-button -->
+          <span class="btnText">RATE DETAILS PORT STORAGE</span>
+        </button>
       </span>
-      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-        <div class="accordion-body m-0 p-0">
-          
+      <div
+        id="collapseOne"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingOne"
+        data-bs-parent="#accordionSD"
+      >
+        <div class="accordion-body mx-2 p-0 cardDachser">
           <div class="" id="tablePort">
             <table class="table table-sm table-striped">
               <tbody>
@@ -359,19 +367,35 @@
         </div>
       </div>
     </div>
-  
-    <div class="accordion-item">
-      <span class="accordion-header" id="headingTwo">
-        <button  class="d-flex pl-4 align-items-center justify-content-between btn  w-100" style="background-color:orange; padding: 15px 7px; border-radius: 7px; border: 1px solid orange !important;" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          RATE DETAILS DEMURRAGE
+
+    <div class="card">
+      <!-- <div class="accordion-item"  > -->
+      <span class="accordion-header p-0" id="headingTwo">
+        <button
+          class="d-flex flex-row justify-content-between align-items-center px-3 btn collapsed w-100"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseTwo"
+          aria-expanded="false"
+          aria-controls="collapseTwo"
+          (click)="clickToggle($event)"
+          id="btnDemDet"
+        >
+          <i class="fa-solid fa-plus icon fa-2x"></i>
+          <span class="btnText">RATE DETAILS DEMURRAGE</span>
         </button>
       </span>
-      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-        <div class="accordion-body m-0 p-0">
+      <div
+        id="collapseTwo"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingTwo"
+        data-bs-parent="#accordionSD"
+      >
+        <div class="accordion-body mx-2 p-0 cardDachser">
           <div class="" id="tableDem">
             <table class="table table-sm table-striped">
               <tbody>
                 <tr
+                  style="text-wrap: balance"
                   *ngFor="let demrow of dem_details"
                   [ngStyle]="{
                     'font-weight': demrow.included ? 'bold' : 'normal'
@@ -385,23 +409,7 @@
           </div>
         </div>
       </div>
+      <!-- </div> -->
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  </div>
 </div>
