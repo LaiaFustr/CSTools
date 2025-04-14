@@ -363,6 +363,19 @@ export class SdcalculatorComponent {
       $(other).find('.icon').addClass('fa-plus');
       $(other).find('.icon').removeClass('fa-minus');
     }
+    /*  if ($(btn).closest('button').attr('aria-expanded') === 'true') {
+      $(btn).find('.icon').removeClass('fa-arrow-down');
+      $(btn).find('.icon').addClass('fa-arrow-up');
+      $(other).find('.icon').addClass('fa-arrow-down');
+      $(other).find('.icon').removeClass('fa-arrow-up');
+
+
+    } else {
+      $(btn).find('.icon').addClass('fa-arrow-down');
+      $(btn).find('.icon').removeClass('fa-arrow-up');
+      $(other).find('.icon').addClass('fa-arrow-down');
+      $(other).find('.icon').removeClass('fa-arrow-up');
+    } */
   }
 
 }

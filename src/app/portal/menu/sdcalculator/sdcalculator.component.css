@@ -2,19 +2,23 @@
     background-color: orange;
     padding: 15px 7px;
     border-radius: 7px 0px 0px 7px;
-    border: 1px solid orange !important;
+    border: 1px solid orange;
 }
 
-#accordionSD .card, #accordionSD .accordion-item  {
+#accordionSD .card,
+#accordionSD .accordion-item {
     border-radius: inherit 0px 0px inherit;
     margin-bottom: 5px;
     border: none;
-   
+
     background-color: rgba(255, 255, 255, 0.4);
 }
-#accordionSD .card, #accordionSD .accordion-item .collapse  {
+
+#accordionSD .card,
+#accordionSD .accordion-item .collapse {
     max-width: 305px;
 }
+
 #accordionSD {
     width: 150px;
     position: absolute;
@@ -32,6 +36,7 @@
     from {
         top: calc(100vh - 200px);
     }
+
     to {
         top: 100px;
     }
@@ -54,9 +59,12 @@
 
 
 #accordionSD:has(.btn:not(.collapsed)) .btn:not(.collapsed) {
-    background-color: var(--blueLightDch);
-    border-color:  var(--blueLightDch) !important;
-    color: white;
+
+
+
+    background-color: rgba(255, 255, 255, 0.7) ;
+    border: 1px solid var(--blueLightDch) !important;
+    color: var(--blueLightDch) ;
 }
 
 
@@ -72,3 +80,15 @@
     min-width: 250px;
 }
 
+#accordionSD .btn:not(.collapsed):hover {
+    background-color: var(--blueLightDch)!important;
+    border-color: var(--blueLightDch) !important;
+    color: white !important;
+
+}
+
+#accordionSD .btn:hover {
+    background-color: #ffb61aea!important;
+    border-color: #ffb61aea!important;
+
+} 
