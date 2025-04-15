@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+
 import { FormsModule } from '@angular/forms';
 import { KmdistancesService } from '../../../services/kmdistances/kmdistances.service';
 
 @Component({
   selector: 'app-kmdistances',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, DragDropModule],
   templateUrl: './kmdistances.component.html',
   styleUrl: './kmdistances.component.css'
 })
@@ -19,10 +21,15 @@ export class KmdistancesComponent {
 
   constructor(private kmdistance: KmdistancesService) { this.getCountries(), this.getPorts() }
 
-  NgOnInit(){
+  NgOnInit() {
     $('#colResKm').hide();
+    
+      
+    
   }
   NgAfterInit(): void {
+    
+    
   }
 
 
@@ -118,7 +125,7 @@ export class KmdistancesComponent {
     }
 
     $('#' + ini + 'PcOptions').empty();
-   /*  console.log(code) */
+    /*  console.log(code) */
 
     this.kmdistance.getLocalPC(code)
       .subscribe(pcs => {
@@ -162,7 +169,7 @@ export class KmdistancesComponent {
       $('#' + clear.id.replace('Country', 'Pc')).css('display', 'none')
       $('#' + pc).val('');
       $('#' + pc).attr('disabled', 'disabled')
-     /*  console.log(pc) */
+      /*  console.log(pc) */
     } else {
       $('#' + id).val('');
       $('#' + clear.id).css('display', 'none')
@@ -218,7 +225,7 @@ export class KmdistancesComponent {
     //origen cp/boblacion
     $('.chargingSpinner').show()
     $('#colResKm').hide()
-    let valid = false;
+    let error = false;
     let oricountry = String($('#oriCountry').val());
     let descountry = String($('#desCountry').val());
     let oriiso = String($('#oriCountry').val()).split(' - ')[0];
@@ -231,77 +238,84 @@ export class KmdistancesComponent {
 
     this.oriCountry = $('#oriCountry');
     this.desCountry = $('#desCountry');
-
-
-    if (true /* Auquí si van  */) {
+  
+    if ($('#origindiv input:checked').attr('id') == 'oriPC') {
 
 
       if ($(this.oriCountry).val() == '' || $(this.oriCountry).val() == null) {
-       /*  console.log('no ori'); */
+
         $('#colResKm').hide()
         $(this.oriCountry).addClass('is-invalid')
         $(this.oriCountry).siblings('.invalid-tooltip').show()
-        valid = false;
-        
+        error = true;
+
         $('.chargingSpinner').hide()
-        
-      } else {
-        console.log(this.oriCountry);
-        valid = true;
+
+      } else if(true){ //comprobar si estan rellenos city or postal code
+
+        error = false;
       }
 
 
+
+
+    } else if ($('#origindiv input:checked').attr('id') == 'oriPort') {
+      console.log('puertoo origin')
+    }
+
+    if ($('#destdiv input:checked').attr('id') == 'destPC') { //checked desPC
       if ($(this.desCountry).val() == '' || $(this.desCountry).val() == null) {
-       /*  console.log('no des'); */
+        /*  console.log('no des'); */
         $('#colResKm').hide()
         $(this.desCountry).addClass('is-invalid')
         $(this.desCountry).siblings('.invalid-tooltip').show()
-        valid = false;
+        error = true;
         $('.chargingSpinner').hide()
-    
-      } else {
-        /* console.log(this.desCountry); */
-        valid = true;
-      }
 
+      } else if(true){ //comprobar si estan rellenos city or postal code
+        
+        error = false;
+      }
+    } else if ($('#destdiv input:checked').attr('id') == 'destPort') { 
+      console.log('puertoo dest')
     }
 
 
-
-    if (valid) {
+    if (!error) {
       //llamada a api
       $('.chargingSpinner').show()
-    $('#colResKm').hide()
+      $('#colResKm').hide()
       this.kmdistance.getDistance(oricountry, oriiso, descountry, desiso, oripc, despc/* , oritown, destown */).subscribe(response => {
-       /*  console.log(response) */
+        /*  console.log(response) */
 
-        if(response['distkmokay']==0){
-          $('.calkm').html(response['distkm']+ ' Km')
-        }else{
-          $('.calkm').html(response['distkmokay']+ ' Km')
+        if (response['distkmokay'] == 0) {
+          $('.calkm').html(response['distkm'] + ' Km')
+        } else {
+          $('.calkm').html(response['distkmokay'] + ' Km')
         }
         /* $('.calkm').html(response[]); */
         $('.chargingSpinner').hide()
-    $('#colResKm').show()
+        $('#colResKm').show()
       })
-    }else{
+    } else {
 
     }
   }
 
 
 
-  validateKm(event: Event){
+  validateKm(event: Event) {
     let input = event.target as HTMLInputElement;
 
-    if(input.value != '' && input.value != null) {
-      $(this.desCountry).removeClass('is-invalid')
-      $(this.desCountry).siblings('.invalid-tooltip').hide()
+    console.log(input.id)
+    if (input.value != '' && input.value != null) {
+      $('#' + input.id).removeClass('is-invalid')
+      $('#' + input.id).siblings('.invalid-tooltip').hide()
 
-    }else{
+    } else {
       $('#colResKm').hide()
-      $(this.desCountry).addClass('is-invalid')
-      $(this.desCountry).siblings('.invalid-tooltip').show()
+      $('#' + input.id).addClass('is-invalid')
+      $('#' + input.id).siblings('.invalid-tooltip').show()
     }
 
   }

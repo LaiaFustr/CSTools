@@ -56,7 +56,7 @@
                     placeholder="Country"
                     autocomplete="off"
                     (ngModelChange)="getPcByCountry($event)"
-                    (input)="showClearCross($event); togglePc($event); validateKm($event)"
+                    (input)="showClearCross($event); validateKm($event)"
                     (change)="togglePc($event); getPcByCountry($event)"
                     (paste)="showClearCross($event)"
                   />

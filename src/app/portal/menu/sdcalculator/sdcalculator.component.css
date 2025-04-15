@@ -29,6 +29,7 @@
     transition: all .5s ease;
     overflow: hidden;
     animation: up 5s 1 ease;
+    cursor: move;
 }
 
 
