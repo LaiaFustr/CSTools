@@ -540,9 +540,8 @@ body {
     font-weight: 800;
 }
 
-
 .rowContentRes {
-    min-height: 200px;
+    min-height: 170px;
 }
 
 .labelResCalc {
@@ -559,8 +558,6 @@ body {
     font-weight: 600;
 }
 
-
-
 .oriDesKmD {
     margin: 10px 0px 10px 0px;
     border-bottom: 4px solid #FBBA00;
@@ -573,16 +570,12 @@ body {
     border: none;
 }
 
-
 /**************Schedule Styles***************/
-
 
 .buttonSearchSch {
     background-color: var(--blueLightDch);
     border-color: var(--blueLightDch);
-
     color: rgb(255, 255, 255);
-
 }
 
 .buttonSearchSch:hover {

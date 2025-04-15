@@ -11,6 +11,7 @@ export class KmdistancesService {
   private localports = 'http://localhost:8000/api/v1/ports';
   private countries = 'http://localhost:8000/api/v1/countries';
 private localPC = 'http://localhost:8000/api/v1/pcbycountry';
+private distance = 'http://localhost:8000/api/v1/distance';
 
 
   constructor(private http: HttpClient) { }
@@ -31,7 +32,8 @@ private localPC = 'http://localhost:8000/api/v1/pcbycountry';
     return this.http.get<any[]>(this.localports);
   }
 
-  getDistance(){
-    
+  getDistance(oricountry: string,oriiso : string, descountry: string,desiso: string, oripc: string, despc: string/* , oritown:string, destown: string */){
+    const params = {oricountry ,oriiso, descountry, desiso,  oripc, despc/* , oritown,  destown */ };
+    return this.http.post<any>(this.distance, params);
   }
 }

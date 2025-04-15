@@ -12,21 +12,24 @@ import { KmdistancesService } from '../../../services/kmdistances/kmdistances.se
 export class KmdistancesComponent {
   countries: any[] = [];
   /* country: string = ''; */
-  oriCountry: string = '';
-  desCountry: string = '';
+  oriCountry: Object = '';
+  desCountry: Object = '';
 
 
 
   constructor(private kmdistance: KmdistancesService) { this.getCountries(), this.getPorts() }
 
+  NgOnInit(){
+    $('#colResKm').hide();
+  }
   NgAfterInit(): void {
   }
 
 
-/*   getLocalPC() {
-    console.log(this.oriCountry);
-    console.log(this.desCountry);
-  } */
+  /*   getLocalPC() {
+      console.log(this.oriCountry);
+      console.log(this.desCountry);
+    } */
 
   getPorts() {
 
@@ -113,21 +116,18 @@ export class KmdistancesComponent {
     } else {
       ini = 'des';
     }
-    console.log(country.value+' * '+this.oriCountry)
+
     $('#' + ini + 'PcOptions').empty();
-    console.log(code)
-    
+   /*  console.log(code) */
+
     this.kmdistance.getLocalPC(code)
-    .subscribe (pcs=>{
-      pcs.forEach(pc=>{
-        console.log(code)
-        console.log(pc)
-        $('#' + ini + 'PcOptions').append('<option data-prv="'+pc['nameprov']+'" data-pob="'+pc['nametownori']+'" data-postcode="'+pc['minpc']+'" value="'+pc['minpc']+' - '+pc['nametown']+'"><strong>'+pc['minpc']+'</strong>, '+pc['nametownori']+', '+pc['nameprov']+' </option>');
+      .subscribe(pcs => {
+        pcs.forEach(pc => {
+          /* console.log(code)
+          console.log(pc) */
+          $('#' + ini + 'PcOptions').append('<option data-prv="' + pc['nameprov'] + '" data-pob="' + pc['nametownori'] + '" data-postcode="' + pc['minpc'] + '" value="' + pc['minpc'] + ' - ' + pc['nametown'] + '"><strong>' + pc['minpc'] + '</strong>, ' + pc['nametownori'] + ', ' + pc['nameprov'] + ' </option>');
+        })
       })
-    })
-
-    
-
 
 
   }
@@ -162,7 +162,7 @@ export class KmdistancesComponent {
       $('#' + clear.id.replace('Country', 'Pc')).css('display', 'none')
       $('#' + pc).val('');
       $('#' + pc).attr('disabled', 'disabled')
-      console.log(pc)
+     /*  console.log(pc) */
     } else {
       $('#' + id).val('');
       $('#' + clear.id).css('display', 'none')
@@ -205,6 +205,107 @@ export class KmdistancesComponent {
     }
 
   }
+
+  getDistance() {
+    //ANGULAR//
+    //al clicar boton calcular:
+
+    //si pais de oricountry =='' o = null validación
+    //else //
+    //valor = oricountry.val()
+    //for options.length -> 
+    //valoricountry = ('data-noriginal) y varosicountryiso = ('data-iso')
+    //origen cp/boblacion
+    $('.chargingSpinner').show()
+    $('#colResKm').hide()
+    let valid = false;
+    let oricountry = String($('#oriCountry').val());
+    let descountry = String($('#desCountry').val());
+    let oriiso = String($('#oriCountry').val()).split(' - ')[0];
+    let desiso = String($('#desCountry').val()).split(' - ')[0];
+    let oripc = ''/* String($('#oriPc').val()) */;
+    let despc = ''/* String( $('#desPc').val()) */;
+    /*     let oritown = '';
+        let destown = $('#desCountry'); */
+
+
+    this.oriCountry = $('#oriCountry');
+    this.desCountry = $('#desCountry');
+
+
+    if (true /* Auquí si van  */) {
+
+
+      if ($(this.oriCountry).val() == '' || $(this.oriCountry).val() == null) {
+       /*  console.log('no ori'); */
+        $('#colResKm').hide()
+        $(this.oriCountry).addClass('is-invalid')
+        $(this.oriCountry).siblings('.invalid-tooltip').show()
+        valid = false;
+        
+        $('.chargingSpinner').hide()
+        
+      } else {
+        console.log(this.oriCountry);
+        valid = true;
+      }
+
+
+      if ($(this.desCountry).val() == '' || $(this.desCountry).val() == null) {
+       /*  console.log('no des'); */
+        $('#colResKm').hide()
+        $(this.desCountry).addClass('is-invalid')
+        $(this.desCountry).siblings('.invalid-tooltip').show()
+        valid = false;
+        $('.chargingSpinner').hide()
+    
+      } else {
+        /* console.log(this.desCountry); */
+        valid = true;
+      }
+
+    }
+
+
+
+    if (valid) {
+      //llamada a api
+      $('.chargingSpinner').show()
+    $('#colResKm').hide()
+      this.kmdistance.getDistance(oricountry, oriiso, descountry, desiso, oripc, despc/* , oritown, destown */).subscribe(response => {
+       /*  console.log(response) */
+
+        if(response['distkmokay']==0){
+          $('.calkm').html(response['distkm']+ ' Km')
+        }else{
+          $('.calkm').html(response['distkmokay']+ ' Km')
+        }
+        /* $('.calkm').html(response[]); */
+        $('.chargingSpinner').hide()
+    $('#colResKm').show()
+      })
+    }else{
+
+    }
+  }
+
+
+
+  validateKm(event: Event){
+    let input = event.target as HTMLInputElement;
+
+    if(input.value != '' && input.value != null) {
+      $(this.desCountry).removeClass('is-invalid')
+      $(this.desCountry).siblings('.invalid-tooltip').hide()
+
+    }else{
+      $('#colResKm').hide()
+      $(this.desCountry).addClass('is-invalid')
+      $(this.desCountry).siblings('.invalid-tooltip').show()
+    }
+
+  }
+
 
 
 }
