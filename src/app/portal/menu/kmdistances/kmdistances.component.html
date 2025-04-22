@@ -1,373 +1,213 @@
 <div class="container-fluid d-flex flex-column justify-content-center">
-  <div class="row d-flex align-self-center justify-content-center">
-    <div class="ms-0">
-      <h1 class="text-center mt-4 mb-4 sectionTitle helvetica">
-        Kilometric Distances
-      </h1>
+    <div class="row d-flex align-self-center justify-content-center">
+        <div class="ms-0">
+            <h1 class="text-center mt-4 mb-4 sectionTitle helvetica">
+                Kilometric Distances
+            </h1>
+        </div>
     </div>
-  </div>
-  <div class="container my-3">
-    <div class="card cardDachser d-flex mx-5 p-5 px-4">
-      <div class="row m-2 d-flex justify-content-center align-items-start">
-        <div class="col col-12 col-sm-12 col-lg-6 mb-3">
-          <div class="card cardDachserGrey" style="height: 242px">
-            <div>
-              <div class="mx-2 mb-3">
-                <h3 class="oriDesKmD">Origin</h3>
-              </div>
-              <div
-                class="row-auto d-flex wrap justify-content-evenly mb-2"
-                id="origindiv"
-              >
-                <div class="form-check col-auto">
-                  <input
-                    class="form-check-input radioKmD"
-                    type="radio"
-                    name="oriCheckbox"
-                    (change)="showhideSection($event)"
-                    id="oriPC"
-                    value="postalCode"
-                    checked
-                  />
-                  <label class="form-check-label" for="originPC">
+    <div class="container my-3">
+        <div class="card cardDachser d-flex mx-5 p-5 px-4">
+            <div class="row m-2 d-flex justify-content-center align-items-start">
+                <div class="col col-12 col-sm-12 col-lg-6 mb-3">
+                    <div class="card cardDachserGrey" style="height: 242px">
+                        <div>
+                            <div class="mx-2 mb-3">
+                                <h3 class="oriDesKmD">Origin</h3>
+                            </div>
+                            <div class="row-auto d-flex wrap justify-content-evenly mb-2" id="origindiv">
+                                <div class="form-check col-auto">
+                                    <input class="form-check-input radioKmD" type="radio" name="oriCheckbox" (change)="showhideSection($event)" id="oriPC" value="postalCode" checked />
+                                    <label class="form-check-label" for="originPC">
                     Postal Code
                   </label>
-                </div>
-                <div class="form-check col-auto">
-                  <input
-                    class="form-check-input radioKmD"
-                    type="radio"
-                    name="oriCheckbox"
-                    (change)="showhideSection($event)"
-                    id="oriPort"
-                    value="port"
-                  />
-                  <label class="form-check-label" for="oriPort"> Port </label>
-                </div>
-              </div>
-            </div>
-            <div class="row mx-1 mb-1">
-              <div class="order-sm-0" id="oriBusquedaPC">
-                <div class="form-floating my-2 position-relative">
-                  <input
-                    class="form-control"
-                    id="oriCountry"
-                    list="oriCountryOpc"
-                    placeholder="Country"
-                    autocomplete="off"
-                    (ngModelChange)="getPcByCountry($event)"
-                    (input)="showClearCross($event); validateKm($event)"
-                    (change)="togglePc($event); getPcByCountry($event)"
-                    (paste)="showClearCross($event)"
-                  />
-                  <!--(keyup)="showClearCross($event)" (keydown)="showClearCross($event)" (propertychange)="showClearCross($event)"
+                                </div>
+                                <div class="form-check col-auto">
+                                    <input class="form-check-input radioKmD" type="radio" name="oriCheckbox" (change)="showhideSection($event)" id="oriPort" value="port" />
+                                    <label class="form-check-label" for="oriPort"> Port </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mx-1 mb-1">
+                            <div class="order-sm-0" id="oriBusquedaPC">
+                                <div class="form-floating my-2 position-relative">
+                                    <input class="form-control" id="oriCountry" list="oriCountryOpc" placeholder="Country" autocomplete="off" (ngModelChange)="getPcByCountry($event)" (input)="showClearCross($event); validateKm($event)" (change)="togglePc($event); getPcByCountry($event)"
+                                        (paste)="showClearCross($event)" />
+                                    <!--(keyup)="showClearCross($event)" (keydown)="showClearCross($event)" (propertychange)="showClearCross($event)"
                                         (click)="showClearCross($event)"   -->
-                  <datalist id="oriCountryOpc"></datalist>
-                  <label for="oriCountry">Country</label>
-                  <div id="validarOriCountry" class="invalid-tooltip">
-                    Required Field.
-                  </div>
-                  <!-- Botón borrado del input -->
-                  <button
-                    type="button"
-                    id="clearInputOriCountry"
-                    (click)="clearInput($event)"
-                    class="btn-close position-absolute"
-                    aria-label="Close"
-                    style="
+                                    <datalist id="oriCountryOpc"></datalist>
+                                    <label for="oriCountry">Country</label>
+                                    <div id="validarOriCountry" class="invalid-tooltip">
+                                        Required Field.
+                                    </div>
+                                    <!-- Botón borrado del input -->
+                                    <button type="button" id="clearInputOriCountry" (click)="clearInput($event)" class="btn-close position-absolute" aria-label="Close" style="
                       right: 10px;
                       top: 50%;
                       transform: translateY(-50%);
                       display: none;
-                    "
-                  ></button>
-                </div>
+                    "></button>
+                                </div>
 
-                <div class="form-floating my-2 position-relative" id="divOriPc">
-                  <div class="form-floating">
-                    <input
-                      class="form-control searchCityPC"
-                      id="oriPc"
-                      country="oriCountry"
-                      list="oriPcOptions"
-                      placeholder="City or Postal Code"
-                      autocomplete="off"
-                      (input)="showClearCross($event); validateKm($event)"
-                      (paste)="showClearCross($event)"
-                      disabled
-                    />
-                    <datalist id="oriPcOptions"> </datalist>
-                    <label for="oriPc">City or Postal Code</label>
-                  </div>
-                  <div id="validarOriPc" class="invalid-tooltip">
-                    Required Field.
-                  </div>
-                  <!-- Botón borrado del input -->
-                  <button
-                    type="button"
-                    id="clearInputOriPc"
-                    class="btn-close position-absolute"
-                    (click)="clearInput($event)"
-                    aria-label="Close"
-                    style="
+                                <div class="form-floating my-2 position-relative" id="divOriPc">
+                                    <div class="form-floating">
+                                        <input class="form-control searchCityPC" id="oriPc" country="oriCountry" list="oriPcOptions" placeholder="City or Postal Code" autocomplete="off" (input)="showClearCross($event); validateKm($event)" (paste)="showClearCross($event)" disabled />
+                                        <datalist id="oriPcOptions"> </datalist>
+                                        <label for="oriPc">City or Postal Code</label>
+                                    </div>
+                                    <div id="validarOriPc" class="invalid-tooltip">
+                                        Required Field.
+                                    </div>
+                                    <!-- Botón borrado del input -->
+                                    <button type="button" id="clearInputOriPc" class="btn-close position-absolute" (click)="clearInput($event)" aria-label="Close" style="
                       right: 10px;
                       top: 50%;
                       transform: translateY(-50%);
                       display: none;
-                    "
-                  ></button>
-                </div>
-              </div>
+                    "></button>
+                                </div>
+                            </div>
 
-              <div
-                class="order-sm-0"
-                style="display: none"
-                id="oriBusquedaPort"
-              >
-                <div class="form-floating my-2">
-                  <input
-                    class="form-control"
-                    id="oriPuerto"
-                    list="oriPortOpc"
-                    placeholder="Port"
-                    (input)="showClearCross($event); validateKm($event)"
-                    (paste)="showClearCross($event)"
-                  />
-                  <datalist id="oriPortOpc">
+                            <div class="order-sm-0" style="display: none" id="oriBusquedaPort">
+                                <div class="form-floating my-2">
+                                    <input class="form-control" id="oriPuerto" list="oriPortOpc" placeholder="Port" (input)="showClearCross($event); validateKm($event)" (paste)="showClearCross($event)" />
+                                    <datalist id="oriPortOpc">
                     <!-- <?php
                                         include 'resources/get/getOriPort.php';
                                         ?> -->
                   </datalist>
-                  <label for="oriPuerto">Port</label>
-                  <div id="validarOriPuerto" class="invalid-tooltip">
-                    Required Field.
-                  </div>
-                  <!-- Botón borrado del input -->
-                  <button
-                    type="button"
-                    id="clearInputOriPuerto"
-                    class="btn-close position-absolute"
-                    aria-label="Close"
-                    (click)="clearInput($event)"
-                    style="
+                                    <label for="oriPuerto">Port</label>
+                                    <div id="validarOriPuerto" class="invalid-tooltip">
+                                        Required Field.
+                                    </div>
+                                    <!-- Botón borrado del input -->
+                                    <button type="button" id="clearInputOriPuerto" class="btn-close position-absolute" aria-label="Close" (click)="clearInput($event)" style="
                       right: 10px;
                       top: 50%;
                       transform: translateY(-50%);
                       display: none;
-                    "
-                  ></button>
+                    "></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div class="col col-12 col-sm-12 col-lg-6 mb-2">
-          <div class="card cardDachserGrey" style="height: 242px">
-            <div>
-              <div class="mx-2 mb-3">
-                <h3 class="oriDesKmD">Destination</h3>
-              </div>
-              <div
-                class="row-auto d-flex wrap justify-content-evenly mb-2"
-                id="destdiv"
-              >
-                <div class="form-check col-auto">
-                  <input
-                    class="form-check-input radioKmD"
-                    type="radio"
-                    name="destCheckbox"
-                    (change)="showhideSection($event)"
-                    id="destPC"
-                    value="postalCode"
-                    checked
-                  />
-                  <label class="form-check-label" for="destinationPC">
+                <div class="col col-12 col-sm-12 col-lg-6 mb-2">
+                    <div class="card cardDachserGrey" style="height: 242px">
+                        <div>
+                            <div class="mx-2 mb-3">
+                                <h3 class="oriDesKmD">Destination</h3>
+                            </div>
+                            <div class="row-auto d-flex wrap justify-content-evenly mb-2" id="destdiv">
+                                <div class="form-check col-auto">
+                                    <input class="form-check-input radioKmD" type="radio" name="destCheckbox" (change)="showhideSection($event)" id="destPC" value="postalCode" checked />
+                                    <label class="form-check-label" for="destinationPC">
                     Postal Code
                   </label>
-                </div>
-                <div class="form-check col-auto">
-                  <input
-                    class="form-check-input radioKmD"
-                    type="radio"
-                    name="destCheckbox"
-                    (change)="showhideSection($event)"
-                    id="destPort"
-                    value="port"
-                  />
-                  <label class="form-check-label" for="destinationPort">
+                                </div>
+                                <div class="form-check col-auto">
+                                    <input class="form-check-input radioKmD" type="radio" name="destCheckbox" (change)="showhideSection($event)" id="destPort" value="port" />
+                                    <label class="form-check-label" for="destinationPort">
                     Port
                   </label>
-                </div>
-              </div>
-            </div>
+                                </div>
+                            </div>
+                        </div>
 
-            <div class="row mx-1 mb-1">
-              <div id="destBusquedaPC">
-                <div class="form-floating my-2 position-relative">
-                  <input
-                    class="form-control"
-                    id="desCountry"
-                    list="desCountryOpc"
-                    placeholder="Country"
-                    (ngModelChange)="getPcByCountry($event)"
-                    (input)="showClearCross($event); togglePc($event); validateKm($event)"
-                    (change)="togglePc($event); getPcByCountry($event)"
-                    (paste)="showClearCross($event)"
-                  />
-                  <datalist id="desCountryOpc"> </datalist>
-                  <label for="desCountry">Country</label>
-                  <div id="validarDesCountry" class="invalid-tooltip">
-                    Required Field.
-                  </div>
-                  <!-- Botón borrado del input -->
-                  <button
-                    type="button"
-                    id="clearInputDesCountry"
-                    class="btn-close position-absolute"
-                    aria-label="Close"
-                    (click)="clearInput($event)"
-                    style="
+                        <div class="row mx-1 mb-1">
+                            <div id="destBusquedaPC">
+                                <div class="form-floating my-2 position-relative">
+                                    <input class="form-control" id="desCountry" list="desCountryOpc" placeholder="Country" (ngModelChange)="getPcByCountry($event)" (input)="showClearCross($event); togglePc($event); validateKm($event)" (change)="togglePc($event); getPcByCountry($event)"
+                                        (paste)="showClearCross($event)" />
+                                    <datalist id="desCountryOpc"> </datalist>
+                                    <label for="desCountry">Country</label>
+                                    <div id="validarDesCountry" class="invalid-tooltip">
+                                        Required Field.
+                                    </div>
+                                    <!-- Botón borrado del input -->
+                                    <button type="button" id="clearInputDesCountry" class="btn-close position-absolute" aria-label="Close" (click)="clearInput($event)" style="
                       right: 10px;
                       top: 50%;
                       transform: translateY(-50%);
                       display: none;
-                    "
-                  ></button>
-                </div>
+                    "></button>
+                                </div>
 
-                <div class="form-floating my-2 position-relative" id="divDesPc">
-                  <div class="form-floating">
-                    <input
-                      class="form-control searchCityPC"
-                      id="desPc"
-                      country="desCountry"
-                      list="desPcOptions"
-                      placeholder="City or Postal Code"
-                      autocomplete="off"
-                      
-                      (input)="showClearCross($event); validateKm($event)"
-                      (paste)="showClearCross($event)"
-                      disabled
-                    />
-                    <datalist id="desPcOptions"> </datalist>
-                    <label for="CustomertDL">City or Postal Code</label>
-                    <div id="validarDesPc" class="invalid-tooltip">
-                      Required Field.
-                    </div>
-                    <!-- Botón borrado del input -->
-                    <button
-                      type="button"
-                      id="clearInputDesPc"
-                      class="btn-close position-absolute"
-                      aria-label="Close"
-                      (click)="clearInput($event)"
-                      style="
+                                <div class="form-floating my-2 position-relative" id="divDesPc">
+                                    <div class="form-floating">
+                                        <input class="form-control searchCityPC" id="desPc" country="desCountry" list="desPcOptions" placeholder="City or Postal Code" autocomplete="off" (input)="showClearCross($event); validateKm($event)" (paste)="showClearCross($event)" disabled />
+                                        <datalist id="desPcOptions"> </datalist>
+                                        <label for="CustomertDL">City or Postal Code</label>
+                                        <div id="validarDesPc" class="invalid-tooltip">
+                                            Required Field.
+                                        </div>
+                                        <!-- Botón borrado del input -->
+                                        <button type="button" id="clearInputDesPc" class="btn-close position-absolute" aria-label="Close" (click)="clearInput($event)" style="
                         right: 10px;
                         top: 50%;
                         transform: translateY(-50%);
                         display: none;
-                      "
-                    ></button>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="order-sm-0"
-                style="display: none"
-                id="destBusquedaPort"
-              >
-                <!--   -->
+                      "></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order-sm-0" style="display: none" id="destBusquedaPort">
+                                <!--   -->
 
-                <div class="form-floating my-2">
-                  <input
-                    class="form-control"
-                    id="desPuerto"
-                    list="desPortOpc"
-                    placeholder="Port"
-                    (input)="showClearCross($event); validateKm($event)"
-                    (paste)="showClearCross($event)"
-                  />
-                  <datalist id="desPortOpc"> </datalist>
-                  <label for="desPuerto">Port</label>
-                  <div id="validarDesPuerto" class="invalid-tooltip">
-                    Required Field.
-                  </div>
-                  <!-- Botón borrado del input -->
-                  <button
-                    type="button"
-                    id="clearInputDesPuerto"
-                    class="btn-close position-absolute"
-                    aria-label="Close"
-                    (click)="clearInput($event)"
-                    style="
+                                <div class="form-floating my-2">
+                                    <input class="form-control" id="desPuerto" list="desPortOpc" placeholder="Port" (input)="showClearCross($event); validateKm($event)" (paste)="showClearCross($event)" />
+                                    <datalist id="desPortOpc"> </datalist>
+                                    <label for="desPuerto">Port</label>
+                                    <div id="validarDesPuerto" class="invalid-tooltip">
+                                        Required Field.
+                                    </div>
+                                    <!-- Botón borrado del input -->
+                                    <button type="button" id="clearInputDesPuerto" class="btn-close position-absolute" aria-label="Close" (click)="clearInput($event)" style="
                       right: 10px;
                       top: 50%;
                       transform: translateY(-50%);
                       display: none;
-                    "
-                  ></button>
+                    "></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="row px-2 mb-4">
-        <div
-          class="col col-12 col-xl-12 px-4 d-flex justify-content-lg-end justify-content-sm-between"
-        >
-          <button
-            type="button"
-            class="me-3 btnOrange btnCalcClear p-1"
-            style="border-radius: 7px; width: 11vw; height: 50px"
-            id="btnClear"
-            data-bs-toggle="tooltip"
-            (click)="clearAll()"
-            data-bs-placement="top"
-            title="Clear data"
-          >
+            <div class="row px-2 mb-4">
+                <div class="col col-12 col-xl-12 px-4 d-flex justify-content-lg-end justify-content-sm-between">
+                    <button type="button" class="me-3 btnOrange btnCalcClear p-1" style="border-radius: 7px; width: 11vw; height: 50px" id="btnClear" data-bs-toggle="tooltip" (click)="clearAll()" data-bs-placement="top" title="Clear data">
             <i class="fa-solid fa-eraser"></i> Clear
           </button>
-          <button
-            type="button"
-            class="w-100 btnBlue btnCalcClear p-1"
-            style="border-radius: 7px; height: 50px"
-            id="btnCalculate"
-            (click)="getDistance()"
-            data-bs-toggle="tooltip"
-            data-bs-placement="top"
-            title="Calculate km distance"
-          >
+                    <button type="button" class="w-100 btnBlue btnCalcClear p-1" style="border-radius: 7px; height: 50px" id="btnCalculate" (click)="getDistance()" data-bs-toggle="tooltip" data-bs-placement="top" title="Calculate km distance">
             <i class="fa-solid fa-calculator"></i> Calculate
           </button>
-        </div>
-      </div>
-      <div class="row px-2">
-        <div class="col col-12 col-xl-12 px-4" id="colResKm" style="display: none;">
-          <div
-            class="row d-flex justify-content-start align-items-center cardResKm cardDachserGrey p-4"
-            style="min-height: 80px; "
-            id="panelResultadoKm"
-          >
-            <!-- <div class="panelResultadoKm ms-5 ps-5 row bg-warning d-flex justify-content-center align-items-center"> -->
+                </div>
+            </div>
+            <div class="row m-2 mt-1">
+                <div class="col col-12 col-xl-12" id="colResKm" style="display: none;">
+                    <div class="card cardDachserGrey">
+                        <div class="row d-flex justify-content-start align-items-center cardResKm p-4" style="min-height: 80px; " id="panelResultadoKm">
+                            <!-- <div class="panelResultadoKm ms-5 ps-5 row bg-warning d-flex justify-content-center align-items-center"> -->
 
-            <div class="col-12 col-sm-12 col-md-auto text-sm-center">
-              <h3 class="colorBlue">Distance:</h3>
+                            <div class="col-12 col-sm-12 col-md-auto text-sm-center">
+                                <h3 class="colorBlue">Distance:</h3>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-9 ">
+                                <h2 class="calkm text-center"></h2>
+                            </div>
+                            <!-- </div> -->
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-9 ">
-              <h2 class="calkm text-center"></h2>
-            </div>
-            <!-- </div> -->
-          </div>
         </div>
-      </div>
+        <div class="chargingSpinner" style="display: none">
+            <div class="d-flex flex-column align-items-center justify-content-center">
+                <div class="loadSpinner"></div>
+            </div>
+        </div>
     </div>
-    <div class="chargingSpinner" style="display: none">
-      <div class="d-flex flex-column align-items-center justify-content-center">
-        <div class="loadSpinner"></div>
-      </div>
-    </div>
-  </div>
 </div>

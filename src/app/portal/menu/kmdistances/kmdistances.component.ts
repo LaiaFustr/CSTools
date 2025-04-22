@@ -130,8 +130,8 @@ export class KmdistancesComponent {
     this.kmdistance.getLocalPC(code)
       .subscribe(pcs => {
         pcs.forEach(pc => {
-          /* console.log(code)
-          console.log(pc) */
+          console.log(code)
+          console.log(pc)
           $('#' + ini + 'PcOptions').append('<option data-prv="' + pc['nameprov'] + '" data-pob="' + pc['nametownori'] + '" data-postcode="' + pc['minpc'] + '" value="' + pc['minpc'] + ' - ' + pc['nametown'] + '"><strong>' + pc['minpc'] + '</strong>, ' + pc['nametownori'] + ', ' + pc['nameprov'] + ' </option>');
         })
       })
