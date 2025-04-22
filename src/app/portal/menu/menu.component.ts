@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCalculator, faCalendarDay, faLocationCrosshairs, faTruckPlane, faPlus, faLessThan, faHome, faRightFromBracket, faBars, faDisplay } from '@fortawesome/free-solid-svg-icons';
-import { left } from '@popperjs/core';
+import { faCalculator, faCalendarDay, faLocationCrosshairs, faTruckPlane, faPlus, faLessThan, faHome, faRightFromBracket, faBars, faDisplay , faLocationDot} from '@fortawesome/free-solid-svg-icons';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @Component({
   selector: 'app-menu',
-  imports: [RouterOutlet, RouterLink, FontAwesomeModule],
+  imports: [RouterOutlet, RouterLink, FontAwesomeModule , MatTooltipModule],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
@@ -21,14 +21,12 @@ export class MenuComponent {
   faHome = faHome;
   faRightFromBracket = faRightFromBracket;
   faBars = faBars;
-
+  faLocationDot = faLocationDot;
+  tooltipDisabled = true;
+  
   constructor() { }
   ngOnInit(): void {
     this.hoverSideToggle();
-    //const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
-
-
-
   }
 
   ngAfterViewInit(): void {
@@ -49,16 +47,21 @@ export class MenuComponent {
       $('.side_nav').css('min-width', '100px');
       $('#sideLogo').attr('width', '60%');
       $('#content').css('max-width', 'calc(100% - 100px)');
-      $('#togIcon').removeClass('fa-less-than');
-      $('#togIcon').addClass('fa-greater-than');
+      /* $('#togIcon') */$('.togIcon').css('animation', 'toleft .3s linear')
+      
+      $('.togIcon').on('animationend', function(){
+        $('.togIcon').css('transform', 'rotate(180deg)')
+        $('.togIcon').css('box-shadow', '-4px -4px 4px var(--lightGrey)')
+
+      })
+
       $('.sideBarIcon').addClass('fa-lg');
       $('.sideBarText').css('display', 'none');
       $('.sideBarText').css('width', '0%');
-      //$('.divSideElem').addClass('d-flex justify-content-center w-100');
       $('.sideBarText').fadeOut(300);
       $('#allSideToggle').css('margin-left', '80px')
-
-      /*  tooltip(); */
+    
+     this.tooltipDisabled = false;
 
 
     } else if ($('.side_nav').css('margin-left') == '0px' && $('.side_nav').css('min-width') == '100px') {
@@ -68,29 +71,24 @@ export class MenuComponent {
 
       $('#sideLogo').attr('width', '150px');
       $('#sideBarToggle').css('display', 'none');
+
       $('#content').css('max-width', 'calc(100% - 250px)');
-      $('#togIcon').removeClass('fa-greater-than');
-      $('#togIcon').addClass('fa-less-than');
+      $('.togIcon').css('animation', 'toright .3s linear')
+      
+      $('.togIcon').on('animationend', function(){
+        $('.togIcon').css('transform', 'rotate(0deg)')
+        $('.togIcon').css('box-shadow', '4px 4px 4px var(--lightGrey)')
+      })
+      
       $('.sideBarIcon').removeClass('fa-lg');
       $('#sideBarToggle').css('display', 'block');
-      //$('.divSideElem').removeClass('d-flex justify-content-center w-100');
       $('.sideBarText').fadeIn(300);
       $('.sideBarText').css('width', '77%');
       $('#allSideToggle').css('margin-left', '230px')
-      /*   tooltip(); */
+
+      this.tooltipDisabled = true;
+      
     }
-
-
-    /* $('#sideBarToggle, #allSideToggle').on('click', function () {
-      if (SIDEBAR_EL.hasClass('small')) {
-        SIDEBAR_EL.removeClass('small')
-        //console.log('tenia clase small y entra aqui');
-      } else {
-        SIDEBAR_EL.addClass('small')
-        //console.log('no tenia clase small y entra aqui');
-      }
-
-    }); */
 
   }
 
@@ -128,9 +126,9 @@ export class MenuComponent {
       'align-items': 'center',
       'justify-content': 'center',
     })
-    noClass.find('svg').closest('span').closest('div').css({
+    noClass.find('svg').closest('span').closest('a').css({
       'width': '82vw',
-/*       'border-radius': '7px', */
+      'border-radius': '7px',
     })
 
 

@@ -1,32 +1,42 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+
 import { FormsModule } from '@angular/forms';
 import { KmdistancesService } from '../../../services/kmdistances/kmdistances.service';
 
 @Component({
   selector: 'app-kmdistances',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, DragDropModule],
   templateUrl: './kmdistances.component.html',
   styleUrl: './kmdistances.component.css'
 })
 export class KmdistancesComponent {
   countries: any[] = [];
   /* country: string = ''; */
-  oriCountry: string = '';
-  desCountry: string = '';
+  oriCountry: Object = '';
+  desCountry: Object = '';
 
 
 
   constructor(private kmdistance: KmdistancesService) { this.getCountries(), this.getPorts() }
 
+  NgOnInit() {
+    $('#colResKm').hide();
+    
+      
+    
+  }
   NgAfterInit(): void {
+    
+    
   }
 
 
-/*   getLocalPC() {
-    console.log(this.oriCountry);
-    console.log(this.desCountry);
-  } */
+  /*   getLocalPC() {
+      console.log(this.oriCountry);
+      console.log(this.desCountry);
+    } */
 
   getPorts() {
 
@@ -113,21 +123,18 @@ export class KmdistancesComponent {
     } else {
       ini = 'des';
     }
-    console.log(country.value+' * '+this.oriCountry)
+
     $('#' + ini + 'PcOptions').empty();
-    
+    /*  console.log(code) */
+
     this.kmdistance.getLocalPC(code)
-    .subscribe (pcs=>{
-      pcs.forEach(pc=>{
-        console.log(pc)
-        console.log('Torna cosetes: '+pc['plptoloc'])
-        $('#' + ini + 'PcOptions').append('<option data-prv="OURENSE" data-pob="A VALENZA" ata-codpostal="32002" value="32002 - A VALENZA"  value="'+pc['plcodpos']+' - '+pc['plcodpos']+'"><strong>32002</strong>, A VALENZA, OURENSE </option>');
-        
+      .subscribe(pcs => {
+        pcs.forEach(pc => {
+          /* console.log(code)
+          console.log(pc) */
+          $('#' + ini + 'PcOptions').append('<option data-prv="' + pc['nameprov'] + '" data-pob="' + pc['nametownori'] + '" data-postcode="' + pc['minpc'] + '" value="' + pc['minpc'] + ' - ' + pc['nametown'] + '"><strong>' + pc['minpc'] + '</strong>, ' + pc['nametownori'] + ', ' + pc['nameprov'] + ' </option>');
+        })
       })
-    })
-
-    
-
 
 
   }
@@ -162,7 +169,7 @@ export class KmdistancesComponent {
       $('#' + clear.id.replace('Country', 'Pc')).css('display', 'none')
       $('#' + pc).val('');
       $('#' + pc).attr('disabled', 'disabled')
-      console.log(pc)
+      /*  console.log(pc) */
     } else {
       $('#' + id).val('');
       $('#' + clear.id).css('display', 'none')
@@ -205,6 +212,114 @@ export class KmdistancesComponent {
     }
 
   }
+
+  getDistance() {
+    //ANGULAR//
+    //al clicar boton calcular:
+
+    //si pais de oricountry =='' o = null validación
+    //else //
+    //valor = oricountry.val()
+    //for options.length -> 
+    //valoricountry = ('data-noriginal) y varosicountryiso = ('data-iso')
+    //origen cp/boblacion
+    $('.chargingSpinner').show()
+    $('#colResKm').hide()
+    let error = false;
+    let oricountry = String($('#oriCountry').val());
+    let descountry = String($('#desCountry').val());
+    let oriiso = String($('#oriCountry').val()).split(' - ')[0];
+    let desiso = String($('#desCountry').val()).split(' - ')[0];
+    let oripc = ''/* String($('#oriPc').val()) */;
+    let despc = ''/* String( $('#desPc').val()) */;
+    /*     let oritown = '';
+        let destown = $('#desCountry'); */
+
+
+    this.oriCountry = $('#oriCountry');
+    this.desCountry = $('#desCountry');
+  
+    if ($('#origindiv input:checked').attr('id') == 'oriPC') {
+
+
+      if ($(this.oriCountry).val() == '' || $(this.oriCountry).val() == null) {
+
+        $('#colResKm').hide()
+        $(this.oriCountry).addClass('is-invalid')
+        $(this.oriCountry).siblings('.invalid-tooltip').show()
+        error = true;
+
+        $('.chargingSpinner').hide()
+
+      } else if(true){ //comprobar si estan rellenos city or postal code
+
+        error = false;
+      }
+
+
+
+
+    } else if ($('#origindiv input:checked').attr('id') == 'oriPort') {
+      console.log('puertoo origin')
+    }
+
+    if ($('#destdiv input:checked').attr('id') == 'destPC') { //checked desPC
+      if ($(this.desCountry).val() == '' || $(this.desCountry).val() == null) {
+        /*  console.log('no des'); */
+        $('#colResKm').hide()
+        $(this.desCountry).addClass('is-invalid')
+        $(this.desCountry).siblings('.invalid-tooltip').show()
+        error = true;
+        $('.chargingSpinner').hide()
+
+      } else if(true){ //comprobar si estan rellenos city or postal code
+        
+        error = false;
+      }
+    } else if ($('#destdiv input:checked').attr('id') == 'destPort') { 
+      console.log('puertoo dest')
+    }
+
+
+    if (!error) {
+      //llamada a api
+      $('.chargingSpinner').show()
+      $('#colResKm').hide()
+      this.kmdistance.getDistance(oricountry, oriiso, descountry, desiso, oripc, despc/* , oritown, destown */).subscribe(response => {
+        /*  console.log(response) */
+
+        if (response['distkmokay'] == 0) {
+          $('.calkm').html(response['distkm'] + ' Km')
+        } else {
+          $('.calkm').html(response['distkmokay'] + ' Km')
+        }
+        /* $('.calkm').html(response[]); */
+        $('.chargingSpinner').hide()
+        $('#colResKm').show()
+      })
+    } else {
+
+    }
+  }
+
+
+
+  validateKm(event: Event) {
+    let input = event.target as HTMLInputElement;
+
+    console.log(input.id)
+    if (input.value != '' && input.value != null) {
+      $('#' + input.id).removeClass('is-invalid')
+      $('#' + input.id).siblings('.invalid-tooltip').hide()
+
+    } else {
+      $('#colResKm').hide()
+      $('#' + input.id).addClass('is-invalid')
+      $('#' + input.id).siblings('.invalid-tooltip').show()
+    }
+
+  }
+
 
 
 }

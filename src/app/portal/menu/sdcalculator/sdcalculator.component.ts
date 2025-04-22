@@ -40,7 +40,6 @@ export class SdcalculatorComponent {
 
 
 
-
   constructor(private sdcalculator: SdcalculatorService) {
     this.indexCarriersPorts()
   }
@@ -48,10 +47,12 @@ export class SdcalculatorComponent {
   NgOnInit(): void {
 
     $(".resRowCalcu").hide()
-   /*  this.hideBorderClass() */
+    $("#accordionSD").hide()
+    /*  this.hideBorderClass() */
     $('#carrierCalc').append('<option value="" hidden>Select carrier...</option>')
 
     $('#portCalc').append('<option value="" hidden>Select Port...</option>')
+
   }
 
   indexCarriersPorts() {
@@ -248,7 +249,7 @@ export class SdcalculatorComponent {
     this.btnshow = true;
     if (this.vessel_arrival.val() != "" && this.gate_out_full.val() != "" && this.gate_empty.val() != "" && this.container.val() != "" && this.port.val() != "" && this.carrier.val() != "") {
       this.calcRes()
-      $(".resRowCalcu").show();
+
     }
     this.validateSD(event)
   }
@@ -282,61 +283,99 @@ export class SdcalculatorComponent {
 
 
   calcRes() {
-
+    $('.loadSpinner').show()
+    $("#resRowCalcu").hide();
+        $("#accordionSD").hide();
     //va a llamar a la funcion de la api que calculará el resultado
-    this.sdcalculator.getCalculation(this.vessel_arrival.val(), this.gate_out_full.val(), this.gate_empty.val(), this.carrier.val(), this.port.val(), this.container.val(), this.free_storage.val(), this.free_demurrage.val()).subscribe(result => {
+    this.sdcalculator.getCalculation(this.vessel_arrival.val(), this.gate_out_full.val(), this.gate_empty.val(), this.carrier.val(), this.port.val(), this.container.val(), this.free_storage.val(), this.free_demurrage.val())
 
-      console.log(result)
-      /* $('#totalDaysPort').text(result) */
-      console.log(result['total_sto'])
-      this.total_sto_days = result['stodays'];
-      this.total_sto_pr_days = result['priced_sto'];
-      this.sto_tariff = result['sto_tariff'];
-      this.sto_total = result['total_sto'];
-      this.sto_details = result['tariff_sto_detail'];
-      this.total_dem_days = result['demdays'];
-      this.total_dem_pr_days = result['priced_dem'];
-      this.dem_tariff = result['dem_tariff'];
-      this.dem_details = result['tariff_dem_detail'];
-      this.dem_total = result['total_dem'];
+      .subscribe(result => {
 
-    });
+        console.log(result)
+        /* $('#totalDaysPort').text(result) */
+        console.log(result['total_sto'])
+        this.total_sto_days = result['stodays'];
+        this.total_sto_pr_days = result['priced_sto'];
+        this.sto_tariff = result['sto_tariff'];
+        this.sto_total = result['total_sto'];
+        this.sto_details = result['tariff_sto_detail'];
+        this.total_dem_days = result['demdays'];
+        this.total_dem_pr_days = result['priced_dem'];
+        this.dem_tariff = result['dem_tariff'];
+        this.dem_details = result['tariff_dem_detail'];
+        this.dem_total = result['total_dem'];
+        $('.loadSpinner').hide();
+        $("#resRowCalcu").show();
+        $("#accordionSD").show();
+
+      });
 
   }
 
- /*  extraInfo(e: any) {
-    let tg = $(this).attr('tg')
-    var $this = $(this);
+  /*  extraInfo(e: any) {
+     let tg = $(this).attr('tg')
+     var $this = $(this);
+ 
+     if ($(this).is('[aria-expanded = "false"]')) {
+       $('#' + tg).removeClass('fa-minus').addClass('fa-plus');
+ 
+       $(this).hover(function () {
+         $(this).css("background-color", "");
+         $(this).css("border", "1px solid #f9a207")
+         $(this).css("color", "#f9a207")
+       },
+         function () {
+           $(this).css("background-color", "#f9a207");
+           $(this).css("border", "")
+           $(this).css("color", "")
+         })
+     } else {
+       $('#' + tg).removeClass('fa-plus').addClass('fa-minus');
+ 
+       $(this).hover(function () {
+         $(this).css("background-color", "");
+         $(this).css("border", "1px solid #0057b7")
+         $(this).css("color", "#0057b7")
+       },
+         function () {
+           $(this).css("background-color", "#0057b7");
+           $(this).css("border", "")
+           $(this).css("color", "white")
+         })
+ 
+     }
+   } */
 
-    if ($(this).is('[aria-expanded = "false"]')) {
-      $('#' + tg).removeClass('fa-minus').addClass('fa-plus');
+  clickToggle(event: Event) {
+    let btn = (event.currentTarget as HTMLButtonElement);
+    let other = $('.btn').not(btn);
 
-      $(this).hover(function () {
-        $(this).css("background-color", "");
-        $(this).css("border", "1px solid #f9a207")
-        $(this).css("color", "#f9a207")
-      },
-        function () {
-          $(this).css("background-color", "#f9a207");
-          $(this).css("border", "")
-          $(this).css("color", "")
-        })
+    if ($(btn).closest('button').attr('aria-expanded') === 'true') {
+      $(btn).find('.icon').removeClass('fa-plus');
+      $(btn).find('.icon').addClass('fa-minus');
+      $(other).find('.icon').addClass('fa-plus');
+      $(other).find('.icon').removeClass('fa-minus');
+
+
     } else {
-      $('#' + tg).removeClass('fa-plus').addClass('fa-minus');
-
-      $(this).hover(function () {
-        $(this).css("background-color", "");
-        $(this).css("border", "1px solid #0057b7")
-        $(this).css("color", "#0057b7")
-      },
-        function () {
-          $(this).css("background-color", "#0057b7");
-          $(this).css("border", "")
-          $(this).css("color", "white")
-        })
-
+      $(btn).find('.icon').addClass('fa-plus');
+      $(btn).find('.icon').removeClass('fa-minus');
+      $(other).find('.icon').addClass('fa-plus');
+      $(other).find('.icon').removeClass('fa-minus');
     }
-  } */
+    /*  if ($(btn).closest('button').attr('aria-expanded') === 'true') {
+      $(btn).find('.icon').removeClass('fa-arrow-down');
+      $(btn).find('.icon').addClass('fa-arrow-up');
+      $(other).find('.icon').addClass('fa-arrow-down');
+      $(other).find('.icon').removeClass('fa-arrow-up');
 
+
+    } else {
+      $(btn).find('.icon').addClass('fa-arrow-down');
+      $(btn).find('.icon').removeClass('fa-arrow-up');
+      $(other).find('.icon').addClass('fa-arrow-down');
+      $(other).find('.icon').removeClass('fa-arrow-up');
+    } */
+  }
 
 }

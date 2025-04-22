@@ -18,8 +18,23 @@
       <div class="" id="menuSidebar">
         <nav class="sideNavMenu dropMainElem" id="sideNavMenu">
           <!-- new -->
+
           <ul class="list-unstyled" id="listSideBar">
-            <li class="sideBarElem">
+            <!-- <button
+              mat-raised-button
+              matTooltip="Info about the action"
+              aria-label="Button that displays a tooltip when focused or hovered over"
+            >
+              Action
+            </button> -->
+            <li
+              class="sideBarElem"
+              
+              matTooltipClass="cus-tooltip"
+              matTooltip="SD Calculator"
+              matTooltipPosition="right"
+              [matTooltipDisabled] = "tooltipDisabled"
+            >
               <a class="text-decoration-none d-block" routerLink="sdcalculator">
                 <div class="divSideElem">
                   <span class="sideBarIcon">
@@ -30,7 +45,31 @@
               </a>
             </li>
 
-            <li class="sideBarElem">
+            <li
+              class="sideBarElem"
+              
+              matTooltipClass="tooltip cus-tooltip"
+              matTooltip="Kilometric Distances"
+              matTooltipPosition="right"
+              [matTooltipDisabled] = "tooltipDisabled"
+            >
+              <a class="text-decoration-none d-block" routerLink="kmdistances">
+                <div class="divSideElem">
+                  <span class="sideBarIcon">
+                    <fa-icon [icon]="faLocationDot"></fa-icon>
+                  </span>
+                  <span class="sideBarText"> Kilometric Distances </span>
+                </div>
+              </a>
+            </li>
+            <li
+              class="sideBarElem"
+              
+              matTooltipClass="tooltip cus-tooltip"
+              matTooltip="Schedule"
+              matTooltipPosition="right"
+              [matTooltipDisabled] = "tooltipDisabled"
+            >
               <a class="text-decoration-none d-block" routerLink="schedule">
                 <div class="divSideElem">
                   <span class="sideBarIcon">
@@ -40,18 +79,14 @@
                 </div>
               </a>
             </li>
-            <li class="sideBarElem">
-              <a class="text-decoration-none d-block" routerLink="kmdistances">
-                <div class="divSideElem">
-                  <span class="sideBarIcon">
-                    <fa-icon [icon]="faLocationCrosshairs"></fa-icon>
-                  </span>
-                  <span class="sideBarText"> Kilometric Distances </span>
-                </div>
-              </a>
-            </li>
-
-            <li class="sideBarElem blankHref">
+            <li
+              class="sideBarElem blankHref"
+              
+              matTooltipClass="tooltip cus-tooltip"
+              matTooltip="Dachser Spain"
+              matTooltipPosition="right"
+              [matTooltipDisabled] = "tooltipDisabled"
+            >
               <a
                 class="text-decoration-none d-block"
                 id="gseWeb"
@@ -76,8 +111,9 @@
   <div class="content" id="content">
     <nav class="navbar navbar-expand-lg header-nav sticky-top">
       <!-- fixed-top -->
-      <button id="sideBarToggle" class="nav-link" (click)="clicking()">
-        <fa-icon [icon]="faLessThan"></fa-icon>
+      <button id="sideBarToggle" class="nav-link togIcon" (click)="clicking()">
+        <fa-icon [icon]="faLessThan" id="togIcon" class=""></fa-icon
+        ><!--  -->
       </button>
       <div class="container-fluid">
         <div class="d-flex">
@@ -167,9 +203,7 @@
             >
               Option Menu
             </p>
-            <span id="copSideBar">
-
-            </span>
+            <span id="copSideBar"> </span>
           </div>
         </div>
       </div>
