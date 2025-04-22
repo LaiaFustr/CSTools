@@ -103,6 +103,7 @@ export class KmdistancesComponent {
         if (value.id.includes('Pc')) {
           value.setAttribute('disabled', 'true');
         }
+        
       })
       $('#' + notStringId).find('button').css('display', 'none');
     }
