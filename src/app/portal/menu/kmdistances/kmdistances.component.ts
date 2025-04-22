@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import {DragDropModule} from '@angular/cdk/drag-drop';
+/* import {DragDropModule} from '@angular/cdk/drag-drop'; */
 
 import { FormsModule } from '@angular/forms';
 import { KmdistancesService } from '../../../services/kmdistances/kmdistances.service';
 
 @Component({
   selector: 'app-kmdistances',
-  imports: [CommonModule, FormsModule, DragDropModule],
+  imports: [CommonModule, FormsModule, /* DragDropModule */],
   templateUrl: './kmdistances.component.html',
   styleUrl: './kmdistances.component.css'
 })
