@@ -1,84 +1,61 @@
 <!-- <router-outlet></router-outlet> -->
 <nav class="navbar navbar-expand-lg header-nav sticky-top">
-  <div class="container-fluid">
-    <div class="d-flex">
-      <a class="navbar-brand fs-4" href="#"
-        ><img
-          src="assets/img/dachser-nobg.svg"
-          width="100px"
-          class="mx-auto d-block"
-          alt="DACHSER"
-      /></a>
-    </div>
-    <ul class="navbar-nav mb-2 mb-lg-0 flex-row">
-       <!--  <li class="nav-item d-flex align-items-center">
-            <button
-              class="btn btn-primary"
-              id="osticket"
-              tool="CUSTOMER SERVICE TOOLS"
-              data-bs-toggle="modal"
-              data-bs-target="#osticketmodal"
-            >
+    <div class="container-fluid">
+        <div class="d-flex">
+            <a class="navbar-brand fs-4" href="#"><img src="assets/img/dachser-nobg.svg" width="100px" class="mx-auto d-block" alt="DACHSER" /></a>
+        </div>
+        <ul class="navbar-nav mb-2 mb-lg-0 flex-row">
+            <li class="nav-item d-flex align-items-center">
+                <button class="btn btn-primary" id="osticket" tool="CUSTOMER SERVICE TOOLS" data-bs-toggle="modal" data-bs-target="#osticketmodal">
               <i class="fa-solid fa-pen-to-square"></i> OsTicket Support
             </button>
-          </li> -->
-      <div class="row d-flex justify-content-center totalWidthNav p-0 m-0">
-        <li
-          class="nav-item col col-auto text-center d-flex justify-content-center px-1"
-        >
-          <div class="stylesNavItem" style="max-width: 90px">
-            <a class="nav-link px-2 px-sm-2 colorLink" routerLink="portal">
-              <span class="textIcon">
-                <i class="fa-solid fa-house"></i>
-              </span>
-              <span class="textAfter"> Portal </span>
-            </a>
-          </div>
-        </li>
+            </li>
 
-        <li
-          class="nav-item col col-auto text-center d-flex justify-content-center px-1"
-        >
-          <div class="stylesNavItem">
-            <a
-              class="nav-link px-2 px-sm-2 colorLink"
-              aria-current="page"
-              href="/logout.php"
-            >
-              <span class="textIcon">
-                <i class="fa-solid fa-right-from-bracket"></i>
-              </span>
-              <span class="textAfter"> Log out </span>
-            </a>
-          </div>
-        </li>
-      </div>
-    </ul>
-  </div>
+            <div class="row d-flex justify-content-center midWidthNav p-0 m-0">
+                <!-- <li class="nav-item col col-auto text-center d-flex justify-content-center px-1">
+                    <div class="stylesNavItem" style="max-width: 90px">
+                        <a class="nav-link px-2 px-sm-2 colorLink" routerLink="/portal">
+                            <span class="textIcon">
+      <i class="fa-solid fa-house"></i>
+    </span>
+                            <span class="textAfter"> Portal </span>
+                        </a>
+                    </div>
+                </li> -->
+                <li class="nav-item col col-auto text-center d-flex justify-content-center px-1">
+                    <div class="stylesNavItem">
+                        <a class="nav-link px-2 px-sm-2 colorLink" aria-current="page" routerLink="/login">
+                            <span class="textIcon">
+      <i class="fa-solid fa-right-from-bracket"></i>
+    </span>
+                            <span class="textAfter"> Log out </span>
+                        </a>
+                    </div>
+                </li>
+            </div>
+        </ul>
+    </div>
 </nav>
 
 <!-- <button class="btn btn-success" >CS Tools</button> -->
 <div class="d-flex justify-content-center row">
-  <div
-    class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xxl-3 my-5 py-5 divCard"
-  >
-    <div class="containerCard">
-      <a
-        class="link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-0-hover"[routerLink]="'/portal/cstools'" 
-      ><!-- -->
-        <div class="card cardCard">
-          <div class="image imageCard card-img-top">
-            <img href="" src="assets/img/qcal.jpg" />
-            <div>
-              <h3 class="card-title">Customer Service Tools</h3>
-            </div>
-          </div>
-          <div class="contentCard">
-            <p>Customer Service Tools</p>
-            <h1><i class="fa-solid fa-right-to-bracket"></i></h1>
-          </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xxl-3 my-5 py-5 divCard">
+        <div class="containerCard">
+            <a class="link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-0-hover" [routerLink]="'/portal/cstools'">
+                <!-- -->
+                <div class="card cardCard">
+                    <div class="image imageCard card-img-top">
+                        <img href="" src="assets/img/qcal.jpg" />
+                        <div>
+                            <h3 class="card-title">Customer Service Tools</h3>
+                        </div>
+                    </div>
+                    <div class="contentCard">
+                        <p>Customer Service Tools</p>
+                        <h1><i class="fa-solid fa-right-to-bracket"></i></h1>
+                    </div>
+                </div>
+            </a>
         </div>
-      </a>
     </div>
-  </div>
 </div>
