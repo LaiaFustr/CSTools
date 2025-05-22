@@ -357,8 +357,8 @@ export class KmdistancesComponent {
 
     if (!error) {
       //llamada a api
-      console.log($('#oriPuerto').val() + ' *** ' + $('#desPuerto').val())
-      console.log(oricountry + '*' + oriiso + '*' + descountry + '*' + desiso + '*' + oripc + '*' + despc + '*')
+      //console.log($('#oriPuerto').val() + ' *** ' + $('#desPuerto').val())
+      //console.log(oricountry + '*' + oriiso + '*' + descountry + '*' + desiso + '*' + oripc + '*' + despc + '*')
 
       $('.chargingSpinner').show()
       $('#colResKm').hide()
@@ -366,9 +366,9 @@ export class KmdistancesComponent {
         //console.log(response)
 
         if (response['distkmokay'] == 0) {
-          $('.calkm').html(response['distkm'] + ' Km')
+          $('.calkm').html(response['distkm'])
         } else {
-          $('.calkm').html(response['distkmokay'] + ' Km')
+          $('.calkm').html(response['distkmokay'])
         }
         /* $('.calkm').html(response[]); */
         $('.chargingSpinner').hide()
