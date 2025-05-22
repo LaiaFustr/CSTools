@@ -52,7 +52,9 @@ body {
     background-color: var(--bgLightGrey);
 }
 
+
 /* ********** remove this root in final version ************** */
+
 :root {
     --blueDarkDch: #0b3d91;
     --blueLightDch: #0057b7;
@@ -70,10 +72,8 @@ body {
     --greenDark: #156634;
 }
 
+
 /*  */
-
-
-
 
 .helvetica {
     /* fuente dachser encontrada */
@@ -94,7 +94,9 @@ body {
     font-size: 2em;
 }
 
+
 /* ***********DACHSER NAV************** */
+
 .main-nav {
     display: flex;
     padding-top: 0%;
@@ -122,16 +124,12 @@ body {
 }
 
 @media(max-width:452px) {
-
-
     .container__section {
         padding: 0% .5em 0%;
     }
-
     .main-nav__logo-div {
         margin-left: 0;
     }
-
     .dachser-Co--logo {
         width: 6em;
         height: auto;
@@ -144,11 +142,7 @@ body {
     justify-content: start;
     margin-left: 0%;
     margin-right: auto;
-
-
 }
-
-
 
 .main-nav__options {
     width: 100%;
@@ -159,9 +153,7 @@ body {
     justify-content: start;
     align-items: end;
     flex-grow: 0;
-
 }
-
 
 .o-section__content {
     padding: 0em 1.2em 0em;
@@ -200,12 +192,9 @@ body {
     transition: width .2s;
 }
 
-
-
 .main-nav__link:hover::after {
     width: 100%;
 }
-
 
 .main-nav__icon {
     margin: 0em .5em 0px;
@@ -239,7 +228,9 @@ body {
     background-color: var(--bgLightGrey);
 }
 
+
 /* **********DACHSER BUTTONS*********** */
+
 .btn-dch {
     max-width: 300px;
     width: 100%;
@@ -283,7 +274,6 @@ body {
     border: 1px solid white;
     background-color: white;
     color: transparent;
-
 }
 
 .btn--outline--light-inverse {
@@ -310,6 +300,7 @@ body {
 
 
 /* ***** DACHSER BACKGROUND ***** */
+
 .container-Dch {
     margin: 0;
 }
@@ -320,7 +311,6 @@ body {
 
 .keyvisual__img {
     background-repeat: no-repeat;
-
     object-fit: cover;
     overflow: hidden;
     min-height: 12em;
@@ -331,6 +321,7 @@ body {
 
 
 /* ***** DACHSER CARDS ***** */
+
 .card--dachser {
     display: flex;
     align-self: center;
@@ -346,7 +337,6 @@ body {
 .card--dachser__text {
     padding: 1em;
     overflow-y: hidden;
-
 }
 
 .card--dachser_Hover {
@@ -427,6 +417,7 @@ body {
     padding: 0;
 }
 
+
 /* FOOTER STYLES */
 
 .footerFont {
@@ -449,7 +440,6 @@ body {
     margin-right: 5px;
 }
 
-
 .btnCalc {
     height: fit-content;
     margin-top: 30px;
@@ -468,7 +458,6 @@ body {
 
 .labelCalc {
     font-weight: 600;
-
 }
 
 .marginCalcCard {
@@ -506,7 +495,6 @@ body {
     font-weight: 400;
 }
 
-
 #osticket {
     background-color: var(--blueLightDch);
     border-color: var(--blueLightDch);
@@ -519,8 +507,8 @@ body {
     border-color: var(--blueDarkDch);
 }
 
-/*******************************************/
 
+/*******************************************/
 
 
 /******************************************/
@@ -532,7 +520,6 @@ body {
 }
 
 .btnPlusCalc:hover {
-
     background-color: transparent;
     color: #ee8912;
     border: 1px solid #ee8912;
@@ -545,13 +532,11 @@ body {
 }
 
 .labelResCalc {
-
     color: var(--blueDarkDch);
 }
 
+
 /***************Kilometer Distances Styles***************/
-
-
 
 .distanceKm {
     font-size: x-large;
@@ -570,6 +555,7 @@ body {
     border: none;
 }
 
+
 /**************Schedule Styles***************/
 
 .buttonSearchSch {
@@ -584,13 +570,9 @@ body {
     color: rgb(255, 255, 255);
 }
 
-
-
 .freightTab {
     overflow-x: scroll;
 }
-
-
 
 .buttonSched {
     font-size: 1.1em;
@@ -599,11 +581,6 @@ body {
 
 
 /* end cstools styles */
-
-
-
-
-
 
 
 /*  */
@@ -659,6 +636,10 @@ hr.h-color {
 
 .totalWidthNav {
     width: 165px;
+}
+
+.midWidthNav {
+    width: 120px;
 }
 
 .colorLink {
@@ -775,7 +756,6 @@ hr.h-color {
     background-color: rgb(235, 236, 238);
     border: none;
     border-radius: 7px;
-
 }
 
 
@@ -785,7 +765,6 @@ hr.h-color {
 /* Buttons dachser colors styles */
 
 .fontFormat {
-
     font-weight: 600;
 }
 
@@ -836,7 +815,6 @@ hr.h-color {
     background-color: var(--blueLightDch);
 }
 
-
 .lighterBlueColor {
     color: var(--blueLightDch);
 }
@@ -854,10 +832,6 @@ hr.h-color {
 .lighterBlueColor:disabled {
     color: var(--blueLightDchOutline);
 }
-
-
-
-
 
 .blueBg {
     background-color: var(--blueDarkDch);
@@ -883,16 +857,12 @@ hr.h-color {
     border: transparent;
 }
 
-
 .blueColor:disabled {
     color: var(--blueDarkDchOutline);
 }
 
-
-
 .blueHover:hover {
     background-color: var(--blueDarkDch);
-
 }
 
 .whiteColor,
@@ -937,7 +907,6 @@ hr.h-color {
     background-color: var(--greyDch);
 }
 
-
 .greyColor {
     color: var(--greyDch);
 }
@@ -961,7 +930,6 @@ hr.h-color {
 .greyHover:hover {
     background-color: var(--grey2Dch);
 }
-
 
 .blackColor {
     color: var(--blackDsc);
@@ -1007,7 +975,6 @@ hr.h-color {
 
 .redBg:hover {
     background-color: var(--red);
-
 }
 
 .redBg:any-link {
@@ -1076,13 +1043,11 @@ hr.h-color {
 }
 
 
-
 /* *********************************** */
 
 .regularBtn {
     border: none;
     border-radius: 7px;
-
     transition: all .3s ease;
 }
 
@@ -1104,7 +1069,6 @@ hr.h-color {
     border-radius: .2rem;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
-
 
 .button {
     display: inline-block;
@@ -1148,7 +1112,6 @@ hr.h-color {
 .btnBlue:hover .btnBlue:any-link {
     background-color: #002769;
     border-color: #002769;
-
 }
 
 .outlineBlue {
@@ -1164,6 +1127,7 @@ hr.h-color {
     background-color: var(--blueDarkDch);
     color: white;
 }
+
 
 /* .btnOrange,
 .outlineOrange:hover {
@@ -1181,8 +1145,6 @@ hr.h-color {
 .outlineOrange:hover {
     background-color: var(--orangeDch);
     border: 1px solid var(--orangeDch);
-
-
 }
 
 .outlineOrange:hover {
@@ -1193,10 +1155,6 @@ hr.h-color {
     background-color: #ffc518;
     /*  color: white; */
 }
-
-
-
-
 
 .btnOrange:hover .btnOrange:focus,
 .btnOrange:active,
@@ -1214,14 +1172,11 @@ hr.h-color {
     border: 1px solid var(--orangeDch);
 }
 
-
 .outlineGrey {
     border: 1px solid var(--greyDch);
     background-color: transparent;
     color: var(--greyDch);
 }
-
-
 
 .btnGrey,
 .outlineGrey:hover {
@@ -1229,7 +1184,6 @@ hr.h-color {
     border-color: var(--greyDch);
     color: white;
 }
-
 
 .btnGrey:hover {
     background-color: var(--grey2Dch);
@@ -1247,7 +1201,6 @@ hr.h-color {
     color: white;
     border-color: #45484d;
 }
-
 
 .btnBlack,
 .outlineBlack:hover {
@@ -1337,17 +1290,12 @@ hr.h-color {
     color: var(--green);
 }
 
-
-
-
 .btnPink,
 .outlinePink:hover {
     background-color: var(--bgPink);
     border-color: var(--bgPink);
     color: white;
 }
-
-
 
 .btnPink:hover .btnPink:any-link,
 .btnPink:hover .btnPink:focus,
@@ -1365,11 +1313,6 @@ hr.h-color {
     background-color: transparent;
     color: var(--bgPink);
 }
-
-
-
-
-
 
 .btnRed:disabled,
 .btnBlack:disabled,
@@ -1391,70 +1334,53 @@ hr.h-color {
     color: white;
     background-color: var(--redOutline);
     border-color: var(--redOutline);
-
-
 }
 
 .btnBlack:disabled {
     background-color: var(--blackDscOutline);
     color: white;
-
 }
 
 .btnGrey:disabled {
     background-color: var(--greyDchOutline);
     border-color: var(--greyDchOutline);
     color: white;
-
 }
 
 .btnOrange:disabled {
-
     background-color: var(--orangeDchOutline);
     color: var(--blackDsc);
     border-color: var(--orangeDchOutline);
-
 }
 
 .btnBlue:disabled {
     border: 1px solid var(--blueLightDchOutline);
     color: white;
     background-color: var(--blueLightDchOutline);
-
 }
 
 .outlineBlue:disabled {
-
     border: 1px solid var(--blueLightDchOutline);
     color: var(--blueLightDchOutline);
     background-color: transparent;
-
 }
 
 .outlineOrange:disabled {
-
     background-color: transparent;
     color: var(--orangeDchOutline);
     border-color: var(--orangeDchOutline);
-
-
 }
 
 .outlineGrey:disabled {
-
     border-color: var(--greyDchOutline);
     background-color: transparent;
     color: var(--greyDchOutline);
-
-
 }
 
 .outlineBlack:disabled {
-
     border: 1px solid var(--blackDscOutline);
     background-color: transparent;
     color: var(--blackDscOutline);
-
 }
 
 .outlineRed:disabled {
@@ -1467,22 +1393,20 @@ hr.h-color {
     background-color: var(--greenOutline);
     border-color: var(--greenOutline);
     color: white;
-
 }
 
 .outlineGreen:disabled {
-
     border: 1px solid var(--greenOutline);
     background-color: transparent;
     color: var(--greenOutline);
 }
 
 .outlinePink:disabled {
-
     border: 1px solid var(--outlinePink);
     background-color: transparent;
     color: var(--outlinePink);
 }
+
 
 /* MAIN BUTTON */
 
@@ -1500,11 +1424,11 @@ hr.h-color {
     border-radius: 7px;
 }
 
-
 .mainBtn:disabled,
 .roundedBtn:disabled {
     pointer-events: none;
 }
+
 
 /***** Rounded button styles *****/
 
@@ -1523,6 +1447,7 @@ hr.h-color {
 .roundedBtn:disabled {
     pointer-events: none;
 }
+
 
 /***** Principal hover button styles *****/
 
@@ -1589,7 +1514,6 @@ hr.h-color {
 
 
 /* ****************** */
-
 
 .text-dch {
     color: #0f3880;
@@ -1742,7 +1666,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 }
 
 
-
 /*******/
 
 
@@ -1790,25 +1713,20 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     0% {
         box-shadow: 0 -0.83em 0 -0.4em rgb(0, 102, 255), 0 -0.83em 0 -0.42em rgba(0, 102, 255, 0.75), 0 -0.83em 0 -0.44em rgba(0, 102, 255, 0.5), 0 -0.83em 0 -0.46em rgba(0, 102, 255, 0.836), 0 -0.83em 0 -0.477em rgba(0, 102, 255, 0.10);
     }
-
     5%,
     95% {
         box-shadow: 0 -0.83em 0 -0.4em rgb(0, 102, 255), 0 -0.83em 0 -0.42em rgba(0, 102, 255, 0.75), 0 -0.83em 0 -0.44em rgba(0, 102, 255, 0.5), 0 -0.83em 0 -0.46em rgba(0, 102, 255, 0.25), 0 -0.83em 0 -0.477em rgba(0, 102, 255, 0.10);
     }
-
     10%,
     59% {
         box-shadow: 0 -0.83em 0 -0.4em rgb(0, 102, 255), -0.087em -0.825em 0 -0.42em rgba(0, 102, 255), -0.173em -0.812em 0 -0.44em rgba(0, 102, 255, 0.5), -0.256em -0.789em 0 -0.46em rgba(0, 102, 255, 0.25), -0.297em -0.775em 0 -0.477em rgba(0, 102, 255, 0.10);
     }
-
     20% {
         box-shadow: 0 -0.83em 0 -0.4em rgb(0, 102, 255, 7), -0.338em -0.758em 0 -0.42em rgba(0, 102, 255, 0.75), -0.555em -0.617em 0 -0.44em rgba(0, 102, 255, 0.5), -0.671em -0.488em 0 -0.46em rgba(0, 102, 255, 0.25), -0.749em -0.34em 0 -0.477em rgba(0, 102, 255, 0.10);
     }
-
     38% {
         box-shadow: 0 -0.83em 0 -0.4em rgb(255, 193, 7), -0.377em -0.74em 0 -0.42em rgba(255, 193, 7, 0.75), -0.645em -0.522em 0 -0.44em rgba(255, 193, 7, 0.5), -0.775em -0.297em 0 -0.46em rgba(255, 193, 7, 0.25), -0.82em -0.09em 0 -0.477em rgba(255, 193, 7, 0.10);
     }
-
     100% {
         box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
     }
@@ -1818,7 +1736,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     0% {
         transform: rotate(0deg)
     }
-
     100% {
         transform: rotate(360deg)
     }
@@ -1838,7 +1755,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     width: 90%;
     max-width: 1500px;
 }
-
 
 
 /* Drag Drop */
@@ -1866,7 +1782,9 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     margin-bottom: 140px;
 }
 
+
 /* DRAG & DROP STYLES */
+
 .dragFiles {
     border: 2px dashed var(--blueLightDch);
     color: var(--blueLightDch);
@@ -1881,7 +1799,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     position: absolute;
     height: 10.5em;
     border: none;
-
 }
 
 .fileDiv {
@@ -1916,7 +1833,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     padding: 0px !important;
     margin: auto;
     border-radius: 50%;
-
 }
 
 .circ-trk-aproxEnd {
@@ -1963,18 +1879,15 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     0% {
         box-shadow: 0px 0px 0px 0px rgba(11, 60, 145, 1);
     }
-
     100% {
         box-shadow: 0px 0px 0px 6px rgba(11, 60, 145, 0);
     }
-
 }
 
 @keyframes effect-success-trk {
     0% {
         box-shadow: 0px 0px 0px 0px rgb(42, 172, 92);
     }
-
     100% {
         box-shadow: 0px 0px 0px 6px rgba(42, 172, 92, 0);
     }
@@ -1984,67 +1897,45 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     0% {
         box-shadow: 0px 0px 0px 0px rgb(255, 182, 26);
     }
-
     100% {
         box-shadow: 0px 0px 0px 6px rgba(255, 182, 26, 0);
     }
 }
 
 
-
-
-
-
-
-
-
-
 /* Sidebar styles */
 
 .sideBarElem {
     margin: 3px;
-
 }
 
 .sideBarElem a {
     padding: 0 19px;
-
 }
-
 
 .sideBar .sideBarElem.active a,
 .sideBar .sideBarElem.active a:hover,
 .divOptionMenu .sideBarElem.active a,
 .divOptionMenu .sideBarElem.active a:hover {
-
     background: var(--greyHover);
     /* font-weight: bolder; */
-
 }
 
-
-
 .sideBar .sideBarElem.active a .divSideElem,
-
 .divOptionMenu .sideBarElem.active a .divSideElem {
     color: var(--blueDarkDch);
 }
 
-
-
 .sideBar li a:hover,
 .divOptionMenu li a:hover {
     background: var(--greyHover);
-
 }
-
 
 .sideBar li a {
     color: var(--grey2Dch);
     transition: background-color .5s ease;
     border-radius: 8px;
 }
-
 
 :root {
     --sidebarWidth: 250px;
@@ -2071,16 +1962,13 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     box-shadow: 4px 4px 4px var(--lightGrey);
 }
 
-
 @media (min-width:768px) {
     .sideBar:not(.small)~#content {
         max-width: calc(100% - var(--sidebarWidth));
     }
-
     .sideBar.small~#content {
         max-width: calc(100% - var(--sidebarSmallWidth));
     }
-
     /* #sideBarToggle {
         display: block;
         align-items: center;
@@ -2107,39 +1995,37 @@ input[type="time"]::-webkit-calendar-picker-indicator {
         min-height: 100vh;
         /* z-index: 1; */
     }
-
     .sideBar.small {
         margin-left: -100px;
         position: absolute;
         min-height: 100vh;
         /* z-index: 1; */
     }
-
     #content {
         max-width: 100%;
     }
-
     #sideBarToggle {
         display: none;
     }
-
 }
 
+
 /* ***** */
+
 #side_nav.small {
     max-width: 100px;
     min-width: 100px;
     transition: all 0.3s ease;
 }
 
-/* ***** */
-.header-box {
 
+/* ***** */
+
+.header-box {
     height: 100px;
 }
 
 .headerAbs {
-
     position: absolute;
 }
 
@@ -2155,7 +2041,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     display: inline-block;
     opacity: 1;
     transition: width 0.3s ease;
-
 }
 
 .divSideElem {
@@ -2182,7 +2067,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 
 .sideBarIcon i {
     width: auto;
-
 }
 
 #togIcon {
@@ -2192,7 +2076,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 #menuSidebar {
     transition: width .3s ease;
 }
-
 
 #listSidebar {
     position: relative;
@@ -2208,7 +2091,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     width: 40px;
     margin-left: 230px;
 }
-
 
 .sideNavMenu {
     position: relative;
@@ -2242,46 +2124,29 @@ hr.h-color {
     border-color: var(--blueDarkDch);
 }
 
-
-
-
-
-
-
 #sideBarToggle:hover,
 #sideBarToggle:focus {
     background: rgb(235, 235, 235);
 }
 
-
-
-
 #headerNav {
     position: absolute;
 }
-
-
-
-
 
 @keyframes toleft {
     0% {
         transform: rotate(0deg);
         box-shadow: 4px 4px 4px var(--lightGrey);
     }
-
     25% {
         box-shadow: 4px 0px 4px var(--lightGrey);
     }
-
     50% {
         box-shadow: 4px -4px 4px var(--lightGrey);
     }
-
     75% {
         box-shadow: 0px -4px 4px var(--lightGrey);
     }
-
     100% {
         transform: rotate(180deg);
         box-shadow: -4px -4px 4px var(--lightGrey);
@@ -2293,20 +2158,15 @@ hr.h-color {
         transform: rotate(180deg);
         box-shadow: -4px -4px 4px var(--lightGrey);
     }
-
     25% {
         box-shadow: 0px -4px 4px var(--lightGrey);
     }
-
     50% {
         box-shadow: 4px -4px 4px var(--lightGrey);
     }
-
     75% {
-
         box-shadow: 4px 0px 4px var(--lightGrey);
     }
-
     100% {
         transform: rotate(0deg);
         box-shadow: 4px 4px 4px var(--lightGrey);
@@ -2319,12 +2179,10 @@ hr.h-color {
     display: inline-flex
 }
 
-
 .mat-mdc-tooltip-surface {
     background-color: rgba(0, 0, 0, 0.76)!important;
-    color:rgb(255, 255, 255)!important;
+    color: rgb(255, 255, 255)!important;
     font-family: inherit !important;
     font-size: .8rem !important;
     border-radius: 5px!important;
-   
 }
