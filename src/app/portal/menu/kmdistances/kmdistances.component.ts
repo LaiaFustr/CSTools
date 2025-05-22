@@ -23,13 +23,13 @@ export class KmdistancesComponent {
 
   NgOnInit() {
     $('#colResKm').hide();
-    
-      
-    
+
+
+
   }
   NgAfterInit(): void {
-    
-    
+
+
   }
 
 
@@ -45,7 +45,7 @@ export class KmdistancesComponent {
         //console.log(ports)
         ports.forEach(port => {
           //console.log(port['plptoloc']+ port['plnompto'])
-          $('#oriPortOpc, #desPortOpc').append('<option  value="' + port['plnompto'] + '"> ' + port['plptoloc'] + '</option>')
+          $('#oriPortOpc, #desPortOpc').append('<option  value="' + port['plcodpos'] + ' - ' + port['plnompto'] + '"> ' + port['plptoloc'] + '</option>')
         })
       })
   }
@@ -103,7 +103,7 @@ export class KmdistancesComponent {
         if (value.id.includes('Pc')) {
           value.setAttribute('disabled', 'true');
         }
-        
+
       })
       $('#' + notStringId).find('button').css('display', 'none');
     }
@@ -131,8 +131,8 @@ export class KmdistancesComponent {
     this.kmdistance.getLocalPC(code)
       .subscribe(pcs => {
         pcs.forEach(pc => {
-          console.log(code)
-          console.log(pc)
+          //console.log(code)
+          //console.log(pc)
           $('#' + ini + 'PcOptions').append('<option data-prv="' + pc['nameprov'] + '" data-pob="' + pc['nametownori'] + '" data-postcode="' + pc['minpc'] + '" value="' + pc['minpc'] + ' - ' + pc['nametown'] + '"><strong>' + pc['minpc'] + '</strong>, ' + pc['nametownori'] + ', ' + pc['nameprov'] + ' </option>');
         })
       })
@@ -161,7 +161,7 @@ export class KmdistancesComponent {
     let id = inputId.charAt(0).toLowerCase() + inputId.slice(1);
     let pc = id.replace('Country', 'Pc')
 
-    //console.log(clear.id)
+    //console.log(id)
 
 
     if (!id.includes('Pc') && !id.includes('Puerto')) {
@@ -169,7 +169,10 @@ export class KmdistancesComponent {
       $('#' + clear.id).css('display', 'none')
       $('#' + clear.id.replace('Country', 'Pc')).css('display', 'none')
       $('#' + pc).val('');
+      $('#' + pc).removeClass('is-invalid')
+      $('#' + pc).siblings('.invalid-tooltip').hide()
       $('#' + pc).attr('disabled', 'disabled')
+      
       /*  console.log(pc) */
     } else {
       $('#' + id).val('');
@@ -206,10 +209,15 @@ export class KmdistancesComponent {
 
 
     if ($('#' + country.id).val() == null || $('#' + country.id).val() == '') {
+      
       $('#' + pc).attr('disabled', 'disabled')
+      
+
 
     } else {
+      
       $('#' + pc).removeAttr('disabled')
+     
     }
 
   }
@@ -227,67 +235,135 @@ export class KmdistancesComponent {
     $('.chargingSpinner').show()
     $('#colResKm').hide()
     let error = false;
-    let oricountry = String($('#oriCountry').val());
-    let descountry = String($('#desCountry').val());
-    let oriiso = String($('#oriCountry').val()).split(' - ')[0];
-    let desiso = String($('#desCountry').val()).split(' - ')[0];
-    let oripc = ''/* String($('#oriPc').val()) */;
-    let despc = ''/* String( $('#desPc').val()) */;
+    let oricountry = '' /* String($('#oriCountry').val()) */;
+    let descountry = ''/* String($('#desCountry').val()) */;
+    let oriiso = ''/* String($('#oriCountry').val()).split(' - ')[0] */;
+    let desiso = '' /* String($('#desCountry').val()).split(' - ')[0] */;
+    let oripc = ''/* String($('#oriPc').val()).split(' - ')[0] */;
+    let despc = ''/* String($('#desPc').val()).split(' - ')[0] */;
+
     /*     let oritown = '';
         let destown = $('#desCountry'); */
 
 
-    this.oriCountry = $('#oriCountry');
-    this.desCountry = $('#desCountry');
-  
+    /* this.oriCountry = '';
+    this.desCountry = ''; */
+
     if ($('#origindiv input:checked').attr('id') == 'oriPC') {
+      /* this.oriCountry = $('#oriCountry') */
 
 
-      if ($(this.oriCountry).val() == '' || $(this.oriCountry).val() == null) {
+
+
+      if ($('#oriCountry').val() == '' || $('#oriCountry').val() == null) {
 
         $('#colResKm').hide()
-        $(this.oriCountry).addClass('is-invalid')
-        $(this.oriCountry).siblings('.invalid-tooltip').show()
-        error = true;
 
+        $('#oriPc').val('')
+        $('#oriPc').removeClass('is-invalid')
+        $('#oriPc').siblings('.invalid-tooltip').hide()
+
+        $('#oriCountry').addClass('is-invalid')
+        $('#oriCountry').siblings('.invalid-tooltip').show()
+        error = true;
         $('.chargingSpinner').hide()
 
-      } else if(true){ //comprobar si estan rellenos city or postal code
+      } else {
+        if (/* !true */$('#oriPc').val() == '' || $('#oriPc').val() == null) { //comprobar si estan rellenos city or postal code
+          $('#colResKm').hide()
+          $('#oriPc').addClass('is-invalid')
+          
+          $('#oriPc').siblings('.invalid-tooltip').show()
+          error = true;
+          $('.chargingSpinner').hide()
+        } else {
+          oricountry = String($('#oriCountry').val());
+          oriiso = String($('#oriCountry').val()).split(' - ')[0];
+          oripc = String($('#oriPc').val()).split(' - ')[0];
 
-        error = false;
+        }
+
+      }
+    } else if ($('#origindiv input:checked').attr('id') == 'oriPort') {
+      $("#oriPuerto")
+      if ($("#oriPuerto").val() == '' || $("#oriPuerto").val() == null) {
+        $('#colResKm').hide()
+        $("#oriPuerto").addClass('is-invalid')
+        $("#oriPuerto").siblings('.invalid-tooltip').show()
+        error = true;
+        $('.chargingSpinner').hide()
+
+      } else { //comprobar si estan rellenos city or postal code
+        oricountry = 'ES'
+        oriiso = 'ES'
+        oripc = String($('#oriPuerto').val()).split(' - ')[0];
+
       }
 
-
-
-
-    } else if ($('#origindiv input:checked').attr('id') == 'oriPort') {
-      console.log('puertoo origin')
     }
 
     if ($('#destdiv input:checked').attr('id') == 'destPC') { //checked desPC
-      if ($(this.desCountry).val() == '' || $(this.desCountry).val() == null) {
-        /*  console.log('no des'); */
+      /*  this.desCountry = $('#desCountry') */
+
+      if ($('#desCountry').val() == '' || $('#desCountry').val() == null) {
         $('#colResKm').hide()
-        $(this.desCountry).addClass('is-invalid')
-        $(this.desCountry).siblings('.invalid-tooltip').show()
+
+        $('#desPc').val('')
+        $('#desPc').removeClass('is-invalid')
+        $('#desPc').siblings('.invalid-tooltip').hide()
+
+        $('#desCountry').addClass('is-invalid')
+        $('#desCountry').siblings('.invalid-tooltip').show()
         error = true;
         $('.chargingSpinner').hide()
 
-      } else if(true){ //comprobar si estan rellenos city or postal code
-        
-        error = false;
-      }
-    } else if ($('#destdiv input:checked').attr('id') == 'destPort') { 
-      console.log('puertoo dest')
-    }
+      } else {
 
+        if (/* !true */ $('#desPc').val() == '' || $('#desPc').val() == null) {//comprobar si estan rellenos city or postal code
+          $('#colResKm').hide()
+          $('#desPc').addClass('is-invalid')
+          $('#desPc').siblings('.invalid-tooltip').show()
+          error = true;
+          $('.chargingSpinner').hide()
+
+        } else {
+          descountry = String($('#desCountry').val());
+          desiso = String($('#desCountry').val()).split(' - ')[0];
+          despc = String($('#desPc').val()).split(' - ')[0];
+
+        }
+
+
+
+      }
+    } else if ($('#destdiv input:checked').attr('id') == 'destPort') {
+      $("#desPuerto")
+      if ($("#desPuerto").val() == '' || $("#desPuerto").val() == null) {
+        $('#colResKm').hide()
+        $("#oriPuerto").addClass('is-invalid')
+        $("#oriPuerto").siblings('.invalid-tooltip').show()
+        error = true;
+        $('.chargingSpinner').hide()
+
+      } else {
+        descountry = 'ES'
+        desiso = 'ES'
+        despc = String($('#desPuerto').val()).split(' - ')[0];
+
+
+      }
+
+    }
 
     if (!error) {
       //llamada a api
+      console.log($('#oriPuerto').val() + ' *** ' + $('#desPuerto').val())
+      console.log(oricountry + '*' + oriiso + '*' + descountry + '*' + desiso + '*' + oripc + '*' + despc + '*')
+
       $('.chargingSpinner').show()
       $('#colResKm').hide()
-      this.kmdistance.getDistance(oricountry, oriiso, descountry, desiso, oripc, despc/* , oritown, destown */).subscribe(response => {
-        /*  console.log(response) */
+      this.kmdistance.getDistance(oricountry, oriiso, descountry, desiso, oripc, despc).subscribe(response => {
+        //console.log(response)
 
         if (response['distkmokay'] == 0) {
           $('.calkm').html(response['distkm'] + ' Km')
@@ -299,7 +375,7 @@ export class KmdistancesComponent {
         $('#colResKm').show()
       })
     } else {
-
+      $('#colResKm').hide()
     }
   }
 
@@ -308,19 +384,14 @@ export class KmdistancesComponent {
   validateKm(event: Event) {
     let input = event.target as HTMLInputElement;
 
-    console.log(input.id)
+    //console.log(input.id)
     if (input.value != '' && input.value != null) {
       $('#' + input.id).removeClass('is-invalid')
       $('#' + input.id).siblings('.invalid-tooltip').hide()
-
     } else {
       $('#colResKm').hide()
       $('#' + input.id).addClass('is-invalid')
       $('#' + input.id).siblings('.invalid-tooltip').show()
     }
-
   }
-
-
-
 }
