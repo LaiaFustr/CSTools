@@ -114,16 +114,19 @@
 
           <div class="row my-2 align-items-end rowdscalc">
             <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
-              <label class="labelCalc" pattern="[0-9]{3}" for="freeStorageCalc"
+              <label class="labelCalc" for="freeStorageCalc"
                 >Free Storage Days</label
               >
+
               <input
                 type="text"
                 id="freeStorageCalc"
+                 pattern="^([0-9]{1,2})?$"
                 class="form-control secThRowCalc"
                 placeholder="Add free storage days"
                 disabled
               />
+              <div class="invalid-tooltip">Please enter a valid value or leave the field blank.</div>
             </div>
 
             <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
@@ -134,10 +137,12 @@
                 type="text"
                 name="calc_diasdem"
                 id="freeDemDaysCalc"
+                pattern="^([0-9]{1,2})?$"
                 class="form-control secThRowCalc"
                 placeholder="Add free damurrage days"
                 disabled
               />
+              <div class="invalid-tooltip">Please enter a valid value or leave the field blank.</div>
             </div>
             <div
               class="col col-12 col-sm-12 col-lg-4 col-xl-4 btnCalc d-flex align-items-top"

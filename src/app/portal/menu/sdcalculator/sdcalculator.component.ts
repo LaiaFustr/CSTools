@@ -227,6 +227,8 @@ export class SdcalculatorComponent {
     this.free_storage = $("#freeStorageCalc");
     this.free_demurrage = $("#freeDemDaysCalc");
 
+
+
     let all = [{ index: 'vessel_arrival', value: this.vessel_arrival },
     { index: 'gate_out_full', value: this.gate_out_full },
     { index: 'gate_empty', value: this.gate_empty },
@@ -247,9 +249,40 @@ export class SdcalculatorComponent {
       }
     });
     this.btnshow = true;
-    if (this.vessel_arrival.val() != "" && this.gate_out_full.val() != "" && this.gate_empty.val() != "" && this.container.val() != "" && this.port.val() != "" && this.carrier.val() != "") {
-      this.calcRes()
 
+
+    if (this.vessel_arrival.val() != "" && this.gate_out_full.val() != "" && this.gate_empty.val() != "" && this.container.val() != "" && this.port.val() != "" && this.carrier.val() != "") {
+      /* if (this.free_storage.val() != '' || this.free_storage.val() != null) {
+        let patern = new RegExp(this.free_storage.prop('pattern'));
+        // console.log(patern)
+        if (!patern.test(this.free_storage.val())) {
+          //console.log('Es un valor no valido de free sTORAGE')
+          this.free_storage.addClass('is-invalid')
+          this.free_storage.siblings('.invalid-tooltip').show()
+          this.btnshow = false
+
+        } else {
+          
+        }
+      }
+
+      if (this.free_demurrage.val() != '' || this.free_demurrage.val() != null) {
+        let patern = new RegExp(this.free_demurrage.prop('pattern'));
+        if (!patern.test(this.free_demurrage.val())) {
+          //console.log('Es un valor no valido de free DEMURRAGE')
+
+          this.free_demurrage.addClass('is-invalid')
+          this.free_demurrage.siblings('.invalid-tooltip').show()
+
+          this.btnshow = false
+        } else {
+
+        }
+      } */
+
+     /*  if (this.btnshow) { */
+        this.calcRes()
+    /*   } */
     }
     this.validateSD(event)
   }
@@ -285,7 +318,8 @@ export class SdcalculatorComponent {
   calcRes() {
     $('.loadSpinner').show()
     $("#resRowCalcu").hide();
-        $("#accordionSD").hide();
+    $("#accordionSD").hide();
+
     //va a llamar a la funcion de la api que calculará el resultado
     this.sdcalculator.getCalculation(this.vessel_arrival.val(), this.gate_out_full.val(), this.gate_empty.val(), this.carrier.val(), this.port.val(), this.container.val(), this.free_storage.val(), this.free_demurrage.val())
 
