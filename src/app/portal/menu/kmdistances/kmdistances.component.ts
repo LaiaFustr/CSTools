@@ -16,7 +16,7 @@ export class KmdistancesComponent {
   /* country: string = ''; */
   oriCountry: Object = '';
   desCountry: Object = '';
-
+  embcountry: any[] = [];
 
 
   constructor(private kmdistance: KmdistancesService) { this.getCountries(), this.getPorts() }
@@ -56,11 +56,14 @@ export class KmdistancesComponent {
       .subscribe(countries => {
         //console.log(countries)
         countries.forEach(country => {
+
           if (country['emb'] == "") {
             $('#oriCountryOpc, #desCountryOpc').append('<option country-code="' + country['papaicod'] + '" value="' + country['papaicod'] + ' - ' + country['papainom'] + '"> ' + country['papainom'] + '</option>')
-          } else {
+          } else if (country['emb'] == 'EXCL') {
             $('#oriCountryOpc, #desCountryOpc').append('<option country-code="' + country['papaicod'] + '" value="' + country['papaicod'] + ' - ' + country['papainom'] + '*****' + country['emb'] + '*****"> ' + country['papainom'] + '</option>')
+            this.embcountry.push(country)
           }
+
 
 
         });
@@ -148,10 +151,8 @@ export class KmdistancesComponent {
     if (elem.value == '' || elem.value == null) {
       //console.log($('#clearInput' + id).attr('id'))
       $('#clearInput' + id).css('display', 'none')
-
     } else {
       $('#clearInput' + id).css('display', 'block')
-
     }
   }
 
@@ -162,20 +163,24 @@ export class KmdistancesComponent {
     let pc = id.replace('Country', 'Pc')
 
     //console.log(id)
-
+    //console.log(inputId)
 
     if (!id.includes('Pc') && !id.includes('Puerto')) {
       $('#' + id).val('');
+      $('#' + id).removeClass('is-invalid')
+      $('#' + id).siblings('.invalid-tooltip').hide()
       $('#' + clear.id).css('display', 'none')
       $('#' + clear.id.replace('Country', 'Pc')).css('display', 'none')
       $('#' + pc).val('');
       $('#' + pc).removeClass('is-invalid')
       $('#' + pc).siblings('.invalid-tooltip').hide()
       $('#' + pc).attr('disabled', 'disabled')
-      
+
       /*  console.log(pc) */
     } else {
       $('#' + id).val('');
+      $('#' + id).removeClass('is-invalid')
+      $('#' + id).siblings('.invalid-tooltip').hide()
       $('#' + clear.id).css('display', 'none')
     }
 
@@ -184,11 +189,29 @@ export class KmdistancesComponent {
 
   clearAll() {
     $('#oriCountry').val('');
+    $('#oriCountry').removeClass('is-invalid')
+    $('#oriCountry').siblings('.invalid-tooltip').hide()
+
     $('#desCountry').val('');
+    $('#desCountry').removeClass('is-invalid')
+    $('#desCountry').siblings('.invalid-tooltip').hide()
+
     $('#oriPc').val('');
+    $('#oriPc').removeClass('is-invalid')
+    $('#oriPc').siblings('.invalid-tooltip').hide()
+
     $('#desPc').val('');
+    $('#desPc').removeClass('is-invalid')
+    $('#desPc').siblings('.invalid-tooltip').hide()
+
     $('#oriPuerto').val('');
+    $('#oriPuerto').removeClass('is-invalid')
+    $('#oriPuerto').siblings('.invalid-tooltip').hide()
+
     $('#desPuerto').val('');
+    $('#desPuerto').removeClass('is-invalid')
+    $('#desPuerto').siblings('.invalid-tooltip').hide()
+
     $('#clearInputOriCountry').css('display', 'none')
     $('#clearInputDesCountry').css('display', 'none')
     $('#clearInputOriPc').css('display', 'none')
@@ -209,15 +232,28 @@ export class KmdistancesComponent {
 
 
     if ($('#' + country.id).val() == null || $('#' + country.id).val() == '') {
-      
+
       $('#' + pc).attr('disabled', 'disabled')
-      
+
 
 
     } else {
-      
-      $('#' + pc).removeAttr('disabled')
-     
+      this.embcountry.forEach(emb => {
+        if (!(emb['papaicod'] == code)) {
+          $('#' + country.id).removeClass('is-invalid')
+          $('#' + country.id).siblings('.invalid-tooltip').hide()
+          $('#' + pc).removeAttr('disabled')
+        } else {
+          $('#colResKm').hide()
+          $('#' + country.id).addClass('is-invalid')
+          $('#' + country.id).siblings('.invalid-tooltip').text('This country is excluded.')
+          $('#' + country.id).siblings('.invalid-tooltip').show()
+
+        }
+      })
+
+
+
     }
 
   }
@@ -264,6 +300,7 @@ export class KmdistancesComponent {
         $('#oriPc').siblings('.invalid-tooltip').hide()
 
         $('#oriCountry').addClass('is-invalid')
+        $('#oriCountry').siblings('.invalid-tooltip').text('Required Field.')
         $('#oriCountry').siblings('.invalid-tooltip').show()
         error = true;
         $('.chargingSpinner').hide()
@@ -272,7 +309,7 @@ export class KmdistancesComponent {
         if (/* !true */$('#oriPc').val() == '' || $('#oriPc').val() == null) { //comprobar si estan rellenos city or postal code
           $('#colResKm').hide()
           $('#oriPc').addClass('is-invalid')
-          
+          $('#oriPc').siblings('.invalid-tooltip').text('Required Field.')
           $('#oriPc').siblings('.invalid-tooltip').show()
           error = true;
           $('.chargingSpinner').hide()
@@ -289,6 +326,7 @@ export class KmdistancesComponent {
       if ($("#oriPuerto").val() == '' || $("#oriPuerto").val() == null) {
         $('#colResKm').hide()
         $("#oriPuerto").addClass('is-invalid')
+        $("#oriPuerto").siblings('.invalid-tooltip').text('Required Field.')
         $("#oriPuerto").siblings('.invalid-tooltip').show()
         error = true;
         $('.chargingSpinner').hide()
@@ -313,6 +351,7 @@ export class KmdistancesComponent {
         $('#desPc').siblings('.invalid-tooltip').hide()
 
         $('#desCountry').addClass('is-invalid')
+        $('#desCountry').siblings('.invalid-tooltip').text('Required Field.')
         $('#desCountry').siblings('.invalid-tooltip').show()
         error = true;
         $('.chargingSpinner').hide()
@@ -322,6 +361,7 @@ export class KmdistancesComponent {
         if (/* !true */ $('#desPc').val() == '' || $('#desPc').val() == null) {//comprobar si estan rellenos city or postal code
           $('#colResKm').hide()
           $('#desPc').addClass('is-invalid')
+          $('#desPc').siblings('.invalid-tooltip').text('Required Field.')
           $('#desPc').siblings('.invalid-tooltip').show()
           error = true;
           $('.chargingSpinner').hide()
@@ -341,6 +381,7 @@ export class KmdistancesComponent {
       if ($("#desPuerto").val() == '' || $("#desPuerto").val() == null) {
         $('#colResKm').hide()
         $("#oriPuerto").addClass('is-invalid')
+        $("#oriPuerto").siblings('.invalid-tooltip').text('Required Field.')
         $("#oriPuerto").siblings('.invalid-tooltip').show()
         error = true;
         $('.chargingSpinner').hide()
@@ -384,13 +425,26 @@ export class KmdistancesComponent {
   validateKm(event: Event) {
     let input = event.target as HTMLInputElement;
 
+
     //console.log(input.id)
     if (input.value != '' && input.value != null) {
+      /* this.embcountry.forEach(emb => { */
+      /*  if (!(emb['papaicod'] == input.value.split(' - ')[0])) { */
       $('#' + input.id).removeClass('is-invalid')
       $('#' + input.id).siblings('.invalid-tooltip').hide()
+
+
+      /*  } else {
+         $('#colResKm').hide()
+         $('#' + input.id).addClass('is-invalid')
+         $('#' + input.id).siblings('.invalid-tooltip').show()
+
+       } */
+      /*  }) */
     } else {
       $('#colResKm').hide()
       $('#' + input.id).addClass('is-invalid')
+      $('#' + input.id).siblings('.invalid-tooltip').text('Required Field.')
       $('#' + input.id).siblings('.invalid-tooltip').show()
     }
   }
