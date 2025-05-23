@@ -13,7 +13,6 @@ import { KmdistancesService } from '../../../services/kmdistances/kmdistances.se
 })
 export class KmdistancesComponent {
   countries: any[] = [];
-  /* country: string = ''; */
   oriCountry: Object = '';
   desCountry: Object = '';
   embcountry: any[] = [];

@@ -252,7 +252,7 @@ export class SdcalculatorComponent {
 
 
     if (this.vessel_arrival.val() != "" && this.gate_out_full.val() != "" && this.gate_empty.val() != "" && this.container.val() != "" && this.port.val() != "" && this.carrier.val() != "") {
-      /* if (this.free_storage.val() != '' || this.free_storage.val() != null) {
+      if (this.free_storage.val() != '' || this.free_storage.val() != null) {
         let patern = new RegExp(this.free_storage.prop('pattern'));
         // console.log(patern)
         if (!patern.test(this.free_storage.val())) {
@@ -262,7 +262,8 @@ export class SdcalculatorComponent {
           this.btnshow = false
 
         } else {
-          
+          this.free_storage.removeClass('is-invalid')
+          this.free_storage.siblings('.invalid-tooltip').hide()
         }
       }
 
@@ -276,15 +277,18 @@ export class SdcalculatorComponent {
 
           this.btnshow = false
         } else {
-
+          this.free_demurrage.removeClass('is-invalid')
+          this.free_demurrage.siblings('.invalid-tooltip').hide()
         }
-      } */
+      }
 
-     /*  if (this.btnshow) { */
+      if (this.btnshow) {
         this.calcRes()
-    /*   } */
+      }
     }
-    this.validateSD(event)
+    if (this.btnshow) {
+      this.validateSD(event)
+    }
   }
 
   validateSD(event: any) {
