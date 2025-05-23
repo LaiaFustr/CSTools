@@ -1,4 +1,5 @@
-<div class="container" ><!-- style="position: relative;" -->
+<div class="container">
+  <!-- style="position: relative;" -->
   <div class="row">
     <div class="col col-12">
       <h1 class="text-center sectionTitle helvetica mt-4 mb-4 titleCalc">
@@ -22,7 +23,7 @@
               <label class="labelCalc" for="vessArrivCalc"
                 >Vessel Arrival</label
               >
-              
+
               <input
                 type="date"
                 id="vessArrivCalc"
@@ -121,12 +122,14 @@
               <input
                 type="text"
                 id="freeStorageCalc"
-                 pattern="^([0-9]{1,2})?$"
+                pattern="^([0-9]{1,2})?$"
                 class="form-control secThRowCalc"
                 placeholder="Add free storage days"
                 disabled
               />
-              <div class="invalid-tooltip">Please enter a valid value or leave the field blank.</div>
+              <div class="invalid-tooltip">
+                Please enter a valid value or leave the field blank.
+              </div>
             </div>
 
             <div class="col col-12 col-sm-12 col-lg-4 col-xl-4">
@@ -142,7 +145,9 @@
                 placeholder="Add free damurrage days"
                 disabled
               />
-              <div class="invalid-tooltip">Please enter a valid value or leave the field blank.</div>
+              <div class="invalid-tooltip">
+                Please enter a valid value or leave the field blank.
+              </div>
             </div>
             <div
               class="col col-12 col-sm-12 col-lg-4 col-xl-4 btnCalc d-flex align-items-top"
@@ -170,14 +175,14 @@
           class="contResult paddingCalculator col col-12 col-sm-12 col-lg-6 d-flex flex-column py-2"
           id="portStorageBorder"
         >
-          <div class="card cardDachserGrey">
+          <div class="card cardDachserGrey rowContentRes h-100">
             <div class="contMargin d-flex flex-column h-100">
               <div class="row">
                 <div class="col m-2">
                   <h3 class="titleResCalc">Port Storage</h3>
                 </div>
               </div>
-              <div class="row rowContentRes">
+              <div class="row">
                 <div class="col text-center">
                   <p>Total Days:</p>
                   <p id="totalDaysPort">{{ total_sto_days }}</p>
@@ -193,61 +198,26 @@
                     ><br />
                   </div>
                 </div>
-                <div class="col text-center">
-                  <p><strong>Total:</strong></p>
+              </div>
+
+              <div class="row d-flex justify-content-end m-3 p-2 mt-auto">
+                <div class="col-auto text-center">
+                  <h4><strong>Total:</strong></h4>
                   <strong>
                     <div id="totalPort">
-                      {{ sto_total.SPE }}<br />{{ sto_total.USD }}
+                      <h4>{{ sto_total.SPE }}<br />{{ sto_total.USD }}</h4>
                     </div>
                   </strong>
                 </div>
               </div>
-              <!-- <div class="row d-flex justify-content-end">
-                <div class="btnInfoCalc text-end col">
-                  <strong>Port Storage Rate details</strong>
-                  <button
-                    class="btn btnPlusCalc me-1"
-                    tg="iconPort"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#detailsPortStorage"
-                    aria-expanded="false"
-                    aria-controls="detailsPortStorage"
-                  >
-                    <i class="fa-solid fa-plus" id="iconPort"></i>
-                  </button> -->
-                  <!-- 
-                                <button class="btn btnPlusCalc" type="button" data-bs-toggle="collapse" tg="iconPort" data-bs-target="#detailsPortStorage" aria-expanded="false" aria-controls="detailsPortStorage"><i class="fa-solid fa-plus" id="iconPort"></i></button> -->
-                <!-- </div>
-              </div> -->
-              <!-- <div class="row justify-content-end mb-2">
-                <div class="col-auto mt-1 tableCalc">
-                  <div class="collapse" id="detailsPortStorage">
-                    <div class="card card-body me-1" id="tablePort">
-                      <table class="table table-sm table-striped">
-                        <tbody>
-                          <tr
-                            *ngFor="let storow of sto_details"
-                            [ngStyle]="{
-                              'font-weight': storow.included ? 'bold' : 'normal'
-                            }"
-                          >
-                            <td>{{ storow.detail_sto_day_range }}</td>
-                            <td>{{ storow.detail_sto_price }}</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
+
             </div>
           </div>
         </div>
         <div
           class="contResult col col-12 col-sm-12 col-lg-6 d-flex flex-column py-2"
         >
-          <div class="card cardDachserGrey">
+          <div class="card cardDachserGrey  rowContentRes h-100">
             <div class="contMargin d-flex flex-column h-100">
               <div class="row">
                 <div class="col m-2">
@@ -255,7 +225,7 @@
                 </div>
               </div>
 
-              <div class="row rowContentRes">
+              <div class="row">
                 <div class="col text-center">
                   <p>Total Days:</p>
                   <p id="totalDaysDem">{{ total_dem_days }}</p>
@@ -271,12 +241,16 @@
                     ><br />
                   </div>
                 </div>
-                <div class="col text-center">
-                  <p><strong>Total:</strong></p>
+                
+              </div>
+
+              <div class="row d-flex justify-content-end m-3 p-2 mt-auto">
+                <div class="col-auto text-center">
+                  <h4><strong>Total:</strong></h4>
                   <strong>
-                    <p id="totalDem">
-                      {{ dem_total.SPE }}<br />{{ dem_total.USD }}
-                    </p>
+                    <div id="totalDem">
+                    <h4>  {{ dem_total.SPE }}<br />{{ dem_total.USD }}</h4>
+                    </div>
                   </strong>
                 </div>
               </div>
@@ -326,10 +300,10 @@
     <div class="d-flex flex-column align-items-center justify-content-center">
       <div class="loadSpinner" style="display: none"></div>
     </div>
-    
   </div>
 
-  <div class="accordion draggable-box" id="accordionSD" style="display: none"><!--   -->
+  <div class="accordion draggable-box" id="accordionSD" style="display: none">
+    <!--   -->
     <!--   -->
     <div class="card">
       <!-- accordion-item -->

@@ -183,8 +183,6 @@ export class KmdistancesComponent {
       $('#' + id).siblings('.invalid-tooltip').hide()
       $('#' + clear.id).css('display', 'none')
     }
-
-
   }
 
   clearAll() {
