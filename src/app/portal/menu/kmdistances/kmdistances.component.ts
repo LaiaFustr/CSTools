@@ -288,9 +288,6 @@ export class KmdistancesComponent {
     if ($('#origindiv input:checked').attr('id') == 'oriPC') {
       /* this.oriCountry = $('#oriCountry') */
 
-
-
-
       if ($('#oriCountry').val() == '' || $('#oriCountry').val() == null) {
 
         $('#colResKm').hide()
@@ -306,7 +303,7 @@ export class KmdistancesComponent {
         $('.chargingSpinner').hide()
 
       } else {
-        if (/* !true */$('#oriPc').val() == '' || $('#oriPc').val() == null) { //comprobar si estan rellenos city or postal code
+        if (($('#oriPc').val() == '' || $('#oriPc').val() == null) && !$('#oriPc').prop('disabled')) { //comprobar si estan rellenos city or postal code
           $('#colResKm').hide()
           $('#oriPc').addClass('is-invalid')
           $('#oriPc').siblings('.invalid-tooltip').text('Required Field.')
@@ -341,11 +338,11 @@ export class KmdistancesComponent {
     }
 
     if ($('#destdiv input:checked').attr('id') == 'destPC') { //checked desPC
-      /*  this.desCountry = $('#desCountry') */
-
       if ($('#desCountry').val() == '' || $('#desCountry').val() == null) {
-        $('#colResKm').hide()
 
+        $('#colResKm').hide()
+        
+       
         $('#desPc').val('')
         $('#desPc').removeClass('is-invalid')
         $('#desPc').siblings('.invalid-tooltip').hide()
@@ -358,7 +355,7 @@ export class KmdistancesComponent {
 
       } else {
 
-        if (/* !true */ $('#desPc').val() == '' || $('#desPc').val() == null) {//comprobar si estan rellenos city or postal code
+        if (($('#desPc').val() == '' || $('#desPc').val() == null) && !$('#desPc').prop('disabled')) {//comprobar si estan rellenos city or postal code
           $('#colResKm').hide()
           $('#desPc').addClass('is-invalid')
           $('#desPc').siblings('.invalid-tooltip').text('Required Field.')
@@ -372,9 +369,6 @@ export class KmdistancesComponent {
           despc = String($('#desPc').val()).split(' - ')[0];
 
         }
-
-
-
       }
     } else if ($('#destdiv input:checked').attr('id') == 'destPort') {
       $("#desPuerto")
