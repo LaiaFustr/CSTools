@@ -2094,6 +2094,16 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     margin-left: 230px;
 }
 
+#midToggle {
+    position: absolute;
+    width: 250px;
+    border: 0;
+    background-color: transparent;
+    top: 35vh;
+    height: 65vh;
+    transition: all .3s ease;
+}
+
 .sideNavMenu {
     position: relative;
 }
@@ -2130,6 +2140,7 @@ hr.h-color {
 #sideBarToggle:focus {
     background: rgb(235, 235, 235);
 }
+
 
 #headerNav {
     position: absolute;

@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCalculator, faCalendarDay, faLocationCrosshairs, faTruckPlane, faPlus, faLessThan, faHome, faRightFromBracket, faBars, faDisplay , faLocationDot} from '@fortawesome/free-solid-svg-icons';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { faCalculator, faCalendarDay, faLocationCrosshairs, faTruckPlane, faPlus, faLessThan, faHome, faRightFromBracket, faBars, faDisplay, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @Component({
   selector: 'app-menu',
-  imports: [RouterOutlet, RouterLink, FontAwesomeModule , MatTooltipModule],
+  imports: [RouterOutlet, RouterLink, FontAwesomeModule, MatTooltipModule],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
@@ -23,7 +23,7 @@ export class MenuComponent {
   faBars = faBars;
   faLocationDot = faLocationDot;
   tooltipDisabled = true;
-  
+
   constructor() { }
   ngOnInit(): void {
     this.hoverSideToggle();
@@ -48,8 +48,8 @@ export class MenuComponent {
       $('#sideLogo').attr('width', '60%');
       $('#content').css('max-width', 'calc(100% - 100px)');
       /* $('#togIcon') */$('.togIcon').css('animation', 'toleft .3s linear')
-      
-      $('.togIcon').on('animationend', function(){
+
+      $('.togIcon').on('animationend', function () {
         $('.togIcon').css('transform', 'rotate(180deg)')
         $('.togIcon').css('box-shadow', '-4px -4px 4px var(--lightGrey)')
 
@@ -60,8 +60,8 @@ export class MenuComponent {
       $('.sideBarText').css('width', '0%');
       $('.sideBarText').fadeOut(300);
       $('#allSideToggle').css('margin-left', '80px')
-    
-     this.tooltipDisabled = false;
+      $('#midToggle').css('width', '100px');
+      this.tooltipDisabled = false;
 
 
     } else if ($('.side_nav').css('margin-left') == '0px' && $('.side_nav').css('min-width') == '100px') {
@@ -74,29 +74,27 @@ export class MenuComponent {
 
       $('#content').css('max-width', 'calc(100% - 250px)');
       $('.togIcon').css('animation', 'toright .3s linear')
-      
-      $('.togIcon').on('animationend', function(){
+
+      $('.togIcon').on('animationend', function () {
         $('.togIcon').css('transform', 'rotate(0deg)')
         $('.togIcon').css('box-shadow', '4px 4px 4px var(--lightGrey)')
       })
-      
+
       $('.sideBarIcon').removeClass('fa-lg');
       $('#sideBarToggle').css('display', 'block');
       $('.sideBarText').fadeIn(300);
       $('.sideBarText').css('width', '77%');
       $('#allSideToggle').css('margin-left', '230px')
-
+      $('#midToggle').css('width', '250px');
       this.tooltipDisabled = true;
-      
     }
-
   }
 
   hoverSideToggle() {
-    $('#allSideToggle, #sideBarToggle').on('mouseover', function () {
+    $('#allSideToggle, #sideBarToggle, #midToggle').on('mouseover', function () {
       $('#sideBarToggle').css('background-color', 'rgb(235, 235, 235)');
     })
-    $('#allSideToggle, #sideBarToggle').on('mouseout', function () {
+    $('#allSideToggle, #sideBarToggle, #midToggle').on('mouseout', function () {
       $('#sideBarToggle').css('background-color', 'var(--bgLightGrey)');
     })
   }
