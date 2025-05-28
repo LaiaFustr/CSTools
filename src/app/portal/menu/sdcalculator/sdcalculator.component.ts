@@ -48,7 +48,6 @@ export class SdcalculatorComponent {
 
     $(".resRowCalcu").hide()
     $("#accordionSD").hide()
-    /*  this.hideBorderClass() */
     $('#carrierCalc').append('<option value="" hidden>Select carrier...</option>')
 
     $('#portCalc').append('<option value="" hidden>Select Port...</option>')
@@ -57,12 +56,12 @@ export class SdcalculatorComponent {
 
   indexCarriersPorts() {
 
-    console.log("INDEX CARRIERS" + this.carrier + " -  PORTS" + this.port)
+    //console.log("INDEX CARRIERS" + this.carrier + " -  PORTS" + this.port)
 
     if (this.carrier == "" || this.carrier == null) {
       this.sdcalculator.getIndexPort()
         .subscribe(data => {
-          console.log("------PORTS--------")
+          //console.log("------PORTS--------")
           this.ports = data;
           $('#portCalc').empty();
           $('#portCalc').append('<option value="" class="text-muted"selected>Select port...</option>')
@@ -79,7 +78,7 @@ export class SdcalculatorComponent {
     if (this.port == "" || this.port == null) {
       this.sdcalculator.getIndexCarrier()
         .subscribe(data => {
-          console.log("------CARRIERS-------")
+          //console.log("------CARRIERS-------")
           this.carriers = data;
           $('#carrierCalc').empty();
           $('#carrierCalc').append('<option value="" class="text-muted"selected>Select carrier...</option>')
@@ -194,9 +193,7 @@ export class SdcalculatorComponent {
         $('.rowdscalc').find('*').prop('disabled', true);
         $(".resRowCalcu").hide()
       }
-
     }
-    /*  this.hideBorderClass() */
   }
 
 
@@ -217,7 +214,6 @@ export class SdcalculatorComponent {
 
 
   showRes(event: any) {
-
     this.vessel_arrival = $("#vessArrivCalc");
     this.gate_out_full = $("#gateOutFullContCalc");
     this.gate_empty = $("#gateEmptyCalc");
@@ -227,8 +223,6 @@ export class SdcalculatorComponent {
     this.free_storage = $("#freeStorageCalc");
     this.free_demurrage = $("#freeDemDaysCalc");
 
-
-
     let all = [{ index: 'vessel_arrival', value: this.vessel_arrival },
     { index: 'gate_out_full', value: this.gate_out_full },
     { index: 'gate_empty', value: this.gate_empty },
@@ -237,24 +231,23 @@ export class SdcalculatorComponent {
     { index: 'port', value: this.port },
     ]
 
-
     all.forEach((thiselement: any) => {
       if (thiselement.value.val() == "") {
-        console.log(thiselement.value)
+        //console.log(thiselement.value)
         $(thiselement.value).addClass('is-invalid')
         $(thiselement.value).siblings('.invalid-tooltip').show()
         $(".resRowCalcu").hide();
+
       } else {
         $(thiselement.value).removeClass('is-invalid');
       }
     });
     this.btnshow = true;
 
-
     if (this.vessel_arrival.val() != "" && this.gate_out_full.val() != "" && this.gate_empty.val() != "" && this.container.val() != "" && this.port.val() != "" && this.carrier.val() != "") {
       if (this.free_storage.val() != '' || this.free_storage.val() != null) {
         let patern = new RegExp(this.free_storage.prop('pattern'));
-        // console.log(patern)
+        //console.log(patern)
         if (!patern.test(this.free_storage.val())) {
           //console.log('Es un valor no valido de free sTORAGE')
           this.free_storage.addClass('is-invalid')
@@ -286,6 +279,7 @@ export class SdcalculatorComponent {
         this.calcRes()
       }
     }
+
     if (this.btnshow) {
       this.validateSD(event)
     }
@@ -295,7 +289,7 @@ export class SdcalculatorComponent {
     if (this.btnshow) {
       let sdelement = event.target as HTMLInputElement;
       //console.log(event.target)
-      //console.log(sdelement)
+      console.log(sdelement.id)
       if (sdelement.id != "btnCalcPr") {
         if (sdelement.value == "") {
           //console.log(sdelement.value)
@@ -309,14 +303,7 @@ export class SdcalculatorComponent {
     }
   }
 
-  hideBorderClass() {
-    $('.topPartGroup').css("border-radius", "");
-    $('.topPartGroup').css("border-radius", "15px 15px 15px 15px");
-  }
-  showBorderClass() {
-    $('.topPartGroup').css("border-radius", "");
-    $('.topPartGroup').css("border-radius", "15px 15px 0px 0px");
-  }
+
 
 
   calcRes() {
@@ -324,14 +311,16 @@ export class SdcalculatorComponent {
     $("#resRowCalcu").hide();
     $("#accordionSD").hide();
 
+    let freeSto = parseInt(this.free_storage.val());
+    let freeDem = parseInt(this.free_demurrage.val());
     //va a llamar a la funcion de la api que calculará el resultado
-    this.sdcalculator.getCalculation(this.vessel_arrival.val(), this.gate_out_full.val(), this.gate_empty.val(), this.carrier.val(), this.port.val(), this.container.val(), this.free_storage.val(), this.free_demurrage.val())
+    this.sdcalculator.getCalculation(this.vessel_arrival.val(), this.gate_out_full.val(), this.gate_empty.val(), this.carrier.val(), this.port.val(), this.container.val(), freeSto, freeDem)
 
       .subscribe(result => {
 
-        console.log(result)
-        /* $('#totalDaysPort').text(result) */
-        console.log(result['total_sto'])
+        //console.log(result)
+        //console.log(result['total_sto'])
+
         this.total_sto_days = result['stodays'];
         this.total_sto_pr_days = result['priced_sto'];
         this.sto_tariff = result['sto_tariff'];
@@ -350,39 +339,34 @@ export class SdcalculatorComponent {
 
   }
 
-  /*  extraInfo(e: any) {
-     let tg = $(this).attr('tg')
-     var $this = $(this);
- 
-     if ($(this).is('[aria-expanded = "false"]')) {
-       $('#' + tg).removeClass('fa-minus').addClass('fa-plus');
- 
-       $(this).hover(function () {
-         $(this).css("background-color", "");
-         $(this).css("border", "1px solid #f9a207")
-         $(this).css("color", "#f9a207")
-       },
-         function () {
-           $(this).css("background-color", "#f9a207");
-           $(this).css("border", "")
-           $(this).css("color", "")
-         })
-     } else {
-       $('#' + tg).removeClass('fa-plus').addClass('fa-minus');
- 
-       $(this).hover(function () {
-         $(this).css("background-color", "");
-         $(this).css("border", "1px solid #0057b7")
-         $(this).css("color", "#0057b7")
-       },
-         function () {
-           $(this).css("background-color", "#0057b7");
-           $(this).css("border", "")
-           $(this).css("color", "white")
-         })
- 
-     }
-   } */
+  validateFree(event: any) {
+    let freeElement = event.target as HTMLInputElement;
+    let freestodem = $('#' + freeElement.id);
+
+    //console.log(freestodem)
+    //console.log(freeElement.value)
+
+    if (freestodem.val() != '' && freestodem.val() != null) {
+      let patern = new RegExp(freestodem.prop('pattern'));
+      //console.log(patern)
+      if (!patern.test(freeElement.value)) {
+        //console.log('Es un valor no valido de free sTORAGE')
+        freestodem.addClass('is-invalid')
+        freestodem.siblings('.invalid-tooltip').show()
+        $("#resRowCalcu").hide();
+        $('#accordionSD').hide();
+      } else {
+        freestodem.removeClass('is-invalid')
+        freestodem.siblings('.invalid-tooltip').hide()
+        
+      }
+    } else if (freestodem.val() == '' || freestodem.val() == null) {
+      freestodem.removeClass('is-invalid')
+      freestodem.siblings('.invalid-tooltip').hide()
+      
+    }
+  }
+
 
   clickToggle(event: Event) {
     let btn = (event.currentTarget as HTMLButtonElement);
@@ -401,19 +385,7 @@ export class SdcalculatorComponent {
       $(other).find('.icon').addClass('fa-plus');
       $(other).find('.icon').removeClass('fa-minus');
     }
-    /*  if ($(btn).closest('button').attr('aria-expanded') === 'true') {
-      $(btn).find('.icon').removeClass('fa-arrow-down');
-      $(btn).find('.icon').addClass('fa-arrow-up');
-      $(other).find('.icon').addClass('fa-arrow-down');
-      $(other).find('.icon').removeClass('fa-arrow-up');
 
-
-    } else {
-      $(btn).find('.icon').addClass('fa-arrow-down');
-      $(btn).find('.icon').removeClass('fa-arrow-up');
-      $(other).find('.icon').addClass('fa-arrow-down');
-      $(other).find('.icon').removeClass('fa-arrow-up');
-    } */
   }
 
 }

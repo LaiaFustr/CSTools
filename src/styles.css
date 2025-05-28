@@ -1118,6 +1118,7 @@ hr.h-color {
     border: 1px solid var(--blueLightDch);
     color: var(--blueDarkDch);
     background-color: transparent;
+    transition: all .3s ease;
 }
 
 .outlineBlue:hover .outlineBlue:focus,
@@ -1170,6 +1171,7 @@ hr.h-color {
     background-color: transparent;
     color: var(--orangeDch);
     border: 1px solid var(--orangeDch);
+    transition: all .3s ease;
 }
 
 .outlineGrey {

@@ -17,12 +17,15 @@ export class KmdistancesComponent {
   desCountry: Object = '';
   embcountry: any[] = [];
 
+  distm: string = '';
+  timeformat: string = 'HH:mm:ss';
+  timesec: string = '';
 
   constructor(private kmdistance: KmdistancesService) { this.getCountries(), this.getPorts() }
 
   NgOnInit() {
     $('#colResKm').hide();
-
+    $("#accordionkmdist").hide()
 
 
   }
@@ -59,12 +62,9 @@ export class KmdistancesComponent {
           if (country['emb'] == "") {
             $('#oriCountryOpc, #desCountryOpc').append('<option country-code="' + country['papaicod'] + '" value="' + country['papaicod'] + ' - ' + country['papainom'] + '"> ' + country['papainom'] + '</option>')
           } else if (country['emb'] == 'EXCL') {
-            $('#oriCountryOpc, #desCountryOpc').append('<option country-code="' + country['papaicod'] + '" value="' + country['papaicod'] + ' - ' + country['papainom'] + '*****' + country['emb'] + '*****"> ' + country['papainom'] + '</option>')
+            $('#oriCountryOpc, #desCountryOpc').append('<option country-code="' + country['papaicod'] + '" value="' + country['papaicod'] + ' - ' + country['papainom'] + '    ****' + ' EMBARGO ' + '****"> ' + country['papainom'] + '</option>')
             this.embcountry.push(country)
           }
-
-
-
         });
       })
   }
@@ -242,6 +242,7 @@ export class KmdistancesComponent {
           $('#' + pc).removeAttr('disabled')
         } else {
           $('#colResKm').hide()
+          $('#accordionkmdist').hide()
           $('#' + country.id).addClass('is-invalid')
           $('#' + country.id).siblings('.invalid-tooltip').text('This country is excluded.')
           $('#' + country.id).siblings('.invalid-tooltip').show()
@@ -267,6 +268,7 @@ export class KmdistancesComponent {
     //origen cp/boblacion
     $('.chargingSpinner').show()
     $('#colResKm').hide()
+    $('#accordionkmdist').hide()
     let error = false;
     let oricountry = '' /* String($('#oriCountry').val()) */;
     let descountry = ''/* String($('#desCountry').val()) */;
@@ -288,6 +290,7 @@ export class KmdistancesComponent {
       if ($('#oriCountry').val() == '' || $('#oriCountry').val() == null) {
 
         $('#colResKm').hide()
+        $('#accordionkmdist').hide()
 
         $('#oriPc').val('')
         $('#oriPc').removeClass('is-invalid')
@@ -302,6 +305,7 @@ export class KmdistancesComponent {
       } else {
         if (($('#oriPc').val() == '' || $('#oriPc').val() == null) && !$('#oriPc').prop('disabled')) { //comprobar si estan rellenos city or postal code
           $('#colResKm').hide()
+          $('#accordionkmdist').hide()
           $('#oriPc').addClass('is-invalid')
           $('#oriPc').siblings('.invalid-tooltip').text('Required Field.')
           $('#oriPc').siblings('.invalid-tooltip').show()
@@ -319,6 +323,7 @@ export class KmdistancesComponent {
       $("#oriPuerto")
       if ($("#oriPuerto").val() == '' || $("#oriPuerto").val() == null) {
         $('#colResKm').hide()
+        $('#accordionkmdist').hide()
         $("#oriPuerto").addClass('is-invalid')
         $("#oriPuerto").siblings('.invalid-tooltip').text('Required Field.')
         $("#oriPuerto").siblings('.invalid-tooltip').show()
@@ -338,8 +343,9 @@ export class KmdistancesComponent {
       if ($('#desCountry').val() == '' || $('#desCountry').val() == null) {
 
         $('#colResKm').hide()
-        
-       
+        $('#accordionkmdist').hide()
+
+
         $('#desPc').val('')
         $('#desPc').removeClass('is-invalid')
         $('#desPc').siblings('.invalid-tooltip').hide()
@@ -354,6 +360,7 @@ export class KmdistancesComponent {
 
         if (($('#desPc').val() == '' || $('#desPc').val() == null) && !$('#desPc').prop('disabled')) {//comprobar si estan rellenos city or postal code
           $('#colResKm').hide()
+          $('#accordionkmdist').hide()
           $('#desPc').addClass('is-invalid')
           $('#desPc').siblings('.invalid-tooltip').text('Required Field.')
           $('#desPc').siblings('.invalid-tooltip').show()
@@ -371,6 +378,7 @@ export class KmdistancesComponent {
       $("#desPuerto")
       if ($("#desPuerto").val() == '' || $("#desPuerto").val() == null) {
         $('#colResKm').hide()
+        $('#accordionkmdist').hide()
         $("#oriPuerto").addClass('is-invalid')
         $("#oriPuerto").siblings('.invalid-tooltip').text('Required Field.')
         $("#oriPuerto").siblings('.invalid-tooltip').show()
@@ -394,20 +402,33 @@ export class KmdistancesComponent {
 
       $('.chargingSpinner').show()
       $('#colResKm').hide()
-      this.kmdistance.getDistance(oricountry, oriiso, descountry, desiso, oripc, despc).subscribe(response => {
-        //console.log(response)
+      $('#accordionkmdist').hide()
 
-        if (response['distkmokay'] == 0) {
-          $('.calkm').html(response['distkm'])
-        } else {
-          $('.calkm').html(response['distkmokay'])
+      this.kmdistance.getDistance(oricountry, oriiso, descountry, desiso, oripc, despc).subscribe(response => {
+         console.log(response)
+         console.log(response['distkm'])
+         console.log(response['distkmokay'])
+        if (response['distkmokay'] != null && response['distkmokay'] != undefined) {
+          if (response['distkmokay'] == 0) {
+            $('#calkm').html(response['distkm'])
+            
+          } else {
+            $('#calkm').html(response['distkmokay'])
+          }
+          this.distm = response['distm'];
+          this.timeformat= response['disttimeformat'];
+          this.timesec = response['disttimesec'];
+          /* $('.calkm').html(response[]); */
+          $('.chargingSpinner').hide()
+          $('#colResKm').show()
+          $('#accordionkmdist').show()
         }
-        /* $('.calkm').html(response[]); */
-        $('.chargingSpinner').hide()
-        $('#colResKm').show()
+
+
       })
     } else {
       $('#colResKm').hide()
+      $('#accordionkmdist').hide()
     }
   }
 
@@ -434,9 +455,32 @@ export class KmdistancesComponent {
       /*  }) */
     } else {
       $('#colResKm').hide()
+      $('#accordionkmdist').hide()
       $('#' + input.id).addClass('is-invalid')
       $('#' + input.id).siblings('.invalid-tooltip').text('Required Field.')
       $('#' + input.id).siblings('.invalid-tooltip').show()
     }
   }
+
+
+  clickToggle(event: Event) {
+    let btn = (event.currentTarget as HTMLButtonElement);
+    let other = $('.btn').not(btn);
+
+    if ($(btn).closest('button').attr('aria-expanded') === 'true') {
+      $(btn).find('.icon').removeClass('fa-plus');
+      $(btn).find('.icon').addClass('fa-minus');
+      $(other).find('.icon').addClass('fa-plus');
+      $(other).find('.icon').removeClass('fa-minus');
+
+
+    } else {
+      $(btn).find('.icon').addClass('fa-plus');
+      $(btn).find('.icon').removeClass('fa-minus');
+      $(other).find('.icon').addClass('fa-plus');
+      $(other).find('.icon').removeClass('fa-minus');
+    }
+
+  }
+
 }

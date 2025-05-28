@@ -124,6 +124,7 @@
                 id="freeStorageCalc"
                 pattern="^([0-9]{1,2})?$"
                 class="form-control secThRowCalc"
+                (input)="validateFree($event)"
                 placeholder="Add free storage days"
                 disabled
               />
@@ -142,6 +143,7 @@
                 id="freeDemDaysCalc"
                 pattern="^([0-9]{1,2})?$"
                 class="form-control secThRowCalc"
+                (input)="validateFree($event)"
                 placeholder="Add free damurrage days"
                 disabled
               />
