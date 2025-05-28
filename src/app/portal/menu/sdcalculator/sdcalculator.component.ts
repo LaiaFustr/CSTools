@@ -190,7 +190,7 @@ export class SdcalculatorComponent {
         $('.rowdscalc').find('[disabled]').removeAttr('disabled')
 
       } else {
-        $('.rowdscalc').find('*').prop('disabled', true);
+        $('.rowdscalc').find('*').not('#btnClear').prop('disabled', true);
         $(".resRowCalcu").hide()
       }
     }
@@ -233,7 +233,7 @@ export class SdcalculatorComponent {
 
     all.forEach((thiselement: any) => {
       if (thiselement.value.val() == "") {
-        //console.log(thiselement.value)
+        console.log(thiselement.value)
         $(thiselement.value).addClass('is-invalid')
         $(thiselement.value).siblings('.invalid-tooltip').show()
         $(".resRowCalcu").hide();
@@ -358,12 +358,12 @@ export class SdcalculatorComponent {
       } else {
         freestodem.removeClass('is-invalid')
         freestodem.siblings('.invalid-tooltip').hide()
-        
+
       }
     } else if (freestodem.val() == '' || freestodem.val() == null) {
       freestodem.removeClass('is-invalid')
       freestodem.siblings('.invalid-tooltip').hide()
-      
+
     }
   }
 
@@ -388,4 +388,16 @@ export class SdcalculatorComponent {
 
   }
 
+  clearAll() {
+    let sdcalc = $('app-sdcalculator');
+    sdcalc.find('*').val('')
+    sdcalc.find('.is-invalid').removeClass('is-invalid')
+    sdcalc.find('.invalid-tooltip').hide()
+    console.log('Clear all inputs')
+    $('.rowdscalc').find('*').not('#btnClear').prop('disabled', true);
+    //console.log(sdcalc.find('*'))
+    /*    $('#desCountry').val(''); */
+    /*  $('#desCountry').removeClass('is-invalid') */
+
+  }
 }

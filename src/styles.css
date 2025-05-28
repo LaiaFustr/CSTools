@@ -431,14 +431,14 @@ body {
     border-radius: 7px 7px 7px 7px;
 }
 
-.bottomPartGroup {
+/* .bottomPartGroup {
     border-radius: 0px 0px 7px 7px;
-}
+} */
 
-.contMargin {
+/* .contMargin {
     margin-left: 5px;
     margin-right: 5px;
-}
+} */
 
 .btnCalc {
     height: fit-content;
@@ -460,9 +460,9 @@ body {
     font-weight: 600;
 }
 
-.marginCalcCard {
+/* .marginCalcCard {
     margin: 5px 5px 15px 5px;
-}
+} */
 
 .titleResCalc {
     border-bottom: 4px solid var(--orangeDch);
@@ -528,7 +528,7 @@ body {
 }
 
 .rowContentRes {
-    min-height: 170px;
+    min-height: 270px;
 }
 
 .labelResCalc {
