@@ -274,7 +274,8 @@ export class KmdistancesComponent {
     let desiso = '' /* String($('#desCountry').val()).split(' - ')[0] */;
     let oripc = ''/* String($('#oriPc').val()).split(' - ')[0] */;
     let despc = ''/* String($('#desPc').val()).split(' - ')[0] */;
-
+    let oritown = '';
+    let destown = '';
     /*     let oritown = '';
         let destown = $('#desCountry'); */
 
@@ -302,6 +303,7 @@ export class KmdistancesComponent {
 
       } else {
         if (($('#oriPc').val() == '' || $('#oriPc').val() == null) && !$('#oriPc').prop('disabled')) { //comprobar si estan rellenos city or postal code
+          //console.log('entra aqui 1')
           $('#colResKm').hide()
           $('#accordionkmdist').hide()
           $('#oriPc').addClass('is-invalid')
@@ -310,9 +312,19 @@ export class KmdistancesComponent {
           error = true;
           $('.chargingSpinner').hide()
         } else {
+          console.log('entra aqui 2')
           oricountry = String($('#oriCountry').val());
           oriiso = String($('#oriCountry').val()).split(' - ')[0];
           oripc = String($('#oriPc').val()).split(' - ')[0];
+          let town = $('#oriPcOptions option').filter(function () {
+            return $(this).val() === $('#oriPc').val();
+          });
+          //console.log(town.attr('data-pob'))
+          //console.log('Acaba de terminar de sacar town')
+          if (town) {
+            oritown = town.attr('data-pob')!;
+          }
+
 
         }
 
@@ -369,6 +381,11 @@ export class KmdistancesComponent {
           descountry = String($('#desCountry').val());
           desiso = String($('#desCountry').val()).split(' - ')[0];
           despc = String($('#desPc').val()).split(' - ')[0];
+          let town = $('#desPcOptions option').filter(function () {
+            return $(this).val() === $('#desPc').val();
+          });
+          if (town)
+            destown = town.attr('data-pob')!;
 
         }
       }
@@ -402,19 +419,19 @@ export class KmdistancesComponent {
       $('#colResKm').hide()
       $('#accordionkmdist').hide()
 
-      this.kmdistance.getDistance(oricountry, oriiso, descountry, desiso, oripc, despc).subscribe(response => {
-         console.log(response)
-         console.log(response['distkm'])
-         console.log(response['distkmokay'])
+      this.kmdistance.getDistance(oricountry, oriiso, descountry, desiso, oripc, despc, oritown, destown).subscribe(response => {
+        console.log(response)
+        console.log(response['distkm'])
+        console.log(response['distkmokay'])
         if (response['distkmokay'] != null && response['distkmokay'] != undefined) {
           if (response['distkmokay'] == 0) {
             $('#calkm').html(response['distkm'])
-            
+
           } else {
             $('#calkm').html(response['distkmokay'])
           }
           this.distm = response['distm'];
-          this.timeformat= response['disttimeformat'];
+          this.timeformat = response['disttimeformat'];
           this.timesec = response['disttimesec'];
           /* $('.calkm').html(response[]); */
           $('.chargingSpinner').hide()

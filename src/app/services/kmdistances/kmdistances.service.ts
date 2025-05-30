@@ -35,8 +35,8 @@ private distance = 'http://localhost:8000/api/v1/distance';
     return this.http.get<any[]>(this.localports);
   }
 
-  getDistance(oricountry: string,oriiso : string, descountry: string,desiso: string, oripc: string, despc: string/* , oritown:string, destown: string */){
-    const params = {oricountry ,oriiso, descountry, desiso,  oripc, despc/* , oritown,  destown */ };
+  getDistance(oricountry: string,oriiso : string, descountry: string,desiso: string, oripc: string, despc: string, oritown:string, destown: string){
+    const params = {oricountry ,oriiso, descountry, desiso,  oripc, despc, oritown,  destown };
     return this.http.post<any>(this.distance, params);
   }
 }
