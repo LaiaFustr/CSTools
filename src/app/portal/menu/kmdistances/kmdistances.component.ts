@@ -56,9 +56,7 @@ export class KmdistancesComponent {
 
     this.kmdistance.getCountry()
       .subscribe(countries => {
-        //console.log(countries)
         countries.forEach(country => {
-
           if (country['emb'] == "") {
             $('#oriCountryOpc, #desCountryOpc').append('<option country-code="' + country['papaicod'] + '" value="' + country['papaicod'] + ' - ' + country['papainom'] + '"> ' + country['papainom'] + '</option>')
           } else if (country['emb'] == 'EXCL') {
