@@ -319,10 +319,11 @@ export class KmdistancesComponent {
           let town = $('#oriPcOptions option').filter(function () {
             return $(this).val() === $('#oriPc').val();
           });
-          //console.log(town.attr('data-pob'))
+          
           //console.log('Acaba de terminar de sacar town')
           if (town) {
             oritown = town.attr('data-pob')!;
+            console.log(oritown)
           }
 
 
