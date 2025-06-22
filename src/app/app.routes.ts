@@ -8,6 +8,7 @@ import { KmdistancesComponent } from './portal/menu/kmdistances/kmdistances.comp
 import { LoginComponent } from './login/login.component';
 import { PortalComponent } from './portal/portal.component';
 import { adminGuard } from './guards/admin.guard';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     {
@@ -18,26 +19,27 @@ export const routes: Routes = [
     {
         path: 'portal',
         component: PortalComponent,
-       canActivate: [adminGuard]
+       canActivate: [authGuard]
    },
     {
         path: 'portal/cstools',
         component: MenuComponent,
-        canActivate: [adminGuard],
+        canActivate: [authGuard],
         children: [
             {
                 path: 'sdcalculator',
                 component: SdcalculatorComponent,
-               
+               canActivate: [authGuard],
             },
             {
                 path: 'schedule',
                 component: ScheduleComponent,
-                
+                canActivate: [authGuard],
             },
             {
                 path: 'kmdistances',
                 component: KmdistancesComponent,
+                canActivate: [authGuard],
             },
             {
                 path: '',

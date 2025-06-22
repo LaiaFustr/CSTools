@@ -32,6 +32,8 @@ export class AuthService {
   }
 
   //hacer logout y que llame al servicio logout para que destroce token
-  
+  logout(){
+    
+  }
 
 }

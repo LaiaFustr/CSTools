@@ -68,5 +68,6 @@ export class LoginComponent {
   }
 
   //funcion getToken( ) que recupera el token
+ 
 
 }
