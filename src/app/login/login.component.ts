@@ -54,7 +54,7 @@ export class LoginComponent {
     if (val.email && val.password) {
       try {
         const res = await this.authService.login(val.email, val.password);
-        console.log(res.token);
+        //console.log(res.token);
         sessionStorage.setItem('jwt', res.token);
 
         this.router.navigate(['portal']);

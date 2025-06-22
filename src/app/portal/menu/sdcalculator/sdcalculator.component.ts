@@ -390,11 +390,13 @@ export class SdcalculatorComponent {
 
   clearAll() {
     let sdcalc = $('app-sdcalculator');
-    sdcalc.find('*').val('')
-    sdcalc.find('.is-invalid').removeClass('is-invalid')
-    sdcalc.find('.invalid-tooltip').hide()
-    console.log('Clear all inputs')
-    $('.rowdscalc').find('*').not('#btnClear').prop('disabled', true);
+    sdcalc.find('input.is-invalid, select.is-invalid').removeClass('is-invalid')
+    sdcalc.find('input, select').val('');
+    console.log('los inputs y selects')
+    console.log(sdcalc.find('input, select').val(''))
+    /*     sdcalc.find('div.invalid-tooltip').hide() */
+    $('.rowdscalc').find('input, select').not('#btnClear').prop('disabled', true);
+    console.log($('.rowdscalc').find('input, select').not('#btnClear'))
     //console.log(sdcalc.find('*'))
     /*    $('#desCountry').val(''); */
     /*  $('#desCountry').removeClass('is-invalid') */

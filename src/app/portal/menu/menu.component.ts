@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCalculator, faCalendarDay, faLocationCrosshairs, faTruckPlane, faPlus, faLessThan, faHome, faRightFromBracket, faBars, faDisplay, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { faCalculator, faCalendarDay, faLocationCrosshairs, faTruckPlane, faPlus, faLessThan, faHome, faRightFromBracket, faBars, faDisplay, faLocationDot, faBusinessTime } from '@fortawesome/free-solid-svg-icons';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 
@@ -23,6 +23,7 @@ export class MenuComponent {
   faBars = faBars;
   faLocationDot = faLocationDot;
   tooltipDisabled = true;
+  faBusinessTime = faBusinessTime;
 
   constructor() { }
   ngOnInit(): void {
