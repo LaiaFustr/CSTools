@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import {NgForOf, CommonModule } from '@angular/common';
 import { SdcalculatorService } from '../../../services/sdcalculator/sdcalculator.service';
 import { Component } from '@angular/core';
 
@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-sdcalculator',
-  imports: [CommonModule],
+  imports: [NgForOf,CommonModule],
   templateUrl: './sdcalculator.component.html',
   styleUrl: './sdcalculator.component.css'
 })
@@ -392,11 +392,11 @@ export class SdcalculatorComponent {
     let sdcalc = $('app-sdcalculator');
     sdcalc.find('input.is-invalid, select.is-invalid').removeClass('is-invalid')
     sdcalc.find('input, select').val('');
-    console.log('los inputs y selects')
-    console.log(sdcalc.find('input, select').val(''))
+    //console.log('los inputs y selects')
+    //console.log(sdcalc.find('input, select').val(''))
     /*     sdcalc.find('div.invalid-tooltip').hide() */
     $('.rowdscalc').find('input, select').not('#btnClear').prop('disabled', true);
-    console.log($('.rowdscalc').find('input, select').not('#btnClear'))
+    //console.log($('.rowdscalc').find('input, select').not('#btnClear'))
     //console.log(sdcalc.find('*'))
     /*    $('#desCountry').val(''); */
     /*  $('#desCountry').removeClass('is-invalid') */

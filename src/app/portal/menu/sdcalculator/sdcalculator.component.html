@@ -1,27 +1,20 @@
 <div class="container">
-  <!-- style="position: relative;" -->
-  <div class="row">
-    <div class="col col-12">
-      <h1 class="text-center sectionTitle helvetica mt-4 mb-4 titleCalc">
-        Quality Storage & Demurrages Calculator
-      </h1>
+    <!-- style="position: relative;" -->
+    <div class="row">
+        <div class="col col-12">
+            <h1 class="text-center sectionTitle helvetica mt-4 mb-4 titleCalc">
+                Quality Storage & Demurrages Calculator
+            </h1>
+        </div>
     </div>
-  </div>
-  <div class="container-fluid row py-3 px-3 px-md-5 px-sm-3">
-    <div class="col col-12 mb-1" id="errorMessageC"></div>
-    <div class="col allGroup cardDachser pt-5 px-5 pb-5">
-      <div
-        id="calc"
-        method="post"
-        class="cntCalc row"
-      >
-        <div class="col">
-          <div class="row">
-            <div
-              class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative"
-            >
-              <label class="labelCalc" for="vessArrivCalc"
-                >Vessel Arrival</label
+    <div class="container-fluid row py-3 px-3 px-md-5 px-sm-3">
+        <div class="col col-12 mb-1" id="errorMessageC"></div>
+        <div class="col allGroup cardDachser pt-5 px-5 pb-5">
+            <div id="calc" method="post" class="cntCalc row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative">
+                            <label class="labelCalc" for="vessArrivCalc">Vessel Arrival</label
               >
 
               <input
@@ -38,21 +31,11 @@
               class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative"
             >
               <label class="labelCalc" for="gateOutFullContCalc" >Gate Out Full Container</label>
-              <input
-                type="date"
-                id="gateOutFullContCalc"
-                class="form-control firstRowCalc"
-                placeholder="Gate out full container"
-                (change)="compDates()"
-                required
-              />
-              <div class="invalid-tooltip">Please provide a valid date.</div>
-            </div>
-            <div
-              class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative"
-            >
-              <label class="labelCalc" for="gateEmptyCalc"
-                >Gate In Empty Container</label
+                            <input type="date" id="gateOutFullContCalc" class="form-control firstRowCalc" placeholder="Gate out full container" (change)="compDates()" required />
+                            <div class="invalid-tooltip">Please provide a valid date.</div>
+                        </div>
+                        <div class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative">
+                            <label class="labelCalc" for="gateEmptyCalc">Gate In Empty Container</label
               >
               <input
                 type="date"
@@ -71,53 +54,29 @@
               class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative"
             >
               <label class="labelCalc" for="carrierCalc">Carrier</label>
-              <select
-                id="carrierCalc"
-                (change)="portsWhereCarrier($event)"
-                class="form-select secThRowCalc secndRowCalc"
-                required
-                disabled
-              ></select>
-              <div class="invalid-tooltip">Please select an option.</div>
-            </div>
-            <div
-              class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative"
-            >
-              <label class="labelCalc" for="portCalc">Port</label>
-              <select
-                class="form-select secThRowCalc secndRowCalc"
-                (change)="carriersWherePort($event)"
-                id="portCalc"
-                disabled
-              ></select>
-              <div class="invalid-tooltip">Please select an option.</div>
-            </div>
-            <div
-              class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative"
-            >
-              <label class="labelCalc" for="containCalc">Container</label>
-              <select
-                name="calc_cntr"
-                id="containCalc"
-                (change)="validateSD($event)"
-                class="form-select secThRowCalc secndRowCalc"
-                disabled
-              >
+                            <select id="carrierCalc" (change)="portsWhereCarrier($event)" class="form-select secThRowCalc secndRowCalc" required disabled></select>
+                            <div class="invalid-tooltip">Please select an option.</div>
+                        </div>
+                        <div class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative">
+                            <label class="labelCalc" for="portCalc">Port</label>
+                            <select class="form-select secThRowCalc secndRowCalc" (change)="carriersWherePort($event)" id="portCalc" disabled></select>
+                            <div class="invalid-tooltip">Please select an option.</div>
+                        </div>
+                        <div class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative">
+                            <label class="labelCalc" for="containCalc">Container</label>
+                            <select name="calc_cntr" id="containCalc" (change)="validateSD($event)" class="form-select secThRowCalc secndRowCalc" disabled>
                 <option value="" selected hidden>Select ctnr...</option>
                 <option value="20">20'</option>
                 <option value="40">40'</option>
               </select>
-              <div class="invalid-tooltip">Please select an option.</div>
-            </div>
-          </div>
+                            <div class="invalid-tooltip">Please select an option.</div>
+                        </div>
+                    </div>
 
-          <div class="row mt-2 align-items-end rowdscalc">
-            
-            <div
-              class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative"
-            >
-              <label class="labelCalc" for="freeStorageCalc"
-                >Free Storage Days</label
+                    <div class="row mt-2 align-items-end rowdscalc">
+
+                        <div class="col col-12 col-sm-12 col-lg-4 col-xl-4 position-relative">
+                            <label class="labelCalc" for="freeStorageCalc">Free Storage Days</label
               >
 
               <input
@@ -213,7 +172,7 @@
                 </div>
                 <div class="col text-center">
                   <p>Tariff:</p>
-                  <div id="tariffPort" *ngFor="let tar of sto_tariff">
+                  <div id="tariffPort" *ngfor="let tar of sto_tariff">
                     <span>{{ tar }}</span
                     ><br />
                   </div>
@@ -255,7 +214,7 @@
                 </div>
                 <div class="col text-center">
                   <p>Tariff:</p>
-                  <div id="tariffDem" *ngFor="let tar of dem_tariff">
+                  <div id="tariffDem" *ngfor="let tar of dem_tariff">
                     <span>{{ tar }}</span
                     ><br />
                   </div>
