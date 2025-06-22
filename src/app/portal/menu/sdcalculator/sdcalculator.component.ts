@@ -1,4 +1,4 @@
-import {NgForOf, CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { SdcalculatorService } from '../../../services/sdcalculator/sdcalculator.service';
 import { Component } from '@angular/core';
 
@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-sdcalculator',
-  imports: [NgForOf,CommonModule],
+  imports: [CommonModule],
   templateUrl: './sdcalculator.component.html',
   styleUrl: './sdcalculator.component.css'
 })

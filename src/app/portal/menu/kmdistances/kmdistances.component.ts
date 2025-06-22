@@ -227,11 +227,7 @@ export class KmdistancesComponent {
 
 
     if ($('#' + country.id).val() == null || $('#' + country.id).val() == '') {
-
       $('#' + pc).attr('disabled', 'disabled')
-
-
-
     } else {
       this.embcountry.forEach(emb => {
         if (!(emb['papaicod'] == code)) {
@@ -244,12 +240,9 @@ export class KmdistancesComponent {
           $('#' + country.id).addClass('is-invalid')
           $('#' + country.id).siblings('.invalid-tooltip').text('This country is excluded.')
           $('#' + country.id).siblings('.invalid-tooltip').show()
-
+          $('.chargingSpinner').hide()
         }
       })
-
-
-
     }
 
   }
@@ -285,9 +278,11 @@ export class KmdistancesComponent {
 
     if ($('#origindiv input:checked').attr('id') == 'oriPC') {
       /* this.oriCountry = $('#oriCountry') */
+      //console.log('0IF')
+      const oriCountryVal = $('#oriCountry').val();
 
-      if ($('#oriCountry').val() == '' || $('#oriCountry').val() == null) {
-
+      if ($('#oriCountry').val() == '' || $('#oriCountry').val() === null || $('#oriCountry').val() === undefined) {
+        //console.log('1IF')
         $('#colResKm').hide()
         $('#accordionkmdist').hide()
 
@@ -302,7 +297,26 @@ export class KmdistancesComponent {
         $('.chargingSpinner').hide()
 
       } else {
+
+        if (typeof oriCountryVal === 'string' && oriCountryVal.includes('EMBARGO')) {
+          $('#colResKm').hide()
+          $('#accordionkmdist').hide()
+
+          $('#oriPc').val('')
+          $('#oriPc').removeClass('is-invalid')
+          $('#oriPc').siblings('.invalid-tooltip').hide()
+
+          $('#oriCountry').addClass('is-invalid')
+          $('#oriCountry').siblings('.invalid-tooltip').text('This country is excluded.')
+          $('#oriCountry').siblings('.invalid-tooltip').show()
+          $('.chargingSpinner').hide()
+          error = true;
+        }
+        console.log('NO 1IF')
+        /* console.log('-'+$('#oriPc').val()+'-')
+        console.log($('#oriPc').prop('disabled')) */
         if (($('#oriPc').val() == '' || $('#oriPc').val() == null) && !$('#oriPc').prop('disabled')) { //comprobar si estan rellenos city or postal code
+          console.log('1.1IF')
           //console.log('entra aqui 1')
           $('#colResKm').hide()
           $('#accordionkmdist').hide()
@@ -312,16 +326,18 @@ export class KmdistancesComponent {
           error = true;
           $('.chargingSpinner').hide()
         } else {
-          console.log('entra aqui 2')
+          console.log('NO 1.1IF')
+
           oricountry = String($('#oriCountry').val());
           oriiso = String($('#oriCountry').val()).split(' - ')[0];
           oripc = String($('#oriPc').val()).split(' - ')[0];
           let town = $('#oriPcOptions option').filter(function () {
             return $(this).val() === $('#oriPc').val();
           });
-          
+
           //console.log('Acaba de terminar de sacar town')
           if (town) {
+            //console.log('1.2IF')
             oritown = town.attr('data-pob')!;
             console.log(oritown)
           }
@@ -331,8 +347,10 @@ export class KmdistancesComponent {
 
       }
     } else if ($('#origindiv input:checked').attr('id') == 'oriPort') {
-      $("#oriPuerto")
+      //console.log('NO 0IF')
+      /* $("#oriPuerto") */
       if ($("#oriPuerto").val() == '' || $("#oriPuerto").val() == null) {
+        //console.log('-0.1IF')
         $('#colResKm').hide()
         $('#accordionkmdist').hide()
         $("#oriPuerto").addClass('is-invalid')
@@ -342,6 +360,7 @@ export class KmdistancesComponent {
         $('.chargingSpinner').hide()
 
       } else { //comprobar si estan rellenos city or postal code
+        console.log('NO -0.1IF')
         oricountry = 'ES'
         oriiso = 'ES'
         oripc = String($('#oriPuerto').val()).split(' - ')[0];
@@ -351,6 +370,7 @@ export class KmdistancesComponent {
     }
 
     if ($('#destdiv input:checked').attr('id') == 'destPC') { //checked desPC
+      const desCountryVal = $('#desCountry').val();
       if ($('#desCountry').val() == '' || $('#desCountry').val() == null) {
 
         $('#colResKm').hide()
@@ -368,6 +388,20 @@ export class KmdistancesComponent {
         $('.chargingSpinner').hide()
 
       } else {
+        if (typeof desCountryVal === 'string' && desCountryVal.includes('EMBARGO')) {
+          $('#colResKm').hide()
+          $('#accordionkmdist').hide()
+
+          $('#desPc').val('')
+          $('#desPc').removeClass('is-invalid')
+          $('#desPc').siblings('.invalid-tooltip').hide()
+
+          $('#desCountry').addClass('is-invalid')
+          $('#desCountry').siblings('.invalid-tooltip').text('This country is excluded.')
+          $('#desCountry').siblings('.invalid-tooltip').show()
+          $('.chargingSpinner').hide()
+          error = true;
+        }
 
         if (($('#desPc').val() == '' || $('#desPc').val() == null) && !$('#desPc').prop('disabled')) {//comprobar si estan rellenos city or postal code
           $('#colResKm').hide()
