@@ -152,5 +152,9 @@ export class MenuComponent {
     $('#copSideBar').empty();
     $('#copSideBar').append(noClass);
   }
+
+  logout() {
+    sessionStorage.clear()
+  }
 }
 
