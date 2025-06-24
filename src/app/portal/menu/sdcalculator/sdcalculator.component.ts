@@ -296,6 +296,7 @@ export class SdcalculatorComponent {
           $(sdelement).addClass('is-invalid')
           $(sdelement).siblings('.invalid-tooltip').show()
           $(".resRowCalcu").hide();
+          $("#accordionSD").hide();
         } else {
           $(sdelement).removeClass('is-invalid')
         }
@@ -400,6 +401,8 @@ export class SdcalculatorComponent {
     //console.log(sdcalc.find('*'))
     /*    $('#desCountry').val(''); */
     /*  $('#desCountry').removeClass('is-invalid') */
-
+    $('#accordionSD').hide();
+    $(".resRowCalcu").hide();
+    $('.loadSpinner').hide();
   }
 }
